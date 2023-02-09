@@ -101,12 +101,28 @@ var lists = {
         links: true,
         dividers: true
       }),
+      embed: (0, import_fields.text)({
+        ui: {
+          displayMode: "textarea"
+        }
+      }),
       status: (0, import_fields.select)({
         defaultValue: "offline",
         options: [
           { label: "Published", value: "live" },
           { label: "Offline", value: "offline" },
           { label: "Archived", value: "archived" }
+        ],
+        ui: {
+          displayMode: "segmented-control"
+        }
+      }),
+      type: (0, import_fields.select)({
+        defaultValue: "music",
+        options: [
+          { label: "Music", value: "music" },
+          { label: "Project", value: "project" },
+          { label: "News", value: "news" }
         ],
         ui: {
           displayMode: "segmented-control"
@@ -228,7 +244,7 @@ var keystone_default = withAuth(
     db: {
       provider: "postgresql",
       url: databaseURL,
-      useMigrations: false
+      useMigrations: process.env.NODE_ENV === "production" || false
     },
     lists,
     session

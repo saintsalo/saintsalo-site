@@ -1,5 +1,11 @@
-query AllProjects {
-  projects {
+query AllProjects($status: String!, $type: String!) {
+  projects(
+    orderBy: { name: asc },
+    where: {
+      status: { equals: $status },
+      type: { equals: $type }
+    }
+  ) {
     name
     slug
     content {
@@ -22,5 +28,6 @@ query AllProjects {
     description {
       document
     }
+    embed
   }
 }

@@ -4,16 +4,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default async function Collaborators() {
-  const { projects } = await getProjectsData()
+  const { projects } = await getProjectsData("project")
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee]">
         {projects &&
           projects.map(project => (
-            <div key={project.name} className="flex flex-col max-w-md gap-2">
+            <div key={project.name}>
               <Link
                 href={`/projects/${project.slug}`}
-                className="hover:contrast-150 transition-all shadow-sm hover:shadow-lg p-4 border-2 hover:border-red-400 border-transparent rounded-md"
+                className="hover:contrast-150 transition-all shadow-sm hover:shadow-lg p-4  border-transparent rounded-md flex flex-col gap-2 relative"
               >
                 <div className="hover:font-corrected">{project.name}</div>
 
@@ -22,8 +22,8 @@ export default async function Collaborators() {
                     key={index}
                     src={image.image?.publicUrl || "/"}
                     alt={image.altText || "need alt text"}
-                    width={400}
-                    height={400}
+                    width={800}
+                    height={800}
                   />
                 ))}
                 <DocumentRenderer document={project.content?.document} />

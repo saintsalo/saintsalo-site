@@ -242,7 +242,9 @@ type Project {
   images(where: ImageWhereInput! = {}, orderBy: [ImageOrderByInput!]! = [], take: Int, skip: Int! = 0): [Image!]
   imagesCount(where: ImageWhereInput! = {}): Int
   content: Project_content_Document
+  embed: String
   status: String
+  type: String
   description: Project_description_Document
 }
 
@@ -268,7 +270,9 @@ input ProjectWhereInput {
   slug: StringFilter
   promo: ImageWhereInput
   images: ImageManyRelationFilter
+  embed: StringFilter
   status: StringNullableFilter
+  type: StringNullableFilter
 }
 
 input ImageManyRelationFilter {
@@ -310,7 +314,9 @@ input ProjectOrderByInput {
   id: OrderDirection
   name: OrderDirection
   slug: OrderDirection
+  embed: OrderDirection
   status: OrderDirection
+  type: OrderDirection
 }
 
 input ProjectUpdateInput {
@@ -319,7 +325,9 @@ input ProjectUpdateInput {
   promo: ImageRelateToOneForUpdateInput
   images: ImageRelateToManyForUpdateInput
   content: JSON
+  embed: String
   status: String
+  type: String
   description: JSON
 }
 
@@ -347,7 +355,9 @@ input ProjectCreateInput {
   promo: ImageRelateToOneForCreateInput
   images: ImageRelateToManyForCreateInput
   content: JSON
+  embed: String
   status: String
+  type: String
   description: JSON
 }
 

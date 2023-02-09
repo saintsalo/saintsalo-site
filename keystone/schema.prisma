@@ -38,7 +38,9 @@ model Project {
   promoId     String? @map("promo")
   images      Image[] @relation("Project_images")
   content     Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  embed       String  @default("")
   status      String? @default("offline")
+  type        String? @default("music")
   description Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
 
   @@index([promoId])

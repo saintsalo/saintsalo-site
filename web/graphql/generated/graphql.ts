@@ -623,6 +623,7 @@ export type Project = {
   __typename?: 'Project';
   content?: Maybe<Project_Content_Document>;
   description?: Maybe<Project_Description_Document>;
+  embed?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   images?: Maybe<Array<Image>>;
   imagesCount?: Maybe<Scalars['Int']>;
@@ -630,6 +631,7 @@ export type Project = {
   promo?: Maybe<Image>;
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
 };
 
 
@@ -648,18 +650,22 @@ export type ProjectImagesCountArgs = {
 export type ProjectCreateInput = {
   content?: InputMaybe<Scalars['JSON']>;
   description?: InputMaybe<Scalars['JSON']>;
+  embed?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<ImageRelateToManyForCreateInput>;
   name?: InputMaybe<Scalars['String']>;
   promo?: InputMaybe<ImageRelateToOneForCreateInput>;
   slug?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type ProjectOrderByInput = {
+  embed?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   name?: InputMaybe<OrderDirection>;
   slug?: InputMaybe<OrderDirection>;
   status?: InputMaybe<OrderDirection>;
+  type?: InputMaybe<OrderDirection>;
 };
 
 export type ProjectUpdateArgs = {
@@ -670,23 +676,27 @@ export type ProjectUpdateArgs = {
 export type ProjectUpdateInput = {
   content?: InputMaybe<Scalars['JSON']>;
   description?: InputMaybe<Scalars['JSON']>;
+  embed?: InputMaybe<Scalars['String']>;
   images?: InputMaybe<ImageRelateToManyForUpdateInput>;
   name?: InputMaybe<Scalars['String']>;
   promo?: InputMaybe<ImageRelateToOneForUpdateInput>;
   slug?: InputMaybe<Scalars['String']>;
   status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type ProjectWhereInput = {
   AND?: InputMaybe<Array<ProjectWhereInput>>;
   NOT?: InputMaybe<Array<ProjectWhereInput>>;
   OR?: InputMaybe<Array<ProjectWhereInput>>;
+  embed?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   images?: InputMaybe<ImageManyRelationFilter>;
   name?: InputMaybe<StringFilter>;
   promo?: InputMaybe<ImageWhereInput>;
   slug?: InputMaybe<StringFilter>;
   status?: InputMaybe<StringNullableFilter>;
+  type?: InputMaybe<StringNullableFilter>;
 };
 
 export type ProjectWhereUniqueInput = {
@@ -1029,10 +1039,13 @@ export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', title?: string | null }> | null };
 
-export type AllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllProjectsQueryVariables = Exact<{
+  status: Scalars['String'];
+  type: Scalars['String'];
+}>;
 
 
-export type AllProjectsQuery = { __typename?: 'Query', projects?: Array<{ __typename?: 'Project', name?: string | null, slug?: string | null, content?: { __typename?: 'Project_content_Document', document: any } | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null }> | null, promo?: { __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null } | null, description?: { __typename?: 'Project_description_Document', document: any } | null }> | null };
+export type AllProjectsQuery = { __typename?: 'Query', projects?: Array<{ __typename?: 'Project', name?: string | null, slug?: string | null, embed?: string | null, content?: { __typename?: 'Project_content_Document', document: any } | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null }> | null, promo?: { __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null } | null, description?: { __typename?: 'Project_description_Document', document: any } | null }> | null };
 
 export type ProjectBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -1043,5 +1056,5 @@ export type ProjectBySlugQuery = { __typename?: 'Query', project?: { __typename?
 
 
 export const AllPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>;
-export const AllProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllProjects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"promo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}}]}}]}}]} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
+export const AllProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"status"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"EnumValue","value":"asc"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"status"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"status"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"promo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"embed"}}]}}]}}]} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
 export const ProjectBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProjectBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"project"},"name":{"kind":"Name","value":"project"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}}]}}]}}]} as unknown as DocumentNode<ProjectBySlugQuery, ProjectBySlugQueryVariables>;

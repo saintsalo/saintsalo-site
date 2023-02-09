@@ -2,11 +2,14 @@
   "name": "keystone-app",
   "version": "1.0.2",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "keystone dev",
-    "start": "keystone start",
+    "start": "prisma migrate deploy && keystone start",
+    "migrate": "keystone prisma migrate deploy",
     "build": "keystone build",
-    "postinstall": "keystone postinstall"
+    "deploy": "keystone build && yarn migrate",
+    "postinstall": "if-env SKIP_POSTINSTALL=1 && echo 'skipped' || keystone postinstall"
   },
   "dependencies": {
     "@keystone-6/auth": "^6.0.0",
@@ -14,6 +17,7 @@
     "@keystone-6/core": "^4.0.1",
     "@keystone-6/fields-document": "^6.0.0",
     "dotenv": "^16.0.3",
+    "if-env": "^1.0.4",
     "slugify": "^1.6.5",
     "typescript": "^4.8.0"
   }
