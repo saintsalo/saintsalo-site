@@ -1,0 +1,12 @@
+{
+  "name": "saintsalo",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "docker:build": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:up": "docker compose up",
+    "docker:info": "docker image ls && docker container ls -a",
+    "docker:prune": "docker buildx prune"
+  }
+}

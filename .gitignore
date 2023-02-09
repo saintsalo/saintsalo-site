@@ -1,1 +1,9 @@
+**/node_modules
+*.env
+pgdata
+.vscode/*
+**/.vscode
 **/.DS_Store
+*.code-workspace
+postgres-db
+**/*.wav

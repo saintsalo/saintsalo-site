@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  saintsalo-database:
+    container_name: saintsalo-database
+    restart: always
+    image: postgres:14
+    environment:
+      POSTGRES_DB: saint-salo-keystone
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: synthlords
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - saintsalo-app
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  saintsalo-pgadmin:
+    container_name: saintsalo-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "saintsalo@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "synthlords"
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8080:80"
+    depends_on:
+      - saintsalo-database
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - saintsalo-app
+
+volumes:
+  pgadmin-data:
+  db-data:
+
+networks:
+  saintsalo-app:
+    driver: bridge
+
+

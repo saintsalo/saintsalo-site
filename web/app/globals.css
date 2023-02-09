@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  body {
+  body, footer {
     @apply bg-[#F9F5EC] dark:bg-black text-black dark:text-white
   }
 }

@@ -1,8 +1,7 @@
 "use client"
-
+import Image from "next/image"
 import clsx from "clsx"
 import Link from "next/link"
-import { BsSunset } from "react-icons/bs"
 import { usePathname } from "next/navigation"
 
 interface NavItem {
@@ -21,28 +20,28 @@ const links: NavItem[] = [
     href: "/music",
   },
   {
+    name: "projects",
+    href: "/projects",
+  },
+  {
     name: "rnbo",
     href: "/rnbo",
   },
   {
-    name: "col",
-    href: "/collaborators",
+    name: "patch",
+    href: "/patch",
   },
-  // {
-  //   name: "object sonore >",
-  //   href: "http://www.objectsonore.com",
-  //   tab: true,
-  // },
+  {
+    name: "white noise",
+    href: "/whitenoise",
+  },
 ]
 
 export const Header = () => {
   const pathname = usePathname()
 
   return (
-    <div className="mb-8 flex flex-row w-full">
-      <div className="absolute bottom-2 right-8">
-        <BsSunset />
-      </div>
+    <div className="mb-8 flex md:flex-row flex-col w-full transition-all duration-500">
       <ul className="grow">
         {links.map((link, index) => (
           <li key={index}>
@@ -53,11 +52,27 @@ export const Header = () => {
               href={link.href}
               target={link?.tab ? `_blank` : `_self`}
             >
-              {link.name}
+              ======{link.name}
             </Link>
           </li>
         ))}
       </ul>
+      <div className="mr-2">
+        <Image
+          alt="dl salo music"
+          src="/images/dl-salo.png"
+          width="200"
+          height="200"
+          className="md:m-auto md:float-left mb-2 blur-sm hover:blur-none transition-all duration-500"
+        />
+        {/* <Image
+          alt="dl salo music"
+          src="/images/dl-salo-synths.png"
+          width="300"
+          height="300"
+          className="md:m-auto md:block hidden mb-2 blur-sm hover:blur-none"
+        /> */}
+      </div>
       <div className="flex flex-col">
         <div className="flex flex-row items-center space-x-4">
           <div>dl salo</div>
