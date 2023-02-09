@@ -18,6 +18,7 @@ import {
   password,
   timestamp,
   select,
+  json,
 } from '@keystone-6/core/fields';
 
 // the document field is a more complicated field, so it has it's own package
@@ -27,7 +28,6 @@ import { document } from '@keystone-6/fields-document';
 // when using Typescript, you can refine your types to a stricter subset by importing
 // the generated types from '.keystone/types'
 import type { Lists } from '.keystone/types';
-import { createSlug } from './lib/slugify';
 
 export const lists: Lists = {
   User: list({
@@ -89,12 +89,28 @@ export const lists: Lists = {
         links: true,
         dividers: true,
       }),
+      embed: text({
+        ui: {
+          displayMode: "textarea"
+        }
+      }),
       status: select({
         defaultValue: "offline",
         options: [
           { label: "Published", value: "live" },
           { label: "Offline", value: "offline" },
           { label: "Archived", value: "archived" },
+        ],
+        ui: {
+          displayMode: "segmented-control",
+        },
+      }),
+      type: select({
+        defaultValue: "music",
+        options: [
+          { label: "Music", value: "music" },
+          { label: "Project", value: "project" },
+          { label: "News", value: "news" },
         ],
         ui: {
           displayMode: "segmented-control",

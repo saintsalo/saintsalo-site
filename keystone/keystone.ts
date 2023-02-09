@@ -32,7 +32,7 @@ export default withAuth(
     db: {
       provider: 'postgresql',
       url: databaseURL,
-      useMigrations: false,
+      useMigrations: process.env.NODE_ENV === "production" || false,
     },
     lists,
     session,
