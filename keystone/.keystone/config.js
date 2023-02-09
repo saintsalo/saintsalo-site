@@ -203,6 +203,7 @@ var sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret && process.env.NODE_ENV !== "production") {
   sessionSecret = (0, import_crypto.randomBytes)(32).toString("hex");
 }
+var sessionDomain = accessEnv("DOMAIN_URL", "localhost");
 var { withAuth } = (0, import_auth.createAuth)({
   listKey: "User",
   identityField: "email",
@@ -215,19 +216,22 @@ var { withAuth } = (0, import_auth.createAuth)({
 var sessionMaxAge = 60 * 60 * 24 * 30;
 var session = (0, import_session.statelessSessions)({
   maxAge: sessionMaxAge,
-  secret: sessionSecret
+  secret: sessionSecret,
+  domain: sessionDomain
 });
 
 // keystone.ts
 var databaseURL = process.env["DATABASE_URL"] || "postgres://postgres";
-var port = 5e3;
+var deployPrevURL = new RegExp(accessEnv("DEPLOY_PREV_URL", "localhost"));
+var prodUrl = accessEnv("PROD_URL", "https://www.saintsalo.com/");
+var port = parseInt(accessEnv("PORT", "5000"));
 var keystone_default = withAuth(
   (0, import_core2.config)({
     graphql: {
-      debug: true,
+      debug: process.env.NODE_ENV !== "production",
       path: "/api/graphql",
       cors: {
-        origin: [new RegExp("localhost")],
+        origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true
       },
       apolloConfig: {
@@ -236,7 +240,7 @@ var keystone_default = withAuth(
     },
     server: {
       cors: {
-        origin: ["http://localhost:3000"],
+        origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true
       },
       port

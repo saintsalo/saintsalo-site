@@ -3,19 +3,22 @@ import "dotenv/config";
 import { lists } from './schema';
 
 import { withAuth, session } from './auth';
+import { accessEnv } from './lib/accessEnv';
 
 const databaseURL = process.env["DATABASE_URL"] || "postgres://postgres"
-const port = 5000
+const deployPrevURL = new RegExp(accessEnv("DEPLOY_PREV_URL", "localhost"));
+const prodUrl = accessEnv("PROD_URL", "https://www.saintsalo.com/");
+const port = parseInt(accessEnv("PORT", "5000"));
 
 export default withAuth(
   config({
     graphql: {
-      // debug: process.env.NODE_ENV !== "production",
-      debug: true,
+      debug: process.env.NODE_ENV !== "production",
+      // debug: true,
       // queryLimits: { maxTotalResults: 100 },
       path: "/api/graphql",
       cors: {
-        origin: [new RegExp("localhost")],
+        origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true,
       },
       apolloConfig: {
@@ -24,7 +27,7 @@ export default withAuth(
     },
     server: {
       cors: {
-        origin: ["http://localhost:3000"],
+        origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true,
       },
       port,
