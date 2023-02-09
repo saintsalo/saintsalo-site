@@ -20,6 +20,7 @@ import { createAuth } from '@keystone-6/auth';
 
 // see https://keystonejs.com/docs/apis/session for the session docs
 import { statelessSessions } from '@keystone-6/core/session';
+import { accessEnv } from './lib/accessEnv';
 
 // for a stateless session, a SESSION_SECRET should always be provided
 //   especially in production (statelessSessions will throw if SESSION_SECRET is undefined)
@@ -27,6 +28,8 @@ let sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret && process.env.NODE_ENV !== 'production') {
   sessionSecret = randomBytes(32).toString('hex');
 }
+
+const sessionDomain = accessEnv("DOMAIN_URL", "localhost")
 
 // withAuth is a function we can use to wrap our base configuration
 const { withAuth } = createAuth({
@@ -61,6 +64,7 @@ const sessionMaxAge = 60 * 60 * 24 * 30;
 const session = statelessSessions({
   maxAge: sessionMaxAge,
   secret: sessionSecret!,
+  domain: sessionDomain,
 });
 
 export { withAuth, session };
