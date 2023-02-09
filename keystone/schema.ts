@@ -7,6 +7,8 @@
 
 import { list } from '@keystone-6/core';
 import { allowAll } from '@keystone-6/core/access';
+import { cloudinaryImage } from '@keystone-6/cloudinary';
+import { cloudinary } from './lib/cloudinary';
 
 // see https://keystonejs.com/docs/fields/overview for the full list of fields
 //   this is a few common fields for an example
@@ -25,6 +27,7 @@ import { document } from '@keystone-6/fields-document';
 // when using Typescript, you can refine your types to a stricter subset by importing
 // the generated types from '.keystone/types'
 import type { Lists } from '.keystone/types';
+import { createSlug } from './lib/slugify';
 
 export const lists: Lists = {
   User: list({
@@ -59,7 +62,70 @@ export const lists: Lists = {
       }),
     },
   }),
+  Image: list({
+    access: allowAll,
+    fields: {
+      image: cloudinaryImage({ cloudinary, label: "Project Image" }),
+      altText: text({ validation: { isRequired: true } }),
+      name: text({ validation: { isRequired: true } }),
+    }
+  }),
+  Project: list({
+    access: allowAll,
+    fields: {
+      name: text({ validation: { isRequired: true } }),
+      slug: text({ validation: { isRequired: true }, isIndexed: "unique" }),
+      promo: relationship({ ref: "Image", many: false }),
+      images: relationship({ ref: "Image", many: true }),
+      content: document({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1],
+        ],
+        links: true,
+        dividers: true,
+      }),
+      status: select({
+        defaultValue: "offline",
+        options: [
+          { label: "Published", value: "live" },
+          { label: "Offline", value: "offline" },
+          { label: "Archived", value: "archived" },
+        ],
+        ui: {
+          displayMode: "segmented-control",
+        },
+      }),
+      description: document({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1],
+        ],
+        links: true,
+        dividers: true,
+      }),
+    },
+    // Probably don't need this since you know what you're doing and slug is required anyways
+    // hooks: {
+    //   resolveInput: async ({ resolvedData }) => {
+    //     const { name } = resolvedData;
+    //     if (name && !resolvedData.slug) {
+    //       // Create the slug
+    //       resolvedData.slug = createSlug(name.toString());
+    //     }
 
+    //     return resolvedData;
+    //   },
+    // },
+  }),
   Post: list({
     // WARNING
     //   for this starter project, anyone can create, query, update and delete anything

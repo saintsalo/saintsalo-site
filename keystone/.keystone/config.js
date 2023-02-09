@@ -24,10 +24,38 @@ __export(keystone_exports, {
 });
 module.exports = __toCommonJS(keystone_exports);
 var import_core2 = require("@keystone-6/core");
+var import_config2 = require("dotenv/config");
 
 // schema.ts
 var import_core = require("@keystone-6/core");
 var import_access = require("@keystone-6/core/access");
+var import_cloudinary = require("@keystone-6/cloudinary");
+
+// lib/accessEnv.ts
+var import_config = require("dotenv/config");
+var cache = {};
+var accessEnv = (key, defaultValue) => {
+  if (!(key in process.env) || typeof process.env[key] === void 0) {
+    if (defaultValue)
+      return defaultValue;
+    throw new Error(`${key} not found in process.env!`);
+  }
+  if (!(key in cache)) {
+    cache[key] = process.env[key];
+  }
+  return cache[key];
+};
+
+// lib/cloudinary.ts
+var cloudinaryFolder = accessEnv("CLOUDINARY_FOLDER", `saint-salo`);
+var cloudinary = {
+  cloudName: accessEnv("CLOUDINARY_CLOUD_NAME", "cloudinary name"),
+  apiKey: accessEnv("CLOUDINARY_KEY", "cloudinary key"),
+  apiSecret: accessEnv("CLOUDINARY_SECRET", "cloudinary secret"),
+  folder: `${cloudinaryFolder}`
+};
+
+// schema.ts
 var import_fields = require("@keystone-6/core/fields");
 var import_fields_document = require("@keystone-6/fields-document");
 var lists = {
@@ -43,6 +71,58 @@ var lists = {
       posts: (0, import_fields.relationship)({ ref: "Post.author", many: true }),
       createdAt: (0, import_fields.timestamp)({
         defaultValue: { kind: "now" }
+      })
+    }
+  }),
+  Image: (0, import_core.list)({
+    access: import_access.allowAll,
+    fields: {
+      image: (0, import_cloudinary.cloudinaryImage)({ cloudinary, label: "Project Image" }),
+      altText: (0, import_fields.text)({ validation: { isRequired: true } }),
+      name: (0, import_fields.text)({ validation: { isRequired: true } })
+    }
+  }),
+  Project: (0, import_core.list)({
+    access: import_access.allowAll,
+    fields: {
+      name: (0, import_fields.text)({ validation: { isRequired: true } }),
+      slug: (0, import_fields.text)({ validation: { isRequired: true }, isIndexed: "unique" }),
+      promo: (0, import_fields.relationship)({ ref: "Image", many: false }),
+      images: (0, import_fields.relationship)({ ref: "Image", many: true }),
+      content: (0, import_fields_document.document)({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1]
+        ],
+        links: true,
+        dividers: true
+      }),
+      status: (0, import_fields.select)({
+        defaultValue: "offline",
+        options: [
+          { label: "Published", value: "live" },
+          { label: "Offline", value: "offline" },
+          { label: "Archived", value: "archived" }
+        ],
+        ui: {
+          displayMode: "segmented-control"
+        }
+      }),
+      description: (0, import_fields_document.document)({
+        formatting: true,
+        layouts: [
+          [1, 1],
+          [1, 1, 1],
+          [2, 1],
+          [1, 2],
+          [1, 2, 1]
+        ],
+        links: true,
+        dividers: true
       })
     }
   }),
@@ -123,11 +203,32 @@ var session = (0, import_session.statelessSessions)({
 });
 
 // keystone.ts
+var databaseURL = process.env["DATABASE_URL"] || "postgres://postgres";
+var port = 5e3;
 var keystone_default = withAuth(
   (0, import_core2.config)({
+    graphql: {
+      debug: true,
+      path: "/api/graphql",
+      cors: {
+        origin: [new RegExp("localhost")],
+        credentials: true
+      },
+      apolloConfig: {
+        debug: true
+      }
+    },
+    server: {
+      cors: {
+        origin: ["http://localhost:3000"],
+        credentials: true
+      },
+      port
+    },
     db: {
-      provider: "sqlite",
-      url: "file:./keystone.db"
+      provider: "postgresql",
+      url: databaseURL,
+      useMigrations: false
     },
     lists,
     session

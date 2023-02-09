@@ -1,0 +1,26 @@
+query AllProjects {
+  projects {
+    name
+    slug
+    content {
+      document
+    }
+    images {
+      name
+      altText
+      image {
+        publicUrl
+      }
+    }
+    promo {
+      name
+      altText
+      image {
+        publicUrl
+      }
+    }
+    description {
+      document
+    }
+  }
+}

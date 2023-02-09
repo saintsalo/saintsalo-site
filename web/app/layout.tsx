@@ -1,7 +1,7 @@
 import { Container } from "@/components/Container"
+import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import "./globals.css"
-import { GiRose } from "react-icons/gi"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,11 +11,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <Container>
-          <GiRose />
-
           <Header />
           <div>{children}</div>
         </Container>
+        <Footer />
       </body>
     </html>
   )

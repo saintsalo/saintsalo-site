@@ -14,6 +14,10 @@ module.exports = {
         "open": ["nitti-typewriter-open"],
         "corrected": ["nitti-typewriter-corrected"],
         "underlined": ["nitti-typewriter-underlined"],
+      },
+      colors: {
+        "primary": "#709AB1",
+        "secondary": "#CB7985",
       }
     },
   },
