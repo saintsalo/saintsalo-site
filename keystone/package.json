@@ -4,11 +4,12 @@
   "private": true,
   "license": "MIT",
   "scripts": {
+    "resetdb": "keystone dev --reset-db",
+    "migrate": "keystone prisma migrate deploy",
+    "deploy": "keystone build && yarn migrate",
     "dev": "keystone dev",
     "start": "prisma migrate deploy && keystone start",
-    "migrate": "keystone prisma migrate deploy",
     "build": "keystone build",
-    "deploy": "keystone build && yarn migrate",
     "postinstall": "if-env SKIP_POSTINSTALL=1 && echo 'skipped' || keystone postinstall"
   },
   "dependencies": {
