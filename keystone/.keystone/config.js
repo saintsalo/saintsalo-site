@@ -248,7 +248,7 @@ var keystone_default = withAuth(
     db: {
       provider: "postgresql",
       url: databaseURL,
-      useMigrations: process.env.NODE_ENV === "production" || false
+      useMigrations: true
     },
     lists,
     session
