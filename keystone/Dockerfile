@@ -28,6 +28,6 @@ COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/schema.prisma schema.prisma
 COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/.keystone .keystone
-COPY --from=builder /app/migrations migrations
+# COPY --from=builder /app/migrations migrations
 EXPOSE 3000
 CMD ["yarn", "start"]
