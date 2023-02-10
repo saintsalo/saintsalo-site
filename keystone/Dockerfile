@@ -19,6 +19,7 @@ COPY --from=installer /app/node_modules node_modules
 COPY . .
 # RUN apk add --update --no-cache openssl1.1-compat
 RUN yarn build
+RUN yarn postinstall
 
 FROM node:16 AS prod
 ENV NODE_ENV=production
