@@ -2,8 +2,8 @@ FROM node:16 AS installer
 WORKDIR /app
 COPY yarn.lock yarn.lock
 COPY package.json package.json
-# RUN SKIP_POSTINSTALL=1 yarn install
-RUN yarn install
+RUN SKIP_POSTINSTALL=1 yarn install
+# RUN yarn install
 
 FROM node:16 AS dev
 ENV NODE_ENV=development
@@ -29,6 +29,6 @@ COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/schema.prisma schema.prisma
 COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/.keystone .keystone
-# COPY --from=builder /app/migrations migrations
+COPY --from=builder /app/migrations migrations
 EXPOSE 3000
 CMD ["yarn", "start"]
