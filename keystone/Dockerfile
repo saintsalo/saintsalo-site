@@ -12,7 +12,7 @@ CMD [ "yarn", "dev" ]
 
 FROM node:16-alpine AS builder
 ENV NODE_ENV=production
-ENV COOKIE_SECRET=TEMP_SESSION_SECRET_1234567890132
+ENV SESSION_SECRET=TEMP_SESSION_SECRET_1234567890132
 ENV DATABASE_ADAPTER=prisma_postgresql
 WORKDIR /app
 COPY --from=installer /app/node_modules node_modules
