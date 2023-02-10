@@ -2,7 +2,8 @@ FROM node:16 AS installer
 WORKDIR /app
 COPY yarn.lock yarn.lock
 COPY package.json package.json
-RUN SKIP_POSTINSTALL=1 yarn install
+# RUN SKIP_POSTINSTALL=1 yarn install
+RUN yarn install
 
 FROM node:16 AS dev
 ENV NODE_ENV=development
@@ -19,7 +20,6 @@ COPY --from=installer /app/node_modules node_modules
 COPY . .
 # RUN apk add --update --no-cache openssl1.1-compat
 RUN yarn build
-RUN yarn postinstall
 
 FROM node:16 AS prod
 ENV NODE_ENV=production
