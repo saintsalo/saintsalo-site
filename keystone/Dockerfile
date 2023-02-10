@@ -17,6 +17,7 @@ ENV DATABASE_ADAPTER=prisma_postgresql
 WORKDIR /app
 COPY --from=installer /app/node_modules node_modules
 COPY . .
+RUN apk add --update --no-cache openssl1.1-compat
 RUN yarn build
 
 FROM node:16-alpine AS prod
