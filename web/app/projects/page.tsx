@@ -34,7 +34,9 @@ export default async function Collaborators() {
                       height={800}
                     />
                   )}
-                  <DocumentRenderer document={post.content?.document} />
+                  {post?.content?.document && (
+                    <DocumentRenderer document={post.content?.document} />
+                  )}
                 </Link>
               </div>
             ))}

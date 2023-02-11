@@ -5,7 +5,13 @@ import patch from "../../patches/delay/patch.export.json"
 
 function Rnbo() {
   const [patchDevice, setPatchDevice] = useState<any>()
-  const WAContext = window.AudioContext
+  let WAContext
+  if (typeof window !== "undefined") {
+    WAContext = window.AudioContext
+  }
+
+  if (!WAContext) return null
+
   const context = new WAContext()
 
   const handleClick = async () => {
@@ -39,7 +45,7 @@ function Rnbo() {
           Start MDX RNBO {`->`}
         </button>
       </div>
-      {patchDevice && (
+      {patchDevice && patchDevice.parameters && (
         <div>
           {patchDevice?.parameters.map((param: Parameter, index: any) => (
             <div key={index}>

@@ -39,19 +39,20 @@ export const Header = () => {
   return (
     <div className="mb-8 flex md:flex-row flex-col w-full transition-all duration-500">
       <ul className="grow">
-        {links.map((link, index) => (
-          <li key={index}>
-            <Link
-              className={clsx({
-                "text-red-400 font-corrected": pathname === link.href,
-              })}
-              href={link.href}
-              target={link?.tab ? `_blank` : `_self`}
-            >
-              ======{link.name}
-            </Link>
-          </li>
-        ))}
+        {links &&
+          links.map((link, index) => (
+            <li key={index}>
+              <Link
+                className={clsx({
+                  "text-red-400 font-corrected": pathname === link.href,
+                })}
+                href={link.href}
+                target={link?.tab ? `_blank` : `_self`}
+              >
+                ======{link.name}
+              </Link>
+            </li>
+          ))}
       </ul>
       <div className="mr-2">
         <Image
