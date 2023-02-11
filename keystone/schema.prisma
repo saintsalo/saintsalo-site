@@ -22,43 +22,31 @@ model User {
 }
 
 model Image {
-  id                  String    @id @default(cuid())
-  image               Json?
-  altText             String    @default("")
-  name                String    @default("")
-  from_Project_promo  Project[] @relation("Project_promo")
-  from_Project_images Project[] @relation("Project_images")
-}
-
-model Project {
-  id          String  @id @default(cuid())
-  name        String  @default("")
-  slug        String  @unique @default("")
-  promo       Image?  @relation("Project_promo", fields: [promoId], references: [id])
-  promoId     String? @map("promo")
-  images      Image[] @relation("Project_images")
-  content     Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  embed       String  @default("")
-  status      String? @default("offline")
-  type        String? @default("music")
-  description Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-
-  @@index([promoId])
+  id               String @id @default(cuid())
+  filename         String @default("")
+  altText          String @default("")
+  name             String @default("")
+  from_Post_promo  Post[] @relation("Post_promo")
+  from_Post_images Post[] @relation("Post_images")
 }
 
 model Post {
-  id       String  @id @default(cuid())
-  title    String  @default("")
-  content  Json    @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
-  author   User?   @relation("Post_author", fields: [authorId], references: [id])
-  authorId String? @map("author")
-  tags     Tag[]   @relation("Post_tags")
+  id          String    @id @default(cuid())
+  createdAt   DateTime? @default(now())
+  name        String    @default("")
+  slug        String    @unique @default("")
+  promo       Image?    @relation("Post_promo", fields: [promoId], references: [id])
+  promoId     String?   @map("promo")
+  images      Image[]   @relation("Post_images")
+  author      User?     @relation("Post_author", fields: [authorId], references: [id])
+  authorId    String?   @map("author")
+  order       String    @default("")
+  content     Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  embed       String    @default("")
+  status      String?   @default("offline")
+  type        String?   @default("music")
+  description Json      @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
 
+  @@index([promoId])
   @@index([authorId])
-}
-
-model Tag {
-  id    String @id @default(cuid())
-  name  String @default("")
-  posts Post[] @relation("Post_tags")
 }

@@ -1,0 +1,14 @@
+query PostBySlug($slug: String!) {
+  post:post(where: { slug: $slug }){
+    name
+    images {
+      name
+      altText
+      filename
+    }
+    description {
+      document
+    }
+    embed
+  }
+}

@@ -61,13 +61,6 @@ export const Header = () => {
           height="200"
           className="md:m-auto md:float-left mb-2 blur-sm hover:blur-none transition-all duration-500"
         />
-        {/* <Image
-          alt="dl salo music"
-          src="/images/dl-salo-synths.png"
-          width="300"
-          height="300"
-          className="md:m-auto md:block hidden mb-2 blur-sm hover:blur-none"
-        /> */}
       </div>
       <div className="flex flex-col">
         <div className="flex flex-row items-center space-x-4">
