@@ -1,5 +1,30 @@
-query AllPosts {
-  posts {
-    title
+query AllPosts($status: String!, $type: String!) {
+  posts(
+    orderBy: { name: asc },
+    where: {
+      status: { equals: $status },
+      type: { equals: $type }
+    }
+  ) {
+    order
+    name
+    slug
+    content {
+      document
+    }
+    images {
+      name
+      altText
+      filename
+    }
+    promo {
+      name
+      altText
+      filename
+    }
+    description {
+      document
+    }
+    embed
   }
 }

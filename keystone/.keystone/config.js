@@ -29,33 +29,6 @@ var import_config2 = require("dotenv/config");
 // schema.ts
 var import_core = require("@keystone-6/core");
 var import_access = require("@keystone-6/core/access");
-var import_cloudinary = require("@keystone-6/cloudinary");
-
-// lib/accessEnv.ts
-var import_config = require("dotenv/config");
-var cache = {};
-var accessEnv = (key, defaultValue) => {
-  if (!(key in process.env) || typeof process.env[key] === void 0) {
-    if (defaultValue)
-      return defaultValue;
-    throw new Error(`${key} not found in process.env!`);
-  }
-  if (!(key in cache)) {
-    cache[key] = process.env[key];
-  }
-  return cache[key];
-};
-
-// lib/cloudinary.ts
-var cloudinaryFolder = accessEnv("CLOUDINARY_FOLDER", `saint-salo`);
-var cloudinary = {
-  cloudName: accessEnv("CLOUDINARY_CLOUD_NAME", "cloudinary name"),
-  apiKey: accessEnv("CLOUDINARY_KEY", "cloudinary key"),
-  apiSecret: accessEnv("CLOUDINARY_SECRET", "cloudinary secret"),
-  folder: `${cloudinaryFolder}`
-};
-
-// schema.ts
 var import_fields = require("@keystone-6/core/fields");
 var import_fields_document = require("@keystone-6/fields-document");
 var lists = {
@@ -77,19 +50,35 @@ var lists = {
   Image: (0, import_core.list)({
     access: import_access.allowAll,
     fields: {
-      image: (0, import_cloudinary.cloudinaryImage)({ cloudinary, label: "Project Image" }),
+      filename: (0, import_fields.text)({ validation: { isRequired: true } }),
       altText: (0, import_fields.text)({ validation: { isRequired: true } }),
-      name: (0, import_fields.text)({ validation: { isRequired: true } })
+      name: (0, import_fields.text)({ validation: { isRequired: true }, label: "Name (Caption)" })
     }
   }),
-  Project: (0, import_core.list)({
+  Post: (0, import_core.list)({
     access: import_access.allowAll,
     fields: {
+      createdAt: (0, import_fields.timestamp)({
+        defaultValue: { kind: "now" }
+      }),
       name: (0, import_fields.text)({ validation: { isRequired: true } }),
       slug: (0, import_fields.text)({ validation: { isRequired: true }, isIndexed: "unique" }),
       promo: (0, import_fields.relationship)({ ref: "Image", many: false }),
       images: (0, import_fields.relationship)({ ref: "Image", many: true }),
+      author: (0, import_fields.relationship)({
+        ref: "User.posts",
+        ui: {
+          displayMode: "cards",
+          cardFields: ["name", "email"],
+          inlineEdit: { fields: ["name", "email"] },
+          linkToItem: true,
+          inlineConnect: true
+        },
+        many: false
+      }),
+      order: (0, import_fields.text)({ label: "Order (priority)" }),
       content: (0, import_fields_document.document)({
+        label: "Short Description",
         formatting: true,
         layouts: [
           [1, 1],
@@ -141,57 +130,6 @@ var lists = {
         dividers: true
       })
     }
-  }),
-  Post: (0, import_core.list)({
-    access: import_access.allowAll,
-    fields: {
-      title: (0, import_fields.text)({ validation: { isRequired: true } }),
-      content: (0, import_fields_document.document)({
-        formatting: true,
-        layouts: [
-          [1, 1],
-          [1, 1, 1],
-          [2, 1],
-          [1, 2],
-          [1, 2, 1]
-        ],
-        links: true,
-        dividers: true
-      }),
-      author: (0, import_fields.relationship)({
-        ref: "User.posts",
-        ui: {
-          displayMode: "cards",
-          cardFields: ["name", "email"],
-          inlineEdit: { fields: ["name", "email"] },
-          linkToItem: true,
-          inlineConnect: true
-        },
-        many: false
-      }),
-      tags: (0, import_fields.relationship)({
-        ref: "Tag.posts",
-        many: true,
-        ui: {
-          displayMode: "cards",
-          cardFields: ["name"],
-          inlineEdit: { fields: ["name"] },
-          linkToItem: true,
-          inlineConnect: true,
-          inlineCreate: { fields: ["name"] }
-        }
-      })
-    }
-  }),
-  Tag: (0, import_core.list)({
-    access: import_access.allowAll,
-    ui: {
-      isHidden: true
-    },
-    fields: {
-      name: (0, import_fields.text)(),
-      posts: (0, import_fields.relationship)({ ref: "Post.tags", many: true })
-    }
   })
 };
 
@@ -199,6 +137,23 @@ var lists = {
 var import_crypto = require("crypto");
 var import_auth = require("@keystone-6/auth");
 var import_session = require("@keystone-6/core/session");
+
+// lib/accessEnv.ts
+var import_config = require("dotenv/config");
+var cache = {};
+var accessEnv = (key, defaultValue) => {
+  if (!(key in process.env) || typeof process.env[key] === void 0) {
+    if (defaultValue)
+      return defaultValue;
+    throw new Error(`${key} not found in process.env!`);
+  }
+  if (!(key in cache)) {
+    cache[key] = process.env[key];
+  }
+  return cache[key];
+};
+
+// auth.ts
 var sessionSecret = process.env.SESSION_SECRET;
 if (!sessionSecret && process.env.NODE_ENV !== "production") {
   sessionSecret = (0, import_crypto.randomBytes)(32).toString("hex");

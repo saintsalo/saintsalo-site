@@ -15,64 +15,9 @@ export type Scalars = {
   DateTime: any;
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
 };
 
 export type AuthenticatedItem = User;
-
-/**
- * Mirrors the formatting options [Cloudinary provides](https://cloudinary.com/documentation/image_transformation_reference).
- * All options are strings as they ultimately end up in a URL.
- */
-export type CloudinaryImageFormat = {
-  angle?: InputMaybe<Scalars['String']>;
-  aspect_ratio?: InputMaybe<Scalars['String']>;
-  background?: InputMaybe<Scalars['String']>;
-  border?: InputMaybe<Scalars['String']>;
-  color?: InputMaybe<Scalars['String']>;
-  color_space?: InputMaybe<Scalars['String']>;
-  crop?: InputMaybe<Scalars['String']>;
-  default_image?: InputMaybe<Scalars['String']>;
-  delay?: InputMaybe<Scalars['String']>;
-  density?: InputMaybe<Scalars['String']>;
-  dpr?: InputMaybe<Scalars['String']>;
-  effect?: InputMaybe<Scalars['String']>;
-  fetch_format?: InputMaybe<Scalars['String']>;
-  flags?: InputMaybe<Scalars['String']>;
-  format?: InputMaybe<Scalars['String']>;
-  gravity?: InputMaybe<Scalars['String']>;
-  height?: InputMaybe<Scalars['String']>;
-  opacity?: InputMaybe<Scalars['String']>;
-  overlay?: InputMaybe<Scalars['String']>;
-  page?: InputMaybe<Scalars['String']>;
-  /**  Rewrites the filename to be this pretty string. Do not include `/` or `.` */
-  prettyName?: InputMaybe<Scalars['String']>;
-  quality?: InputMaybe<Scalars['String']>;
-  radius?: InputMaybe<Scalars['String']>;
-  transformation?: InputMaybe<Scalars['String']>;
-  underlay?: InputMaybe<Scalars['String']>;
-  width?: InputMaybe<Scalars['String']>;
-  x?: InputMaybe<Scalars['String']>;
-  y?: InputMaybe<Scalars['String']>;
-  zoom?: InputMaybe<Scalars['String']>;
-};
-
-export type CloudinaryImage_File = {
-  __typename?: 'CloudinaryImage_File';
-  encoding?: Maybe<Scalars['String']>;
-  filename?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['ID']>;
-  mimetype?: Maybe<Scalars['String']>;
-  originalFilename?: Maybe<Scalars['String']>;
-  publicUrl?: Maybe<Scalars['String']>;
-  publicUrlTransformed?: Maybe<Scalars['String']>;
-};
-
-
-export type CloudinaryImage_FilePublicUrlTransformedArgs = {
-  transformation?: InputMaybe<CloudinaryImageFormat>;
-};
 
 export type CreateInitialUserInput = {
   email?: InputMaybe<Scalars['String']>;
@@ -105,14 +50,14 @@ export type IdFilter = {
 export type Image = {
   __typename?: 'Image';
   altText?: Maybe<Scalars['String']>;
+  filename?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  image?: Maybe<CloudinaryImage_File>;
   name?: Maybe<Scalars['String']>;
 };
 
 export type ImageCreateInput = {
   altText?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Scalars['Upload']>;
+  filename?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -124,6 +69,7 @@ export type ImageManyRelationFilter = {
 
 export type ImageOrderByInput = {
   altText?: InputMaybe<OrderDirection>;
+  filename?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
   name?: InputMaybe<OrderDirection>;
 };
@@ -158,7 +104,7 @@ export type ImageUpdateArgs = {
 
 export type ImageUpdateInput = {
   altText?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Scalars['Upload']>;
+  filename?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
 
@@ -167,6 +113,7 @@ export type ImageWhereInput = {
   NOT?: InputMaybe<Array<ImageWhereInput>>;
   OR?: InputMaybe<Array<ImageWhereInput>>;
   altText?: InputMaybe<StringFilter>;
+  filename?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
   name?: InputMaybe<StringFilter>;
 };
@@ -297,20 +244,12 @@ export type Mutation = {
   createInitialUser: UserAuthenticationWithPasswordSuccess;
   createPost?: Maybe<Post>;
   createPosts?: Maybe<Array<Maybe<Post>>>;
-  createProject?: Maybe<Project>;
-  createProjects?: Maybe<Array<Maybe<Project>>>;
-  createTag?: Maybe<Tag>;
-  createTags?: Maybe<Array<Maybe<Tag>>>;
   createUser?: Maybe<User>;
   createUsers?: Maybe<Array<Maybe<User>>>;
   deleteImage?: Maybe<Image>;
   deleteImages?: Maybe<Array<Maybe<Image>>>;
   deletePost?: Maybe<Post>;
   deletePosts?: Maybe<Array<Maybe<Post>>>;
-  deleteProject?: Maybe<Project>;
-  deleteProjects?: Maybe<Array<Maybe<Project>>>;
-  deleteTag?: Maybe<Tag>;
-  deleteTags?: Maybe<Array<Maybe<Tag>>>;
   deleteUser?: Maybe<User>;
   deleteUsers?: Maybe<Array<Maybe<User>>>;
   endSession: Scalars['Boolean'];
@@ -318,10 +257,6 @@ export type Mutation = {
   updateImages?: Maybe<Array<Maybe<Image>>>;
   updatePost?: Maybe<Post>;
   updatePosts?: Maybe<Array<Maybe<Post>>>;
-  updateProject?: Maybe<Project>;
-  updateProjects?: Maybe<Array<Maybe<Project>>>;
-  updateTag?: Maybe<Tag>;
-  updateTags?: Maybe<Array<Maybe<Tag>>>;
   updateUser?: Maybe<User>;
   updateUsers?: Maybe<Array<Maybe<User>>>;
 };
@@ -358,26 +293,6 @@ export type MutationCreatePostsArgs = {
 };
 
 
-export type MutationCreateProjectArgs = {
-  data: ProjectCreateInput;
-};
-
-
-export type MutationCreateProjectsArgs = {
-  data: Array<ProjectCreateInput>;
-};
-
-
-export type MutationCreateTagArgs = {
-  data: TagCreateInput;
-};
-
-
-export type MutationCreateTagsArgs = {
-  data: Array<TagCreateInput>;
-};
-
-
 export type MutationCreateUserArgs = {
   data: UserCreateInput;
 };
@@ -405,26 +320,6 @@ export type MutationDeletePostArgs = {
 
 export type MutationDeletePostsArgs = {
   where: Array<PostWhereUniqueInput>;
-};
-
-
-export type MutationDeleteProjectArgs = {
-  where: ProjectWhereUniqueInput;
-};
-
-
-export type MutationDeleteProjectsArgs = {
-  where: Array<ProjectWhereUniqueInput>;
-};
-
-
-export type MutationDeleteTagArgs = {
-  where: TagWhereUniqueInput;
-};
-
-
-export type MutationDeleteTagsArgs = {
-  where: Array<TagWhereUniqueInput>;
 };
 
 
@@ -457,28 +352,6 @@ export type MutationUpdatePostArgs = {
 
 export type MutationUpdatePostsArgs = {
   data: Array<PostUpdateArgs>;
-};
-
-
-export type MutationUpdateProjectArgs = {
-  data: ProjectUpdateInput;
-  where: ProjectWhereUniqueInput;
-};
-
-
-export type MutationUpdateProjectsArgs = {
-  data: Array<ProjectUpdateArgs>;
-};
-
-
-export type MutationUpdateTagArgs = {
-  data: TagUpdateInput;
-  where: TagWhereUniqueInput;
-};
-
-
-export type MutationUpdateTagsArgs = {
-  data: Array<TagUpdateArgs>;
 };
 
 
@@ -534,30 +407,46 @@ export type Post = {
   __typename?: 'Post';
   author?: Maybe<User>;
   content?: Maybe<Post_Content_Document>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Post_Description_Document>;
+  embed?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  tags?: Maybe<Array<Tag>>;
-  tagsCount?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
+  images?: Maybe<Array<Image>>;
+  imagesCount?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['String']>;
+  promo?: Maybe<Image>;
+  slug?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  type?: Maybe<Scalars['String']>;
 };
 
 
-export type PostTagsArgs = {
-  orderBy?: Array<TagOrderByInput>;
+export type PostImagesArgs = {
+  orderBy?: Array<ImageOrderByInput>;
   skip?: Scalars['Int'];
   take?: InputMaybe<Scalars['Int']>;
-  where?: TagWhereInput;
+  where?: ImageWhereInput;
 };
 
 
-export type PostTagsCountArgs = {
-  where?: TagWhereInput;
+export type PostImagesCountArgs = {
+  where?: ImageWhereInput;
 };
 
 export type PostCreateInput = {
   author?: InputMaybe<UserRelateToOneForCreateInput>;
   content?: InputMaybe<Scalars['JSON']>;
-  tags?: InputMaybe<TagRelateToManyForCreateInput>;
-  title?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['JSON']>;
+  embed?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageRelateToManyForCreateInput>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['String']>;
+  promo?: InputMaybe<ImageRelateToOneForCreateInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type PostManyRelationFilter = {
@@ -567,8 +456,14 @@ export type PostManyRelationFilter = {
 };
 
 export type PostOrderByInput = {
+  createdAt?: InputMaybe<OrderDirection>;
+  embed?: InputMaybe<OrderDirection>;
   id?: InputMaybe<OrderDirection>;
-  title?: InputMaybe<OrderDirection>;
+  name?: InputMaybe<OrderDirection>;
+  order?: InputMaybe<OrderDirection>;
+  slug?: InputMaybe<OrderDirection>;
+  status?: InputMaybe<OrderDirection>;
+  type?: InputMaybe<OrderDirection>;
 };
 
 export type PostRelateToManyForCreateInput = {
@@ -591,8 +486,16 @@ export type PostUpdateArgs = {
 export type PostUpdateInput = {
   author?: InputMaybe<UserRelateToOneForUpdateInput>;
   content?: InputMaybe<Scalars['JSON']>;
-  tags?: InputMaybe<TagRelateToManyForUpdateInput>;
-  title?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  description?: InputMaybe<Scalars['JSON']>;
+  embed?: InputMaybe<Scalars['String']>;
+  images?: InputMaybe<ImageRelateToManyForUpdateInput>;
+  name?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Scalars['String']>;
+  promo?: InputMaybe<ImageRelateToOneForUpdateInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  type?: InputMaybe<Scalars['String']>;
 };
 
 export type PostWhereInput = {
@@ -600,13 +503,21 @@ export type PostWhereInput = {
   NOT?: InputMaybe<Array<PostWhereInput>>;
   OR?: InputMaybe<Array<PostWhereInput>>;
   author?: InputMaybe<UserWhereInput>;
+  createdAt?: InputMaybe<DateTimeNullableFilter>;
+  embed?: InputMaybe<StringFilter>;
   id?: InputMaybe<IdFilter>;
-  tags?: InputMaybe<TagManyRelationFilter>;
-  title?: InputMaybe<StringFilter>;
+  images?: InputMaybe<ImageManyRelationFilter>;
+  name?: InputMaybe<StringFilter>;
+  order?: InputMaybe<StringFilter>;
+  promo?: InputMaybe<ImageWhereInput>;
+  slug?: InputMaybe<StringFilter>;
+  status?: InputMaybe<StringNullableFilter>;
+  type?: InputMaybe<StringNullableFilter>;
 };
 
 export type PostWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
+  slug?: InputMaybe<Scalars['String']>;
 };
 
 export type Post_Content_Document = {
@@ -619,108 +530,13 @@ export type Post_Content_DocumentDocumentArgs = {
   hydrateRelationships?: Scalars['Boolean'];
 };
 
-export type Project = {
-  __typename?: 'Project';
-  content?: Maybe<Project_Content_Document>;
-  description?: Maybe<Project_Description_Document>;
-  embed?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  images?: Maybe<Array<Image>>;
-  imagesCount?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  promo?: Maybe<Image>;
-  slug?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-};
-
-
-export type ProjectImagesArgs = {
-  orderBy?: Array<ImageOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: ImageWhereInput;
-};
-
-
-export type ProjectImagesCountArgs = {
-  where?: ImageWhereInput;
-};
-
-export type ProjectCreateInput = {
-  content?: InputMaybe<Scalars['JSON']>;
-  description?: InputMaybe<Scalars['JSON']>;
-  embed?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<ImageRelateToManyForCreateInput>;
-  name?: InputMaybe<Scalars['String']>;
-  promo?: InputMaybe<ImageRelateToOneForCreateInput>;
-  slug?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectOrderByInput = {
-  embed?: InputMaybe<OrderDirection>;
-  id?: InputMaybe<OrderDirection>;
-  name?: InputMaybe<OrderDirection>;
-  slug?: InputMaybe<OrderDirection>;
-  status?: InputMaybe<OrderDirection>;
-  type?: InputMaybe<OrderDirection>;
-};
-
-export type ProjectUpdateArgs = {
-  data: ProjectUpdateInput;
-  where: ProjectWhereUniqueInput;
-};
-
-export type ProjectUpdateInput = {
-  content?: InputMaybe<Scalars['JSON']>;
-  description?: InputMaybe<Scalars['JSON']>;
-  embed?: InputMaybe<Scalars['String']>;
-  images?: InputMaybe<ImageRelateToManyForUpdateInput>;
-  name?: InputMaybe<Scalars['String']>;
-  promo?: InputMaybe<ImageRelateToOneForUpdateInput>;
-  slug?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectWhereInput = {
-  AND?: InputMaybe<Array<ProjectWhereInput>>;
-  NOT?: InputMaybe<Array<ProjectWhereInput>>;
-  OR?: InputMaybe<Array<ProjectWhereInput>>;
-  embed?: InputMaybe<StringFilter>;
-  id?: InputMaybe<IdFilter>;
-  images?: InputMaybe<ImageManyRelationFilter>;
-  name?: InputMaybe<StringFilter>;
-  promo?: InputMaybe<ImageWhereInput>;
-  slug?: InputMaybe<StringFilter>;
-  status?: InputMaybe<StringNullableFilter>;
-  type?: InputMaybe<StringNullableFilter>;
-};
-
-export type ProjectWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
-};
-
-export type Project_Content_Document = {
-  __typename?: 'Project_content_Document';
+export type Post_Description_Document = {
+  __typename?: 'Post_description_Document';
   document: Scalars['JSON'];
 };
 
 
-export type Project_Content_DocumentDocumentArgs = {
-  hydrateRelationships?: Scalars['Boolean'];
-};
-
-export type Project_Description_Document = {
-  __typename?: 'Project_description_Document';
-  document: Scalars['JSON'];
-};
-
-
-export type Project_Description_DocumentDocumentArgs = {
+export type Post_Description_DocumentDocumentArgs = {
   hydrateRelationships?: Scalars['Boolean'];
 };
 
@@ -734,12 +550,6 @@ export type Query = {
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
   postsCount?: Maybe<Scalars['Int']>;
-  project?: Maybe<Project>;
-  projects?: Maybe<Array<Project>>;
-  projectsCount?: Maybe<Scalars['Int']>;
-  tag?: Maybe<Tag>;
-  tags?: Maybe<Array<Tag>>;
-  tagsCount?: Maybe<Scalars['Int']>;
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
   usersCount?: Maybe<Scalars['Int']>;
@@ -779,42 +589,6 @@ export type QueryPostsArgs = {
 
 export type QueryPostsCountArgs = {
   where?: PostWhereInput;
-};
-
-
-export type QueryProjectArgs = {
-  where: ProjectWhereUniqueInput;
-};
-
-
-export type QueryProjectsArgs = {
-  orderBy?: Array<ProjectOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: ProjectWhereInput;
-};
-
-
-export type QueryProjectsCountArgs = {
-  where?: ProjectWhereInput;
-};
-
-
-export type QueryTagArgs = {
-  where: TagWhereUniqueInput;
-};
-
-
-export type QueryTagsArgs = {
-  orderBy?: Array<TagOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: TagWhereInput;
-};
-
-
-export type QueryTagsCountArgs = {
-  where?: TagWhereInput;
 };
 
 
@@ -868,78 +642,6 @@ export type StringNullableFilter = {
   not?: InputMaybe<NestedStringNullableFilter>;
   notIn?: InputMaybe<Array<Scalars['String']>>;
   startsWith?: InputMaybe<Scalars['String']>;
-};
-
-export type Tag = {
-  __typename?: 'Tag';
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
-};
-
-
-export type TagPostsArgs = {
-  orderBy?: Array<PostOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
-  where?: PostWhereInput;
-};
-
-
-export type TagPostsCountArgs = {
-  where?: PostWhereInput;
-};
-
-export type TagCreateInput = {
-  name?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForCreateInput>;
-};
-
-export type TagManyRelationFilter = {
-  every?: InputMaybe<TagWhereInput>;
-  none?: InputMaybe<TagWhereInput>;
-  some?: InputMaybe<TagWhereInput>;
-};
-
-export type TagOrderByInput = {
-  id?: InputMaybe<OrderDirection>;
-  name?: InputMaybe<OrderDirection>;
-};
-
-export type TagRelateToManyForCreateInput = {
-  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  create?: InputMaybe<Array<TagCreateInput>>;
-};
-
-export type TagRelateToManyForUpdateInput = {
-  connect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  create?: InputMaybe<Array<TagCreateInput>>;
-  disconnect?: InputMaybe<Array<TagWhereUniqueInput>>;
-  set?: InputMaybe<Array<TagWhereUniqueInput>>;
-};
-
-export type TagUpdateArgs = {
-  data: TagUpdateInput;
-  where: TagWhereUniqueInput;
-};
-
-export type TagUpdateInput = {
-  name?: InputMaybe<Scalars['String']>;
-  posts?: InputMaybe<PostRelateToManyForUpdateInput>;
-};
-
-export type TagWhereInput = {
-  AND?: InputMaybe<Array<TagWhereInput>>;
-  NOT?: InputMaybe<Array<TagWhereInput>>;
-  OR?: InputMaybe<Array<TagWhereInput>>;
-  id?: InputMaybe<IdFilter>;
-  name?: InputMaybe<StringFilter>;
-  posts?: InputMaybe<PostManyRelationFilter>;
-};
-
-export type TagWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
 };
 
 export type User = {
@@ -1034,27 +736,21 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', title?: string | null }> | null };
-
-export type AllProjectsQueryVariables = Exact<{
+export type AllPostsQueryVariables = Exact<{
   status: Scalars['String'];
   type: Scalars['String'];
 }>;
 
 
-export type AllProjectsQuery = { __typename?: 'Query', projects?: Array<{ __typename?: 'Project', name?: string | null, slug?: string | null, embed?: string | null, content?: { __typename?: 'Project_content_Document', document: any } | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null }> | null, promo?: { __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null } | null, description?: { __typename?: 'Project_description_Document', document: any } | null }> | null };
+export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', order?: string | null, name?: string | null, slug?: string | null, embed?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, filename?: string | null }> | null, promo?: { __typename?: 'Image', name?: string | null, altText?: string | null, filename?: string | null } | null, description?: { __typename?: 'Post_description_Document', document: any } | null }> | null };
 
-export type ProjectBySlugQueryVariables = Exact<{
+export type PostBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type ProjectBySlugQuery = { __typename?: 'Query', project?: { __typename?: 'Project', name?: string | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, image?: { __typename?: 'CloudinaryImage_File', publicUrl?: string | null } | null }> | null, description?: { __typename?: 'Project_description_Document', document: any } | null } | null };
+export type PostBySlugQuery = { __typename?: 'Query', post?: { __typename?: 'Post', name?: string | null, embed?: string | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, filename?: string | null }> | null, description?: { __typename?: 'Post_description_Document', document: any } | null } | null };
 
 
-export const AllPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllPosts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>;
-export const AllProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllProjects"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"status"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"EnumValue","value":"asc"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"status"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"status"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"promo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"embed"}}]}}]}}]} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
-export const ProjectBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProjectBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"project"},"name":{"kind":"Name","value":"project"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publicUrl"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}}]}}]}}]} as unknown as DocumentNode<ProjectBySlugQuery, ProjectBySlugQueryVariables>;
+export const AllPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllPosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"status"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"type"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"EnumValue","value":"asc"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"status"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"status"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"equals"},"value":{"kind":"Variable","name":{"kind":"Name","value":"type"}}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"embed"}}]}}]}}]} as unknown as DocumentNode<AllPostsQuery, AllPostsQueryVariables>;
+export const PostBySlugDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostBySlug"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"post"},"name":{"kind":"Name","value":"post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"filename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"document"}}]}},{"kind":"Field","name":{"kind":"Name","value":"embed"}}]}}]}}]} as unknown as DocumentNode<PostBySlugQuery, PostBySlugQueryVariables>;

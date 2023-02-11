@@ -2,8 +2,8 @@ import { getPostBySlug } from "@/lib/getPosts"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Link from "next/link"
 
-export default async function Post({ params }: { params?: any }) {
-  const { post } = await getPostBySlug(params.projectSlug)
+export default async function Music({ params }: { params?: any }) {
+  const { post } = await getPostBySlug(params.musicSlug)
 
   return (
     <div>
@@ -11,6 +11,9 @@ export default async function Post({ params }: { params?: any }) {
         <Link href={`/projects`} className="hover:font-corrected">{`<-- projects`}</Link>
       </div>
       <h1>{post?.name}</h1>
+      {post?.embed && (
+        <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
+      )}
       <DocumentRenderer document={post?.description?.document} />
     </div>
   )
