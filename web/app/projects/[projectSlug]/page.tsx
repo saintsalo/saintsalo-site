@@ -11,7 +11,7 @@ export default async function Post({ params }: { params?: any }) {
         <Link href={`/projects`} className="hover:font-corrected">{`<-- projects`}</Link>
       </div>
       <h1>{post?.name}</h1>
-      <DocumentRenderer document={post?.description?.document} />
+      {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
     </div>
   )
 }

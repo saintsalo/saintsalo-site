@@ -14,7 +14,7 @@ export default async function Music({ params }: { params?: any }) {
       {post?.embed && (
         <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
       )}
-      <DocumentRenderer document={post?.description?.document} />
+      {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
     </div>
   )
 }

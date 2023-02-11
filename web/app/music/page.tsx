@@ -35,7 +35,7 @@ export default async function Music() {
                   />
                 )}
               </div>
-              <DocumentRenderer document={post.content?.document} />
+              {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
               <div className="text-center">-------</div>
             </div>
           ))}
