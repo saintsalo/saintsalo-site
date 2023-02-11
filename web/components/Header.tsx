@@ -57,7 +57,7 @@ export const Header = () => {
       <div className="mr-2">
         <Image
           alt="dl salo music"
-          src="/images/dl-salo.png"
+          src="/images/dl-salo-profile-image.png"
           width="200"
           height="200"
           className="md:m-auto md:float-left mb-2 blur-sm hover:blur-none transition-all duration-500"
