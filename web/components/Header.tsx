@@ -24,6 +24,10 @@ const links: NavItem[] = [
     href: "/projects",
   },
   {
+    name: "performances",
+    href: "/performances",
+  },
+  {
     name: "patches",
     href: "/rnbo",
   },

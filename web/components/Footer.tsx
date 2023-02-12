@@ -22,6 +22,9 @@ export const Footer = () => {
           <Link href="https://www.instagram.com/saintsalo/" target="_blank">
             instagram
           </Link>{" "}
+          <Link href="https://soundcloud.com/saintsalo" target="_blank">
+            soundcloud
+          </Link>
           <Link href="/contact">contact</Link>
           <Link href="/scores">music scores &amp; reel</Link>
         </div>
