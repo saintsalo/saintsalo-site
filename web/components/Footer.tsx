@@ -1,5 +1,6 @@
 "use client"
 import { getLunarAge, getLunarIcon } from "@/lib/lunar"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { BsSunset } from "react-icons/bs"
 import { WiMoonAltWaningCrescent6 } from "react-icons/wi"
@@ -15,10 +16,14 @@ export const Footer = () => {
   }, [])
 
   return (
-    <footer className="md:sticky bottom-0 h-10 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md">
+    <footer className="md:sticky bottom-0 h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md">
       <div className="flex flex-col items-center">
         <div className="social flex flex-row space-x-4">
-          <div>instagram</div> <div>contact</div> <div className="">video</div>
+          <Link href="https://www.instagram.com/saintsalo/" target="_blank">
+            instagram
+          </Link>{" "}
+          <Link href="/contact">contact</Link>
+          <Link href="/scores">music scores &amp; reel</Link>
         </div>
       </div>
       <div className=" bg-slate-100">

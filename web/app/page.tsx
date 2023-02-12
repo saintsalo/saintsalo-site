@@ -1,13 +1,11 @@
 export default async function Home() {
   return (
-    <div className="w-auto flex flex-row items-center ">
-      <p className="max-w-4xl h-screen p-4  rounded">
-        dl Salo is a modern classical composer - experimenting with synthesizers, noise/ambience and
-        electronic music into his own classical background. His music has been featured in film and
-        t.v. and widely used in performance art and dance (Saint Genet, Earth and Ceremony). He has
-        performed in several music groups including Joy Wants Eternity and A Story of Rats. Salo’s
-        music is both haunting and hopeful, influences from minimalism and the avant garde he aims
-        to create unique scores into the ether.
+    <div className="w-auto flex flex-row items-center">
+      <p className="flex items-center max-w-4xl h-auto p-4 m-auto mt-0 md:mt-20">
+        dl Salo is a modern classical composer residing in Los Angeles. His music interweaves
+        classical piano, synthesizers, electronics and ambience - he is known for his haunting yet
+        hopeful style of minimalism and avant garde compositions. Salo&apos;s music has been
+        featured in film and t.v. and widely used in performance art, theater, and dance.
       </p>
     </div>
   )

@@ -6,4 +6,16 @@
   body, footer {
     @apply bg-[#F9F5EC] dark:bg-black text-black dark:text-white
   }
+
+  h1 {
+    @apply mb-8 text-lg
+  }
+
+  a {
+    @apply font-underlined
+  }
+
+  a:hover {
+    @apply text-red-400
+  }
 }

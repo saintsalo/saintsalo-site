@@ -21,8 +21,8 @@ export default async function Collaborators() {
             .map(post => (
               <div key={post.name}>
                 <Link
-                  href={`/posts/${post.slug}`}
-                  className="hover:contrast-150 transition-all shadow-sm hover:shadow-lg p-4  border-transparent rounded-md flex flex-col gap-2 relative"
+                  href={`/projects/${post.slug}`}
+                  className="hover:contrast-150 transition-all shadow-sm hover:shadow-lg p-4  border-transparent rounded-md flex flex-col gap-2 relative font-sans hover:text-black"
                 >
                   <div className="hover:font-corrected">{post.name}</div>
 
