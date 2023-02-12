@@ -38,13 +38,14 @@ export const Header = () => {
 
   return (
     <div className="mb-8 flex md:flex-row flex-col w-full transition-all duration-500">
-      <ul className="grow">
+      <ul className="grow self-center">
         {links &&
           links.map((link, index) => (
             <li key={index}>
               <Link
                 className={clsx({
                   "text-red-400 font-corrected": pathname === link.href,
+                  "font-sans": pathname !== link.href,
                 })}
                 href={link.href}
                 target={link?.tab ? `_blank` : `_self`}
@@ -54,7 +55,7 @@ export const Header = () => {
             </li>
           ))}
       </ul>
-      <div className="mr-2">
+      <div className="mr-2 mt-8 md:mt-0 self-center">
         <Image
           alt="dl salo music"
           src="/images/dl-salo-profile-image.png"
@@ -63,11 +64,11 @@ export const Header = () => {
           className="md:m-auto md:float-left mb-2 blur-sm hover:blur-none transition-all duration-500"
         />
       </div>
-      <div className="flex flex-col">
-        <div className="flex flex-row items-center space-x-4">
+      <div className="flex flex-col md:mt-0 self-center">
+        <div className="flex md:flex-row flex-col items-center space-x-4">
           <div>dl salo</div>
         </div>
-        <div className="font-underlined">music & works</div>
+        <div>music & works</div>
       </div>
     </div>
   )
