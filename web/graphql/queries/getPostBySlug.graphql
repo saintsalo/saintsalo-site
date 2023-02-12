@@ -6,7 +6,15 @@ query PostBySlug($slug: String!) {
       altText
       filename
     }
+    promo {
+      name
+      altText
+      filename
+    }
     description {
+      document
+    }
+    content {
       document
     }
     embed

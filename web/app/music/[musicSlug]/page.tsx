@@ -1,20 +1,48 @@
-import { getPostBySlug } from "@/lib/getPosts"
+import { MusicNav } from "@/components/MusicNav"
+import { getPostBySlug, getPostsData } from "@/lib/getPosts"
+import { setImage } from "@/lib/setImage"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
-import Link from "next/link"
+import Image from "next/image"
 
 export default async function Music({ params }: { params?: any }) {
   const { post } = await getPostBySlug(params.musicSlug)
+  const { posts } = await getPostsData("music")
+  if (!post) return <div>not here.</div>
 
   return (
-    <div>
-      <div className="mb-4">
-        <Link href={`/projects`} className="hover:font-corrected">{`<-- projects`}</Link>
+    <div className="flex md:flex-row flex-col w-full gap-8">
+      <div>
+        <MusicNav posts={posts} />
       </div>
-      <h1>{post?.name}</h1>
-      {post?.embed && (
-        <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
-      )}
-      {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
+      <div className="flex flex-col gap-4 max-w-4xl items-center p-8 rounded bg-off-white shadow-lg">
+        <h1>{post.name}</h1>
+        {post?.promo?.filename && (
+          <Image
+            src={setImage(post.promo.filename)}
+            alt={post.promo.altText || "dl salo"}
+            width={800}
+            height={800}
+            className="w-full"
+          />
+        )}
+        <div className="w-full flex flex-col items-center bg-black rounded-md p-8">
+          {post.embed && (
+            <div
+              className="rounded-sm  p-2 flex flex-col items-center w-full"
+              dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
+            />
+          )}
+        </div>
+        {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
+        <div className="text-center">-------</div>
+      </div>
+      {/* <div className="max-w-2xl w-full">
+        <h1>{post?.name}</h1>
+        {post?.embed && (
+          <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
+        )}
+        {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
+      </div> */}
     </div>
   )
 }

@@ -8,7 +8,7 @@
   }
 
   h1 {
-    @apply mb-8 text-lg
+    @apply mb-4 text-lg
   }
 
   a {
@@ -17,5 +17,9 @@
 
   a:hover {
     @apply text-red-400
+  }
+
+  a.card {
+    @apply bg-off-white hover:bg-white shadow-sm hover:shadow-md transition-all duration-200 font-sans rounded hover:font-sans hover:text-black hover:contrast-150
   }
 }

@@ -9,7 +9,7 @@ export default async function Collaborators() {
   if (!posts) return null
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee]">
+      <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee] gap-4">
         {posts &&
           posts
             .sort((a, b) => {
@@ -19,12 +19,12 @@ export default async function Collaborators() {
               return a.order < b.order ? -1 : 1
             })
             .map(post => (
-              <div key={post.name}>
+              <div key={post.name} className="flex">
                 <Link
                   href={`/projects/${post.slug}`}
-                  className="hover:contrast-150 transition-all shadow-sm hover:shadow-lg p-4  border-transparent rounded-md flex flex-col gap-2 relative font-sans hover:text-black"
+                  className="card p-4 flex flex-col gap-2 relative group"
                 >
-                  <div className="hover:font-corrected">{post.name}</div>
+                  <h1 className="group-hover:font-corrected">{post.name}</h1>
 
                   {post?.promo?.filename && (
                     <Image
