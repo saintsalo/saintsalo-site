@@ -7,6 +7,7 @@ query AllPosts($status: String!, $type: String!) {
     }
   ) {
     order
+    seo
     name
     slug
     content {

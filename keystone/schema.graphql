@@ -188,6 +188,7 @@ input ImageCreateInput {
 type Post {
   id: ID!
   createdAt: DateTime
+  seo: String
   name: String
   slug: String
   promo: Image
@@ -221,6 +222,7 @@ input PostWhereInput {
   NOT: [PostWhereInput!]
   id: IDFilter
   createdAt: DateTimeNullableFilter
+  seo: StringFilter
   name: StringFilter
   slug: StringFilter
   promo: ImageWhereInput
@@ -270,6 +272,7 @@ input NestedStringNullableFilter {
 input PostOrderByInput {
   id: OrderDirection
   createdAt: OrderDirection
+  seo: OrderDirection
   name: OrderDirection
   slug: OrderDirection
   order: OrderDirection
@@ -280,6 +283,7 @@ input PostOrderByInput {
 
 input PostUpdateInput {
   createdAt: DateTime
+  seo: String
   name: String
   slug: String
   promo: ImageRelateToOneForUpdateInput
@@ -319,6 +323,7 @@ input PostUpdateArgs {
 
 input PostCreateInput {
   createdAt: DateTime
+  seo: String
   name: String
   slug: String
   promo: ImageRelateToOneForCreateInput

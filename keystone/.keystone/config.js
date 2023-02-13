@@ -61,6 +61,7 @@ var lists = {
       createdAt: (0, import_fields.timestamp)({
         defaultValue: { kind: "now" }
       }),
+      seo: (0, import_fields.text)(),
       name: (0, import_fields.text)({ validation: { isRequired: true } }),
       slug: (0, import_fields.text)({ validation: { isRequired: true }, isIndexed: "unique" }),
       promo: (0, import_fields.relationship)({ ref: "Image", many: false }),

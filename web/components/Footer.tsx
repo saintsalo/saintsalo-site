@@ -16,9 +16,9 @@ export const Footer = () => {
   }, [])
 
   return (
-    <footer className="md:sticky bottom-0 h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md">
+    <footer className="md:sticky bottom-0 md:h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md md:py-0 py-8">
       <div className="flex flex-col items-center">
-        <div className="social flex flex-row space-x-4">
+        <div className="social flex md:flex-row gap-4 flex-col">
           <Link href="https://www.instagram.com/saintsalo/" target="_blank">
             instagram
           </Link>{" "}
@@ -29,11 +29,11 @@ export const Footer = () => {
           <Link href="/scores">music scores &amp; reel</Link>
         </div>
       </div>
-      <div className=" bg-slate-100">
+      {/* <div className=" bg-slate-100">
         <div>
           <BsSunset />
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-row space-x-2 items-center">
         <div className="hover:text-3xl transition-all duration-500">{getLunarIcon()}</div>
         <div className="flex flex-col text-[8px] transition-all duration-500 -space-y-1">

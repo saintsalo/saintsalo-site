@@ -6,6 +6,7 @@ query PostBySlug($slug: String!) {
       altText
       filename
     }
+    seo
     promo {
       name
       altText

@@ -8,7 +8,7 @@
   }
 
   h1 {
-    @apply mb-4 text-lg
+    @apply md:mb-4 md:text-lg
   }
 
   a {
@@ -21,5 +21,13 @@
 
   a.card {
     @apply bg-off-white hover:bg-white shadow-sm hover:shadow-md transition-all duration-200 font-sans rounded hover:font-sans hover:text-black hover:contrast-150
+  }
+
+  .embed-container {
+    @apply relative md:h-full overflow-hidden lg:max-w-6xl max-w-sm aspect-video
+  }
+
+  .embed-container iframe, .embed-container object, .embed-container embed {
+    @apply absolute top-0 left-0 w-full h-full
   }
 }

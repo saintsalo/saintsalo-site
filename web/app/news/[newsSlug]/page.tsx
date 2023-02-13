@@ -16,7 +16,10 @@ export default async function Post({ params }: { params?: any }) {
       {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
       <div>
         {post?.embed && (
-          <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
+          <div
+            className="embed-container"
+            dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
+          />
         )}
       </div>
       <div className="flex md:flex-row flex-col gap-2 mt-8">

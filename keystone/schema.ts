@@ -46,6 +46,7 @@ export const lists: Lists = {
       createdAt: timestamp({
         defaultValue: { kind: 'now' },
       }),
+      seo: text(),
       name: text({ validation: { isRequired: true } }),
       slug: text({ validation: { isRequired: true }, isIndexed: "unique" }),
       promo: relationship({ ref: "Image", many: false }),
