@@ -42,7 +42,7 @@ function Rnbo() {
       (sometimes a seond click is needed to start the patch - seems like a streaming bug)
       <div>
         <button type="button" onClick={() => handleClick()}>
-          Start MDX RNBO {`->`}
+          Start RNBO Patch {`->`}
         </button>
       </div>
       {patchDevice && patchDevice.parameters && (

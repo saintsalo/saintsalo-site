@@ -30,4 +30,8 @@
   .embed-container iframe, .embed-container object, .embed-container embed {
     @apply absolute top-0 left-0 w-full h-full
   }
+
+  button {
+    @apply border border-black bg-white p-4 hover:bg-slate-50
+  }
 }
