@@ -1,3 +1,4 @@
-# dl Salo
+# dl Salo website
 
-just a regular ol website, built with nextjs 13 and keystone js. 
+Next 13
+Keystone
