@@ -26,7 +26,7 @@ export const Footer = () => {
             soundcloud
           </Link>
           <Link href="/contact">contact</Link>
-          <Link href="/scores">music scores &amp; reel</Link>
+          {/* <Link href="/scores">music scores &amp; reel</Link> */}
         </div>
       </div>
       {/* <div className=" bg-slate-100">

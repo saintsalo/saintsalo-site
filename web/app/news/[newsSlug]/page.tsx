@@ -3,6 +3,15 @@ import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Link from "next/link"
 import { setImage } from "@/lib/setImage"
 import Image from "next/image"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params?: any }): Promise<Metadata> {
+  const { post } = await getPostBySlug(params.newsSlug)
+  return {
+    title: post?.name,
+    description: post?.seo || "",
+  }
+}
 
 export default async function Post({ params }: { params?: any }) {
   const { post } = await getPostBySlug(params.newsSlug)
