@@ -26,6 +26,15 @@ export default async function Music({ params }: { params?: any }) {
       </div>
       <div className="flex flex-col gap-4 max-w-4xl items-center md:p-8 p-2 rounded bg-off-white shadow-lg">
         <h1>{post.name}</h1>
+        {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
+        <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
+          {post.embed && (
+            <div
+              className="rounded-sm p-2 flex flex-col items-center w-full"
+              dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
+            />
+          )}
+        </div>
         {post?.promo?.filename && (
           <Image
             src={setImage(post.promo.filename)}
@@ -35,15 +44,7 @@ export default async function Music({ params }: { params?: any }) {
             className="w-full"
           />
         )}
-        <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
-          {post.embed && (
-            <div
-              className="rounded-sm p-2 flex flex-col items-center w-full"
-              dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
-            />
-          )}
-        </div>
-        {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
+
         <div className="text-center">-------</div>
       </div>
       {/* <div className="max-w-2xl w-full">

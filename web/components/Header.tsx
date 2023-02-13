@@ -20,7 +20,7 @@ const links: NavItem[] = [
     href: "/music",
   },
   {
-    name: "projects",
+    name: "projects and collaborators",
     href: "/projects",
   },
   {
@@ -47,14 +47,14 @@ export const Header = () => {
           links.map((link, index) => (
             <li key={index}>
               <Link
-                className={clsx({
+                className={clsx("md:text-xl text-lg", {
                   "text-red-400 font-corrected": pathname === link.href,
                   "font-sans": pathname !== link.href,
                 })}
                 href={link.href}
                 target={link?.tab ? `_blank` : `_self`}
               >
-                ======{link.name}
+                ====== {link.name}
               </Link>
             </li>
           ))}
