@@ -3,7 +3,7 @@ function Page() {
     <div className="flex flex-col space-y-8">
       <div>
         <h1>A Story of Rats</h1>
-        <div className="grid grid-cols-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
           <div className="flex flex-col">
             <h2>Motel</h2>
             <iframe
@@ -42,7 +42,7 @@ function Page() {
       </div>
       <div>
         <h1>Joy Wants Eternity</h1>
-        <div className="grid grid-cols-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
           <div className="flex flex-col">
             <h2>The Fog is Rising</h2>
             <iframe

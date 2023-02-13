@@ -4,6 +4,16 @@ import { setImage } from "@/lib/setImage"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Image from "next/image"
 
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params?: any }): Promise<Metadata> {
+  const { post } = await getPostBySlug(params.musicSlug)
+  return {
+    title: post?.name,
+    description: post?.seo || "",
+  }
+}
+
 export default async function Music({ params }: { params?: any }) {
   const { post } = await getPostBySlug(params.musicSlug)
   const { posts } = await getPostsData("music")
@@ -14,7 +24,7 @@ export default async function Music({ params }: { params?: any }) {
       <div>
         <MusicNav posts={posts} />
       </div>
-      <div className="flex flex-col gap-4 max-w-4xl items-center p-8 rounded bg-off-white shadow-lg">
+      <div className="flex flex-col gap-4 max-w-4xl items-center md:p-8 p-2 rounded bg-off-white shadow-lg">
         <h1>{post.name}</h1>
         {post?.promo?.filename && (
           <Image
@@ -25,10 +35,10 @@ export default async function Music({ params }: { params?: any }) {
             className="w-full"
           />
         )}
-        <div className="w-full flex flex-col items-center bg-black rounded-md p-8">
+        <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
           {post.embed && (
             <div
-              className="rounded-sm  p-2 flex flex-col items-center w-full"
+              className="rounded-sm p-2 flex flex-col items-center w-full"
               dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
             />
           )}

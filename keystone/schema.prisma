@@ -33,6 +33,7 @@ model Image {
 model Post {
   id          String    @id @default(cuid())
   createdAt   DateTime? @default(now())
+  seo         String    @default("")
   name        String    @default("")
   slug        String    @unique @default("")
   promo       Image?    @relation("Post_promo", fields: [promoId], references: [id])
