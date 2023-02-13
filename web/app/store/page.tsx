@@ -2,10 +2,16 @@ function Page() {
   return (
     <div className="flex flex-col space-y-8">
       <div>
-        <h1>A Story of Rats</h1>
+        <i>Vinyl copies are currently sold out</i>
+      </div>
+      <div>
+        <h2 className="text-lg mb-4">Digital Downloads</h2>
+      </div>
+      <div>
+        <h2 className="text-lg mb-8">A Story of Rats</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
           <div className="flex flex-col">
-            <h2>Motel</h2>
+            <h3>Motel</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=1276359757/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
@@ -15,7 +21,7 @@ function Page() {
             </iframe>
           </div>
           <div className="flex flex-col">
-            <div>Immeasurable Spiral</div>
+            <h3>Immeasurable Spiral</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=2818561452/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
@@ -27,7 +33,7 @@ function Page() {
             </iframe>
           </div>
           <div className="flex flex-col">
-            <div>Circling the Garland</div>
+            <h3>Circling the Garland</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/track=1842347705/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
@@ -41,10 +47,10 @@ function Page() {
         </div>
       </div>
       <div>
-        <h1>Joy Wants Eternity</h1>
+        <h2 className="text-lg mb-8">Joy Wants Eternity</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
           <div className="flex flex-col">
-            <h2>The Fog is Rising</h2>
+            <h3>The Fog is Rising</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=1584663395/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
@@ -56,7 +62,7 @@ function Page() {
             </iframe>
           </div>
           <div className="flex flex-col">
-            <div>MYSYEBYLTLWYE</div>
+            <h3>MYSYEBYLTLWYE</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=3424174603/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
@@ -69,7 +75,7 @@ function Page() {
             </iframe>
           </div>
           <div className="flex flex-col">
-            <div>You Who Pretend to Sleep</div>
+            <h3>You Who Pretend to Sleep</h3>
             <iframe
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=2074367101/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
