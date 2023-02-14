@@ -21,9 +21,12 @@ export const Footer = () => {
         <div className="social flex md:flex-row gap-4 flex-col">
           <Link href="https://www.instagram.com/saintsalo/" target="_blank">
             instagram
-          </Link>{" "}
+          </Link>
           <Link href="https://soundcloud.com/saintsalo" target="_blank">
             soundcloud
+          </Link>
+          <Link href="https://www.imdb.com/name/nm7953646/" target="_blank">
+            imdb
           </Link>
           <Link href="/contact">contact</Link>
           {/* <Link href="/scores">music scores &amp; reel</Link> */}
