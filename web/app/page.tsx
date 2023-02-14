@@ -19,7 +19,7 @@ export default async function Home() {
           2023:
           <br />
           <div>SEPTEMBER</div>
-          <li>Extreme Evolution: Drive to Divinity</li>
+          <li>Extreme Evolution: Drive to Divinity (Video Game) - Original Sound Track</li>
           <div>WINTER</div>
           <li>
             New collaborators Salo &amp;{" "}
