@@ -21,12 +21,12 @@ export default async function Music({ params }: { params?: any }) {
 
   return (
     <div className="flex md:flex-row flex-col w-full gap-8">
-      <div>
+      <div className="md:min-w-[400px]">
         <MusicNav posts={posts} />
       </div>
-      <div className="flex flex-col gap-4 max-w-4xl items-center md:p-8 p-2 rounded bg-off-white shadow-lg">
+      <div className="flex grow flex-col gap-4 items-center md:p-8 p-2 rounded bg-off-white shadow-lg">
         <h1>{post.name}</h1>
-        {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
+
         <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
           {post.embed && (
             <div
@@ -35,6 +35,7 @@ export default async function Music({ params }: { params?: any }) {
             />
           )}
         </div>
+        {post?.content?.document && <DocumentRenderer document={post.content?.document} />}
         {post?.promo?.filename && (
           <Image
             src={setImage(post.promo.filename)}
