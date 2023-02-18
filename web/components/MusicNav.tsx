@@ -9,8 +9,8 @@ export const MusicNav = (data: AllPostsQuery) => {
   if (!data.posts) return null
   const { posts } = data
   return (
-    <div className="p-4 bg-off-white">
-      <ul className="max-w-xs mr-4">
+    <div className="p-4">
+      <ul className="max-w-sm mr-4">
         {posts.map(post => (
           <li key={post.name} className="mb-2">
             {`=>`}{" "}
