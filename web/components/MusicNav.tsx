@@ -16,7 +16,7 @@ export const MusicNav = (data: AllPostsQuery) => {
             {`=>`}{" "}
             <Link
               href={`/music/${post.slug}`}
-              className={clsx("md:text-md", {
+              className={clsx("md:text-lg text-md", {
                 "text-red-400 font-corrected": pathname === `/music/${post.slug}`,
                 "font-sans": pathname !== `/music/${post.slug}`,
               })}
