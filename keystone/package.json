@@ -13,10 +13,10 @@
     "postinstall": "if-env SKIP_POSTINSTALL=1 && echo 'skipped' || keystone postinstall"
   },
   "dependencies": {
-    "@keystone-6/auth": "^6.0.0",
-    "@keystone-6/cloudinary": "^6.0.0",
-    "@keystone-6/core": "^4.0.1",
-    "@keystone-6/fields-document": "^6.0.0",
+    "@keystone-6/auth": "^7.0.0",
+    "@keystone-6/cloudinary": "^7.0.0",
+    "@keystone-6/core": "^5.1.0",
+    "@keystone-6/fields-document": "^7.0.0",
     "dotenv": "^16.0.3",
     "if-env": "^1.0.4",
     "slugify": "^1.6.5",

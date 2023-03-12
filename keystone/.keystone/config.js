@@ -50,6 +50,7 @@ var lists = {
   Image: (0, import_core.list)({
     access: import_access.allowAll,
     fields: {
+      // image: cloudinaryImage({ cloudinary, label: "Project Image" }),
       filename: (0, import_fields.text)({ validation: { isRequired: true } }),
       altText: (0, import_fields.text)({ validation: { isRequired: true } }),
       name: (0, import_fields.text)({ validation: { isRequired: true }, label: "Name (Caption)" })
@@ -67,7 +68,9 @@ var lists = {
       promo: (0, import_fields.relationship)({ ref: "Image", many: false }),
       images: (0, import_fields.relationship)({ ref: "Image", many: true }),
       author: (0, import_fields.relationship)({
+        // we could have used 'User', but then the relationship would only be 1-way
         ref: "User.posts",
+        // this is some customisations for changing how this will look in the AdminUI
         ui: {
           displayMode: "cards",
           cardFields: ["name", "email"],
@@ -163,10 +166,20 @@ var sessionDomain = accessEnv("DOMAIN_URL", "localhost");
 var { withAuth } = (0, import_auth.createAuth)({
   listKey: "User",
   identityField: "email",
+  // this is a GraphQL query fragment for fetching what data will be attached to a context.session
+  //   this can be helpful for when you are writing your access control functions
+  //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
   sessionData: "name createdAt",
   secretField: "password",
+  // WARNING: remove initFirstItem functionality in production
+  //   see https://keystonejs.com/docs/config/auth#init-first-item for more
   initFirstItem: {
+    // if there are no items in the database, by configuring this field
+    //   you are asking the Keystone AdminUI to create a new user
+    //   providing inputs for these fields
     fields: ["name", "email", "password"]
+    // it uses context.sudo() to do this, which bypasses any access control you might have
+    //   you shouldn't use this in production
   }
 });
 var sessionMaxAge = 60 * 60 * 24 * 30;
@@ -185,6 +198,8 @@ var keystone_default = withAuth(
   (0, import_core2.config)({
     graphql: {
       debug: process.env.NODE_ENV !== "production",
+      // debug: true,
+      // queryLimits: { maxTotalResults: 100 },
       path: "/api/graphql",
       cors: {
         origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
@@ -204,6 +219,7 @@ var keystone_default = withAuth(
     db: {
       provider: "postgresql",
       url: databaseURL,
+      // useMigrations: process.env.NODE_ENV === "production" || false,
       useMigrations: true
     },
     lists,
