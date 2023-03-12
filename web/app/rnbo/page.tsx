@@ -39,7 +39,7 @@ function Rnbo() {
   return (
     <div>
       <h1>Exporting Web Audio with MAX/MSP using RNBO.</h1>
-      (sometimes a seond click is needed to start the patch - seems like a streaming bug)
+      (sometimes a second click is needed to start the patch - seems like a streaming bug)
       <div>
         <button type="button" onClick={() => handleClick()}>
           Start RNBO Patch {`->`}
