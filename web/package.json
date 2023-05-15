@@ -12,7 +12,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@keystone-6/document-renderer": "^1.1.2",
-    "@next/font": "13.4.2",
     "@rnbo/js": "^1.1.1",
     "@types/node": "18.11.19",
     "@types/react": "18.2.6",
