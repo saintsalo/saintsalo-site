@@ -16,7 +16,7 @@ export default async function Home() {
           Salo&apos;s music has been featured in film and t.v. and widely used in performance art,
           theater, and dance.
         </p>
-        <p>
+        <div>
           2023:
           <br />
           <div>SEPTEMBER</div>
@@ -29,7 +29,7 @@ export default async function Home() {
             </Link>{" "}
             releasing their first album.
           </li>
-        </p>
+        </div>
         <p>(no upcoming performances scheduled)</p>
       </div>
 

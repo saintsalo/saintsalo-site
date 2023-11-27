@@ -2,8 +2,6 @@
 import { getLunarAge, getLunarIcon } from "@/lib/lunar"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { BsSunset } from "react-icons/bs"
-import { WiMoonAltWaningCrescent6 } from "react-icons/wi"
 
 export const Footer = () => {
   const [moon, getMoon] = useState({ age: 0, percent: 0 })
@@ -29,14 +27,8 @@ export const Footer = () => {
             imdb
           </Link>
           <Link href="/contact">contact</Link>
-          {/* <Link href="/scores">music scores &amp; reel</Link> */}
         </div>
       </div>
-      {/* <div className=" bg-slate-100">
-        <div>
-          <BsSunset />
-        </div>
-      </div> */}
       <div className="flex flex-row space-x-2 items-center">
         <div className="hover:text-3xl transition-all duration-500">{getLunarIcon()}</div>
         <div className="flex flex-col text-[8px] transition-all duration-500 -space-y-1">

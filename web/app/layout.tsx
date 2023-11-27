@@ -20,13 +20,12 @@ export const metadata: Metadata = {
   ],
   creator: "dl Salo",
   description: "Collection of works and music by LA composer dl Salo",
-  themeColor: "#F9F5EC",
   generator: "NextJs",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
+  // viewport: {
+  //   width: "device-width",
+  //   initialScale: 1,
+  //   maximumScale: 1,
+  // },
   robots: {
     index: true,
     follow: true,
