@@ -1,7 +1,4 @@
 import { getPostsData } from "@/lib/getPosts"
-import { setImage } from "@/lib/setImage"
-import Image from "next/image"
-import { DocumentRenderer } from "@keystone-6/document-renderer"
 import { MusicNav } from "@/components/MusicNav"
 import type { Metadata } from "next"
 
