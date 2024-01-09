@@ -6,9 +6,34 @@ import Link from "next/link"
 
 export default async function Home() {
   const { posts } = await getPostsData("news")
+  const { posts: features } = await getPostsData("feature")
   return (
     <div className="w-auto flex flex-col md:items-center">
       <div className="flex flex-col gap-8 max-w-4xl h-auto m-auto mt-0 mb-20 md:mt-20">
+        {features &&
+          features.map(feature => (
+            <Link
+              href={`/news/${feature.slug}`}
+              key={feature.slug}
+              className="group flex flex-col max-w-6xl gap-4 md:mx-8 p-4 card"
+            >
+              {feature.promo?.filename && (
+                <div className="min-w-full">
+                  <Image
+                    alt={feature.promo?.altText || "dl salo"}
+                    src={setImage(feature.promo?.filename)}
+                    width="400"
+                    height="400"
+                    className="rounded-sm"
+                  />
+                </div>
+              )}
+
+              <div>
+                {feature.content && <DocumentRenderer document={feature.content.document} />}
+              </div>
+            </Link>
+          ))}
         <p>
           dl Salo is a modern classical and electronic composer and pianist residing in Los Angeles.
           His music interweaves classical piano, synthesizers, electronics and ambience - he is
@@ -16,21 +41,6 @@ export default async function Home() {
           Salo&apos;s music has been featured in film and t.v. and widely used in performance art,
           theater, and dance.
         </p>
-        <div>
-          2023:
-          <br />
-          <div>SEPTEMBER</div>
-          <li>Extreme Evolution: Drive to Divinity (Video Game) - Original Sound Track</li>
-          <div>WINTER</div>
-          <li>
-            New collaborators Salo &amp;{" "}
-            <Link href="http://www.michaelhaertlein.com/" target="_blank">
-              Haertlein
-            </Link>{" "}
-            releasing their first album.
-          </li>
-        </div>
-        <p>(no upcoming performances scheduled)</p>
       </div>
 
       <h2 className="text-lg mb-2">News</h2>

@@ -1,7 +1,7 @@
 import { AllPostsDocument, PostBySlugDocument } from "@/graphql/generated/graphql"
 import { graphqlClient } from "@/lib/graphql-client"
 
-export const getPostsData = async (type: "news" | "music" | "project") => {
+export const getPostsData = async (type: "news" | "music" | "project" | "feature") => {
   const res = await graphqlClient.request(AllPostsDocument, {
     status: "live",
     type,

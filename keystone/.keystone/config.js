@@ -115,7 +115,9 @@ var lists = {
         options: [
           { label: "Music", value: "music" },
           { label: "Project", value: "project" },
-          { label: "News", value: "news" }
+          { label: "News", value: "news" },
+          { label: "Feature", value: "feature" },
+          { label: "Shows", value: "shows" }
         ],
         ui: {
           displayMode: "segmented-control"
@@ -204,9 +206,6 @@ var keystone_default = withAuth(
       cors: {
         origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true
-      },
-      apolloConfig: {
-        debug: true
       }
     },
     server: {
@@ -226,5 +225,4 @@ var keystone_default = withAuth(
     session
   })
 );
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {});
+//# sourceMappingURL=config.js.map
