@@ -12,9 +12,9 @@ import {
 
 import { document } from '@keystone-6/fields-document';
 
-import type { Lists } from '.keystone/types';
+// import type { Lists } from '.keystone/types';
 
-export const lists: Lists = {
+export const lists = {
   User: list({
     access: allowAll,
     fields: {
@@ -101,6 +101,8 @@ export const lists: Lists = {
           { label: "Music", value: "music" },
           { label: "Project", value: "project" },
           { label: "News", value: "news" },
+          { label: "Feature", value: "feature" },
+          { label: "Shows", value: "shows" },
         ],
         ui: {
           displayMode: "segmented-control",

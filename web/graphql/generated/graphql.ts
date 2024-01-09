@@ -5,60 +5,62 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  DateTime: any;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
   /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: any;
+  JSON: { input: any; output: any; }
 };
 
 export type AuthenticatedItem = User;
 
 export type CreateInitialUserInput = {
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DateTimeNullableFilter = {
-  equals?: InputMaybe<Scalars['DateTime']>;
-  gt?: InputMaybe<Scalars['DateTime']>;
-  gte?: InputMaybe<Scalars['DateTime']>;
-  in?: InputMaybe<Array<Scalars['DateTime']>>;
-  lt?: InputMaybe<Scalars['DateTime']>;
-  lte?: InputMaybe<Scalars['DateTime']>;
+  equals?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<Scalars['DateTime']['input']>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
   not?: InputMaybe<DateTimeNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+  notIn?: InputMaybe<Array<Scalars['DateTime']['input']>>;
 };
 
 export type IdFilter = {
-  equals?: InputMaybe<Scalars['ID']>;
-  gt?: InputMaybe<Scalars['ID']>;
-  gte?: InputMaybe<Scalars['ID']>;
-  in?: InputMaybe<Array<Scalars['ID']>>;
-  lt?: InputMaybe<Scalars['ID']>;
-  lte?: InputMaybe<Scalars['ID']>;
+  equals?: InputMaybe<Scalars['ID']['input']>;
+  gt?: InputMaybe<Scalars['ID']['input']>;
+  gte?: InputMaybe<Scalars['ID']['input']>;
+  in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  lt?: InputMaybe<Scalars['ID']['input']>;
+  lte?: InputMaybe<Scalars['ID']['input']>;
   not?: InputMaybe<IdFilter>;
-  notIn?: InputMaybe<Array<Scalars['ID']>>;
+  notIn?: InputMaybe<Array<Scalars['ID']['input']>>;
 };
 
 export type Image = {
   __typename?: 'Image';
-  altText?: Maybe<Scalars['String']>;
-  filename?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
+  altText?: Maybe<Scalars['String']['output']>;
+  filename?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type ImageCreateInput = {
-  altText?: InputMaybe<Scalars['String']>;
-  filename?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  altText?: InputMaybe<Scalars['String']['input']>;
+  filename?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ImageManyRelationFilter = {
@@ -94,7 +96,7 @@ export type ImageRelateToOneForCreateInput = {
 export type ImageRelateToOneForUpdateInput = {
   connect?: InputMaybe<ImageWhereUniqueInput>;
   create?: InputMaybe<ImageCreateInput>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type ImageUpdateArgs = {
@@ -103,9 +105,9 @@ export type ImageUpdateArgs = {
 };
 
 export type ImageUpdateInput = {
-  altText?: InputMaybe<Scalars['String']>;
-  filename?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  altText?: InputMaybe<Scalars['String']['input']>;
+  filename?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ImageWhereInput = {
@@ -119,7 +121,7 @@ export type ImageWhereInput = {
 };
 
 export type ImageWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type KeystoneAdminMeta = {
@@ -130,35 +132,36 @@ export type KeystoneAdminMeta = {
 
 
 export type KeystoneAdminMetaListArgs = {
-  key: Scalars['String'];
+  key: Scalars['String']['input'];
 };
 
 export type KeystoneAdminUiFieldGroupMeta = {
   __typename?: 'KeystoneAdminUIFieldGroupMeta';
-  description?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
   fields: Array<KeystoneAdminUiFieldMeta>;
-  label: Scalars['String'];
+  label: Scalars['String']['output'];
 };
 
 export type KeystoneAdminUiFieldMeta = {
   __typename?: 'KeystoneAdminUIFieldMeta';
   createView: KeystoneAdminUiFieldMetaCreateView;
-  customViewsIndex?: Maybe<Scalars['Int']>;
-  description?: Maybe<Scalars['String']>;
-  fieldMeta?: Maybe<Scalars['JSON']>;
-  isFilterable: Scalars['Boolean'];
-  isOrderable: Scalars['Boolean'];
+  customViewsIndex?: Maybe<Scalars['Int']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  fieldMeta?: Maybe<Scalars['JSON']['output']>;
+  isFilterable: Scalars['Boolean']['output'];
+  isNonNull?: Maybe<Array<KeystoneAdminUiFieldMetaIsNonNull>>;
+  isOrderable: Scalars['Boolean']['output'];
   itemView?: Maybe<KeystoneAdminUiFieldMetaItemView>;
-  label: Scalars['String'];
+  label: Scalars['String']['output'];
   listView: KeystoneAdminUiFieldMetaListView;
-  path: Scalars['String'];
+  path: Scalars['String']['output'];
   search?: Maybe<QueryMode>;
-  viewsIndex: Scalars['Int'];
+  viewsIndex: Scalars['Int']['output'];
 };
 
 
 export type KeystoneAdminUiFieldMetaItemViewArgs = {
-  id?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type KeystoneAdminUiFieldMetaCreateView = {
@@ -169,6 +172,12 @@ export type KeystoneAdminUiFieldMetaCreateView = {
 export enum KeystoneAdminUiFieldMetaCreateViewFieldMode {
   Edit = 'edit',
   Hidden = 'hidden'
+}
+
+export enum KeystoneAdminUiFieldMetaIsNonNull {
+  Create = 'create',
+  Read = 'read',
+  Update = 'update'
 }
 
 export type KeystoneAdminUiFieldMetaItemView = {
@@ -200,30 +209,30 @@ export enum KeystoneAdminUiFieldMetaListViewFieldMode {
 
 export type KeystoneAdminUiListMeta = {
   __typename?: 'KeystoneAdminUIListMeta';
-  description?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
   fields: Array<KeystoneAdminUiFieldMeta>;
   groups: Array<KeystoneAdminUiFieldGroupMeta>;
-  hideCreate: Scalars['Boolean'];
-  hideDelete: Scalars['Boolean'];
-  initialColumns: Array<Scalars['String']>;
+  hideCreate: Scalars['Boolean']['output'];
+  hideDelete: Scalars['Boolean']['output'];
+  initialColumns: Array<Scalars['String']['output']>;
   initialSort?: Maybe<KeystoneAdminUiSort>;
-  isHidden: Scalars['Boolean'];
-  isSingleton: Scalars['Boolean'];
-  itemQueryName: Scalars['String'];
-  key: Scalars['String'];
-  label: Scalars['String'];
-  labelField: Scalars['String'];
-  listQueryName: Scalars['String'];
-  pageSize: Scalars['Int'];
-  path: Scalars['String'];
-  plural: Scalars['String'];
-  singular: Scalars['String'];
+  isHidden: Scalars['Boolean']['output'];
+  isSingleton: Scalars['Boolean']['output'];
+  itemQueryName: Scalars['String']['output'];
+  key: Scalars['String']['output'];
+  label: Scalars['String']['output'];
+  labelField: Scalars['String']['output'];
+  listQueryName: Scalars['String']['output'];
+  pageSize: Scalars['Int']['output'];
+  path: Scalars['String']['output'];
+  plural: Scalars['String']['output'];
+  singular: Scalars['String']['output'];
 };
 
 export type KeystoneAdminUiSort = {
   __typename?: 'KeystoneAdminUISort';
   direction: KeystoneAdminUiSortDirection;
-  field: Scalars['String'];
+  field: Scalars['String']['output'];
 };
 
 export enum KeystoneAdminUiSortDirection {
@@ -252,7 +261,7 @@ export type Mutation = {
   deletePosts?: Maybe<Array<Maybe<Post>>>;
   deleteUser?: Maybe<User>;
   deleteUsers?: Maybe<Array<Maybe<User>>>;
-  endSession: Scalars['Boolean'];
+  endSession: Scalars['Boolean']['output'];
   updateImage?: Maybe<Image>;
   updateImages?: Maybe<Array<Maybe<Image>>>;
   updatePost?: Maybe<Post>;
@@ -263,8 +272,8 @@ export type Mutation = {
 
 
 export type MutationAuthenticateUserWithPasswordArgs = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 
@@ -366,31 +375,17 @@ export type MutationUpdateUsersArgs = {
 };
 
 export type NestedStringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
-};
-
-export type NestedStringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum OrderDirection {
@@ -400,33 +395,34 @@ export enum OrderDirection {
 
 export type PasswordState = {
   __typename?: 'PasswordState';
-  isSet: Scalars['Boolean'];
+  isSet: Scalars['Boolean']['output'];
 };
 
 export type Post = {
   __typename?: 'Post';
   author?: Maybe<User>;
   content?: Maybe<Post_Content_Document>;
-  createdAt?: Maybe<Scalars['DateTime']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
   description?: Maybe<Post_Description_Document>;
-  embed?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
+  embed?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   images?: Maybe<Array<Image>>;
-  imagesCount?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  order?: Maybe<Scalars['String']>;
+  imagesCount?: Maybe<Scalars['Int']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['String']['output']>;
   promo?: Maybe<Image>;
-  seo?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
-  status?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  seo?: Maybe<Scalars['String']['output']>;
+  slug?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
 };
 
 
 export type PostImagesArgs = {
+  cursor?: InputMaybe<ImageWhereUniqueInput>;
   orderBy?: Array<ImageOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: ImageWhereInput;
 };
 
@@ -437,18 +433,18 @@ export type PostImagesCountArgs = {
 
 export type PostCreateInput = {
   author?: InputMaybe<UserRelateToOneForCreateInput>;
-  content?: InputMaybe<Scalars['JSON']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['JSON']>;
-  embed?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  embed?: InputMaybe<Scalars['String']['input']>;
   images?: InputMaybe<ImageRelateToManyForCreateInput>;
-  name?: InputMaybe<Scalars['String']>;
-  order?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['String']['input']>;
   promo?: InputMaybe<ImageRelateToOneForCreateInput>;
-  seo?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  seo?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PostManyRelationFilter = {
@@ -488,18 +484,18 @@ export type PostUpdateArgs = {
 
 export type PostUpdateInput = {
   author?: InputMaybe<UserRelateToOneForUpdateInput>;
-  content?: InputMaybe<Scalars['JSON']>;
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description?: InputMaybe<Scalars['JSON']>;
-  embed?: InputMaybe<Scalars['String']>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  description?: InputMaybe<Scalars['JSON']['input']>;
+  embed?: InputMaybe<Scalars['String']['input']>;
   images?: InputMaybe<ImageRelateToManyForUpdateInput>;
-  name?: InputMaybe<Scalars['String']>;
-  order?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['String']['input']>;
   promo?: InputMaybe<ImageRelateToOneForUpdateInput>;
-  seo?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
-  status?: InputMaybe<Scalars['String']>;
-  type?: InputMaybe<Scalars['String']>;
+  seo?: InputMaybe<Scalars['String']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  status?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type PostWhereInput = {
@@ -521,28 +517,28 @@ export type PostWhereInput = {
 };
 
 export type PostWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-  slug?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Post_Content_Document = {
   __typename?: 'Post_content_Document';
-  document: Scalars['JSON'];
+  document: Scalars['JSON']['output'];
 };
 
 
 export type Post_Content_DocumentDocumentArgs = {
-  hydrateRelationships?: Scalars['Boolean'];
+  hydrateRelationships?: Scalars['Boolean']['input'];
 };
 
 export type Post_Description_Document = {
   __typename?: 'Post_description_Document';
-  document: Scalars['JSON'];
+  document: Scalars['JSON']['output'];
 };
 
 
 export type Post_Description_DocumentDocumentArgs = {
-  hydrateRelationships?: Scalars['Boolean'];
+  hydrateRelationships?: Scalars['Boolean']['input'];
 };
 
 export type Query = {
@@ -550,14 +546,14 @@ export type Query = {
   authenticatedItem?: Maybe<AuthenticatedItem>;
   image?: Maybe<Image>;
   images?: Maybe<Array<Image>>;
-  imagesCount?: Maybe<Scalars['Int']>;
+  imagesCount?: Maybe<Scalars['Int']['output']>;
   keystone: KeystoneMeta;
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
+  postsCount?: Maybe<Scalars['Int']['output']>;
   user?: Maybe<User>;
   users?: Maybe<Array<User>>;
-  usersCount?: Maybe<Scalars['Int']>;
+  usersCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
@@ -567,9 +563,10 @@ export type QueryImageArgs = {
 
 
 export type QueryImagesArgs = {
+  cursor?: InputMaybe<ImageWhereUniqueInput>;
   orderBy?: Array<ImageOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: ImageWhereInput;
 };
 
@@ -585,9 +582,10 @@ export type QueryPostArgs = {
 
 
 export type QueryPostsArgs = {
+  cursor?: InputMaybe<PostWhereUniqueInput>;
   orderBy?: Array<PostOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: PostWhereInput;
 };
 
@@ -603,9 +601,10 @@ export type QueryUserArgs = {
 
 
 export type QueryUsersArgs = {
+  cursor?: InputMaybe<UserWhereUniqueInput>;
   orderBy?: Array<UserOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: UserWhereInput;
 };
 
@@ -620,51 +619,52 @@ export enum QueryMode {
 }
 
 export type StringFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
   not?: InputMaybe<NestedStringFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type StringNullableFilter = {
-  contains?: InputMaybe<Scalars['String']>;
-  endsWith?: InputMaybe<Scalars['String']>;
-  equals?: InputMaybe<Scalars['String']>;
-  gt?: InputMaybe<Scalars['String']>;
-  gte?: InputMaybe<Scalars['String']>;
-  in?: InputMaybe<Array<Scalars['String']>>;
-  lt?: InputMaybe<Scalars['String']>;
-  lte?: InputMaybe<Scalars['String']>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  equals?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<Scalars['String']['input']>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
   mode?: InputMaybe<QueryMode>;
-  not?: InputMaybe<NestedStringNullableFilter>;
-  notIn?: InputMaybe<Array<Scalars['String']>>;
-  startsWith?: InputMaybe<Scalars['String']>;
+  not?: InputMaybe<StringNullableFilter>;
+  notIn?: InputMaybe<Array<Scalars['String']['input']>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = {
   __typename?: 'User';
-  createdAt?: Maybe<Scalars['DateTime']>;
-  email?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name?: Maybe<Scalars['String']['output']>;
   password?: Maybe<PasswordState>;
   posts?: Maybe<Array<Post>>;
-  postsCount?: Maybe<Scalars['Int']>;
+  postsCount?: Maybe<Scalars['Int']['output']>;
 };
 
 
 export type UserPostsArgs = {
+  cursor?: InputMaybe<PostWhereUniqueInput>;
   orderBy?: Array<PostOrderByInput>;
-  skip?: Scalars['Int'];
-  take?: InputMaybe<Scalars['Int']>;
+  skip?: Scalars['Int']['input'];
+  take?: InputMaybe<Scalars['Int']['input']>;
   where?: PostWhereInput;
 };
 
@@ -675,7 +675,7 @@ export type UserPostsCountArgs = {
 
 export type UserAuthenticationWithPasswordFailure = {
   __typename?: 'UserAuthenticationWithPasswordFailure';
-  message: Scalars['String'];
+  message: Scalars['String']['output'];
 };
 
 export type UserAuthenticationWithPasswordResult = UserAuthenticationWithPasswordFailure | UserAuthenticationWithPasswordSuccess;
@@ -683,14 +683,14 @@ export type UserAuthenticationWithPasswordResult = UserAuthenticationWithPasswor
 export type UserAuthenticationWithPasswordSuccess = {
   __typename?: 'UserAuthenticationWithPasswordSuccess';
   item: User;
-  sessionToken: Scalars['String'];
+  sessionToken: Scalars['String']['output'];
 };
 
 export type UserCreateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForCreateInput>;
 };
 
@@ -709,7 +709,7 @@ export type UserRelateToOneForCreateInput = {
 export type UserRelateToOneForUpdateInput = {
   connect?: InputMaybe<UserWhereUniqueInput>;
   create?: InputMaybe<UserCreateInput>;
-  disconnect?: InputMaybe<Scalars['Boolean']>;
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 export type UserUpdateArgs = {
@@ -718,10 +718,10 @@ export type UserUpdateArgs = {
 };
 
 export type UserUpdateInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  email?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  password?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
   posts?: InputMaybe<PostRelateToManyForUpdateInput>;
 };
 
@@ -737,20 +737,20 @@ export type UserWhereInput = {
 };
 
 export type UserWhereUniqueInput = {
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type AllPostsQueryVariables = Exact<{
-  status: Scalars['String'];
-  type: Scalars['String'];
+  status: Scalars['String']['input'];
+  type: Scalars['String']['input'];
 }>;
 
 
 export type AllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', order?: string | null, seo?: string | null, name?: string | null, slug?: string | null, embed?: string | null, content?: { __typename?: 'Post_content_Document', document: any } | null, images?: Array<{ __typename?: 'Image', name?: string | null, altText?: string | null, filename?: string | null }> | null, promo?: { __typename?: 'Image', name?: string | null, altText?: string | null, filename?: string | null } | null, description?: { __typename?: 'Post_description_Document', document: any } | null }> | null };
 
 export type PostBySlugQueryVariables = Exact<{
-  slug: Scalars['String'];
+  slug: Scalars['String']['input'];
 }>;
 
 

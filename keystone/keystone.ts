@@ -21,9 +21,6 @@ export default withAuth(
         origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true,
       },
-      apolloConfig: {
-        debug: true,
-      },
     },
     server: {
       cors: {
