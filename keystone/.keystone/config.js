@@ -204,9 +204,6 @@ var keystone_default = withAuth(
       cors: {
         origin: [new RegExp("localhost"), deployPrevURL, prodUrl],
         credentials: true
-      },
-      apolloConfig: {
-        debug: true
       }
     },
     server: {
