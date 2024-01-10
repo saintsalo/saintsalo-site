@@ -17,18 +17,10 @@ export default async function Home() {
           theater, and dance.
         </p>
         <div>
-          2023:
+          2024:
           <br />
-          <div>SEPTEMBER</div>
+          <div>Jan 16, 2024</div>
           <li>Extreme Evolution: Drive to Divinity (Video Game) - Original Sound Track</li>
-          <div>WINTER</div>
-          <li>
-            New collaborators Salo &amp;{" "}
-            <Link href="http://www.michaelhaertlein.com/" target="_blank">
-              Haertlein
-            </Link>{" "}
-            releasing their first album.
-          </li>
         </div>
         <p>(no upcoming performances scheduled)</p>
       </div>
