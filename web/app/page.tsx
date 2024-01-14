@@ -37,9 +37,8 @@ export default async function Home() {
         <p>
           dl Salo is a modern classical and electronic composer and pianist residing in Los Angeles.
           His music interweaves classical piano, synthesizers, electronics and ambience - he is
-          known for his haunting yet hopeful style of minimalism and avant garde compositions.
-          Salo&apos;s music has been featured in film and t.v. and widely used in performance art,
-          theater, and dance.
+          known for his haunting yet hopeful style of avant-garde compositions. Salo&apos;s music
+          has been featured in film and t.v. and widely used in performance art, theater, and dance.
         </p>
       </div>
 
