@@ -9,6 +9,11 @@ export default async function Home() {
   const { posts: features } = await getPostsData("feature")
   return (
     <div className="w-auto flex flex-col md:items-center">
+      <p>
+        dl Salo is a composer creating music that interweaves classical piano, synthesizers,
+        electronics and ambience - he is known for his haunting yet hopeful style of minimalism and
+        avant garde compositions.
+      </p>
       <div className="flex flex-col gap-8 max-w-4xl h-auto m-auto mt-0 mb-20 md:mt-20">
         {features &&
           features.map(feature => (
@@ -34,16 +39,9 @@ export default async function Home() {
               </div>
             </Link>
           ))}
-        <p>
-          dl Salo is a modern classical and electronic composer and pianist residing in Los Angeles.
-          His music interweaves classical piano, synthesizers, electronics and ambience - he is
-          known for his haunting yet hopeful style of avant-garde compositions. Salo&apos;s music
-          has been featured in film and t.v. and widely used in performance art, theater, and dance.
-        </p>
       </div>
 
-      <h2 className="text-lg mb-2">News</h2>
-      <div>------</div>
+      <div>----------------------------------------</div>
       {posts &&
         posts.map(post => (
           <Link

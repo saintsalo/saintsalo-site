@@ -5,7 +5,24 @@ function Page() {
         <i>Vinyl copies are currently sold out</i>
       </div>
       <div>
-        <h2 className="text-lg mb-4">Digital Downloads</h2>
+        <h2 className="text-lg">Digital Downloads</h2>
+      </div>
+      <div>
+        <h2 className="text-lg mb-8">Holy Sun Opera House</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8">
+          <div className="flex flex-col">
+            <h3>Attic EP</h3>
+            <iframe
+              style={{ border: 0, width: "350px", height: "470px" }}
+              src="https://bandcamp.com/EmbeddedPlayer/album=3025147987/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/"
+              seamless
+            >
+              <a href="https://holysunoperahouse.bandcamp.com/album/attic-ep">
+                Holy Sun Opera House
+              </a>
+            </iframe>
+          </div>
+        </div>
       </div>
       <div>
         <h2 className="text-lg mb-8">A Story of Rats</h2>
