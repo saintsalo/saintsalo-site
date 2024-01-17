@@ -20,6 +20,9 @@ export const Footer = () => {
           <Link href="https://www.instagram.com/saintsalo/" target="_blank">
             instagram
           </Link>
+          <Link href="https://dlsalo.bandcamp.com/" target="_blank">
+            bandcamp
+          </Link>
           <Link href="https://soundcloud.com/saintsalo" target="_blank">
             soundcloud
           </Link>
