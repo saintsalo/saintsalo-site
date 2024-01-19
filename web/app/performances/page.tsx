@@ -6,5 +6,20 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <div>no upcoming shows scheduled</div>
+  return (
+    <div>
+      <div>
+        <h1>Holy Sun Opera House</h1>
+        <h2 className="font-correct">
+          Jan 12, 2024 @{" "}
+          <a href="https://www.viperroom.com/" target="_blank">
+            Viper Room
+          </a>{" "}
+          in Los Angeles
+        </h2>
+        <div>8pm Doors</div>
+        <div>Black Sabbitch tour kickoff show!</div>
+      </div>
+    </div>
+  )
 }
