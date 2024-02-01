@@ -6,6 +6,8 @@ export default function Page() {
       <h1>Contact</h1>
       <div>
         email: <Link href="mailto:saintsalo@gmail.com">saintsalo@gmail.com</Link>
+        Object Sonore (Label) email:{" "}
+        <Link href="mailto:salo@objectsonore.com">salo@objectsonore.com</Link>
       </div>
       <div>
         dm instagram:{" "}
