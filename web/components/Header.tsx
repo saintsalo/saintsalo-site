@@ -30,10 +30,6 @@ const links: NavItem[] = [
     href: "/performances",
   },
   {
-    name: "patches",
-    href: "/rnbo",
-  },
-  {
     name: "store",
     href: "/store",
   },
