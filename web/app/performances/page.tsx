@@ -11,6 +11,20 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-8">
       <div className="bg-white rounded-md w-full p-8">
+        <h1>Holy Sun Opera House</h1>
+        <h2 className="font-correct">
+          <h3 className="text-3xl">March 10, 2024</h3>
+          <div>
+            <a href="https://healingforcerecords.com/" target="_blank">
+              Healing Force of the Universe
+            </a>{" "}
+          </div>
+          1200 E Walnut Street Pasadena, CA 91106
+        </h2>
+        <div>8pm Doors</div>
+        <div>MORE DETAILS COMING SOON!</div>
+      </div>
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1>Extreme Evolution: Drive to Divinity Listening Party</h1>
         <h2 className="font-correct">
           Feb, 10 2024 @{" "}
@@ -40,7 +54,7 @@ export default function Page() {
         />
       </div>
       <div>-------------------------------------------</div>
-      <div className="bg-white rounded-md w-full p-8">
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1>Holy Sun Opera House</h1>
         <h2 className="font-correct">
           Jan 12, 2024 @{" "}
