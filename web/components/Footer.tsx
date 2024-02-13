@@ -30,6 +30,7 @@ export const Footer = () => {
             imdb
           </Link>
           <Link href="/contact">contact</Link>
+          <Link href="/rnbo">MAX/MSP Patches</Link>
         </div>
       </div>
       <div className="flex flex-row space-x-2 items-center">
