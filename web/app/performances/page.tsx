@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col gap-8">
-      <div className="bg-white rounded-md w-full p-8">
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1>Holy Sun Opera House</h1>
         <h2 className="font-correct">
           <h3 className="text-3xl">March 10, 2024</h3>
