@@ -9,7 +9,7 @@ export default async function Home() {
   const { posts: features } = await getPostsData("feature")
   return (
     <div className="w-auto flex flex-col md:items-center">
-      <p>
+      <p className="text-2xl max-w-[500px]">
         dl Salo is a composer creating music that interweaves classical piano, synthesizers,
         electronics and ambience - he is known for his haunting yet hopeful style of musical
         compositions.
