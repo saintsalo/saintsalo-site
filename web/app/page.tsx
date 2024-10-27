@@ -6,6 +6,13 @@ import Link from "next/link"
 
 export default async function Home() {
   const { posts } = await getPostsData("news")
+  const test = posts?.sort((a, b) => {
+    if (a.order === b.order) return 0
+    if (a.order === null || a.order === undefined) return 1
+    if (b.order === null || b.order === undefined) return -1
+    return a.order < b.order ? -1 : 1
+  })
+  console.log(test)
   const { posts: features } = await getPostsData("feature")
   return (
     <div className="w-auto flex flex-col md:items-center">
@@ -43,29 +50,36 @@ export default async function Home() {
 
       <div>----------------------------------------</div>
       {posts &&
-        posts.map(post => (
-          <Link
-            href={`/news/${post.slug}`}
-            key={post.slug}
-            className="group flex flex-col max-w-4xl gap-4 md:mx-8 p-4 card"
-          >
-            <h3 className="group-hover:font-corrected">{post.name}</h3>
-            <div className="flex md:flex-row flex-col gap-4">
-              {post?.promo?.filename && (
-                <div className="md:min-w-max min-w-full">
-                  <Image
-                    alt={post.promo?.altText || "dl salo"}
-                    src={setImage(post.promo?.filename)}
-                    width="200"
-                    height="200"
-                    className="rounded-sm"
-                  />
-                </div>
-              )}
-              <div>{post.content && <DocumentRenderer document={post.content.document} />}</div>
-            </div>
-          </Link>
-        ))}
+        posts
+          .sort((a, b) => {
+            if (a.order === b.order) return 0
+            if (a.order === null || a.order === undefined) return 1
+            if (b.order === null || b.order === undefined) return -1
+            return a.order < b.order ? -1 : 1
+          })
+          .map(post => (
+            <Link
+              href={`/news/${post.slug}`}
+              key={post.slug}
+              className="group flex flex-col max-w-4xl gap-4 md:mx-8 p-4 card"
+            >
+              <h3 className="group-hover:font-corrected">{post.name}</h3>
+              <div className="flex md:flex-row flex-col gap-4">
+                {post?.promo?.filename && (
+                  <div className="md:min-w-max min-w-full">
+                    <Image
+                      alt={post.promo?.altText || "dl salo"}
+                      src={setImage(post.promo?.filename)}
+                      width="200"
+                      height="200"
+                      className="rounded-sm"
+                    />
+                  </div>
+                )}
+                <div>{post.content && <DocumentRenderer document={post.content.document} />}</div>
+              </div>
+            </Link>
+          ))}
     </div>
   )
 }
