@@ -2,6 +2,9 @@
   "name": "saintsalo",
   "version": "1.0.0",
   "private": false,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "docker:build": "docker compose up --build",
     "docker:down": "docker compose down",
