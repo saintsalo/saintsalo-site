@@ -12,6 +12,91 @@ export default function Page() {
     <div className="flex flex-col gap-8">
       <div className="bg-white rounded-md w-full p-8">
         <h1 className="text-4xl">
+          DRONEBATH 007 <br />
+          dl Salo with George Jensen.
+        </h1>
+        <h2 className="font-correct">
+          <h3 className="text-3xl">Sunday, June 15, 2025 Los Angeles</h3>
+          <div className="text-2xl">
+            <a href="https://partiful.com/e/NN6cVuPsT8hW90aSTkhP" target="_blank">
+              Partiful invite (RSVP and Address)
+            </a>{" "}
+          </div>
+        </h2>
+        <div className="pt-4">
+          <Image
+            src={setImage("dronebath 007 flyer.jpeg")}
+            alt={"dl Salo at DRONEBATH 007 in Los Angeles June 15, 2025"}
+            width={600}
+            height={600}
+            className="hover:contrast-150 transition-all"
+          />
+        </div>
+        <div className="max-w-[500px] flex flex-col gap-8 pt-8">
+          <p>
+            <strong>Tickets will be available at the door via Venmo or cash.</strong> This RSVP will
+            give you the address and parking instructions.
+          </p>
+
+          <p>
+            <strong>$40</strong> - sliding scale always available
+          </p>
+
+          <p>
+            <strong>DRONEBATH</strong> is an electronic sound bath series featuring{" "}
+            <strong>3 hours of uninterrupted low frequency</strong> to facilitate a restful journey.
+          </p>
+
+          <p>
+            Our lineup of artists{" "}
+            <strong>
+              Laura Escudé, Gavin Gamboa, dl Salo with George Jensen, Ivana Dama, Rachel Beetz
+            </strong>
+            , and <strong>Mitchell Brown</strong> will bring you to a new portal through the
+            state-of-the-art{" "}
+            <a
+              href="https://www.instagram.com/mobius_acoustics/?hl=en"
+              target="_blank"
+              rel="noopener"
+            >
+              Mobius Acoustics Hi-Fi system
+            </a>
+            . We encourage you to come prepared with anything you&apos;d need to get comfortable.
+          </p>
+
+          <p>
+            <em>
+              Tap into your uninterrupted source with an optional micro-dose provided from{" "}
+              <a href="https://instagram.com/toasty.town" target="_blank" rel="noopener">
+                @toasty.town
+              </a>
+            </em>
+          </p>
+
+          <p>
+            <strong>Flyer by Christos Tejada</strong>
+          </p>
+
+          <p>
+            <strong>Mobius Acoustics:</strong>
+            <br />
+            <a href="http://mobius-acoustics.com" target="_blank" rel="noopener">
+              mobius-acoustics.com
+            </a>
+          </p>
+
+          <p>
+            <strong>IG:</strong>
+            <br />
+            <a href="https://instagram.com/dronebath" target="_blank" rel="noopener">
+              instagram.com/dronebath
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
+        <h1 className="text-4xl">
           Damaged Disco Halloween Party <br />
           ft{" "}
           <a href="https://www.ispeakmachine.com/" target="_blank">
@@ -80,6 +165,7 @@ export default function Page() {
           <p>Free parking at 5731 Santa Monica Blvd, Los Angeles, CA, 90038</p>
         </div>
       </div>
+
       <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1>Holy Sun Opera House</h1>
         <h2 className="font-correct">
