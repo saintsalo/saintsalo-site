@@ -10,7 +10,41 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col gap-8">
+      {/* HSOH Gold Diggers July 31, 2025 */}
       <div className="bg-white rounded-md w-full p-8">
+        <h1 className="text-4xl">
+          Damaged Disco w/ <br />
+          <a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank">
+            Holy Sun Opera House
+          </a>
+          <br />
+          <a href="https://www.crueldiagonals.com/" target="_blank">
+            Cruel Diagonals
+          </a>
+        </h1>
+        <h2 className="font-correct">
+          <h3 className="text-3xl">Thursday, July 31 7pm, Gold-Diggers Los Angeles</h3>
+          <div className="text-2xl">
+            <a
+              href="https://dice.fm/event/v37k3d-damaged-disco-w-holy-sun-opera-house-cruel-diagonals-31st-jul-gold-diggers-los-angeles-tickets?pid=74589ab9&_branch_match_id=1442976232047470910&utm_medium=partners_api&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz8nMy9ZLyUxO1UvL1c%2ByMDZLTjJMNjY1NbIvyEyxNTcxtbBMTLJUqytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAT%2BjkTkgAAAA%3D"
+              target="_blank"
+            >
+              Tickets (Cheaper to buy early!)
+            </a>{" "}
+          </div>
+        </h2>
+        <div className="pt-4">
+          <Image
+            src={setImage("dd-salo-hsoh.jpg")}
+            alt={"Holy Sun Opera House with Cruel Diagonals at Gold Diggers July 31, 2025"}
+            width={500}
+            height={500}
+            className="hover:contrast-150 transition-all"
+          />
+        </div>
+      </div>
+      {/* Drone bath show */}
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1 className="text-4xl">
           DRONEBATH 007 <br />
           dl Salo with George Jensen.
