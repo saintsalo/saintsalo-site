@@ -29,7 +29,7 @@ export default async function Home() {
                     src={setImage(feature.promo?.filename)}
                     width="400"
                     height="400"
-                    className="rounded-sm"
+                    className="rounded-xs"
                   />
                 </div>
               )}
@@ -65,7 +65,7 @@ export default async function Home() {
                       src={setImage(post.promo?.filename)}
                       width="200"
                       height="200"
-                      className="rounded-sm"
+                      className="rounded-xs"
                     />
                   </div>
                 )}
