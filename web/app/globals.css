@@ -1,6 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: nitti-typewriter-normal;
+  --font-highlight: nitti-typewriter-cameo;
+  --font-open: nitti-typewriter-open;
+  --font-corrected: nitti-typewriter-corrected;
+  --font-underlined: nitti-typewriter-underlined;
+
+  --color-primary: #709ab1;
+  --color-secondary: #cb7985;
+  --color-off-white: #f9f7f2;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   body, footer {
@@ -20,7 +50,7 @@
   }
 
   a.card {
-    @apply bg-off-white hover:bg-white shadow-sm hover:shadow-md transition-all duration-200 font-sans rounded hover:font-sans hover:text-black hover:contrast-150
+    @apply bg-off-white hover:bg-white shadow-xs hover:shadow-md transition-all duration-200 font-sans rounded-sm hover:font-sans hover:text-black hover:contrast-150
   }
 
   .embed-container {

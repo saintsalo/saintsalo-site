@@ -24,13 +24,13 @@ export default async function Music({ params }: { params?: any }) {
       <div className="md:min-w-[400px]">
         <MusicNav posts={posts} />
       </div>
-      <div className="flex grow flex-col gap-4 items-center md:p-8 p-2 rounded bg-off-white shadow-lg">
+      <div className="flex grow flex-col gap-4 items-center md:p-8 p-2 rounded-sm bg-off-white shadow-lg">
         <h1>{post.name}</h1>
 
         <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
           {post.embed && (
             <div
-              className="rounded-sm p-2 flex flex-col items-center w-full"
+              className="rounded-xs p-2 flex flex-col items-center w-full"
               dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
             />
           )}

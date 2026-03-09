@@ -42,7 +42,7 @@ export const Header = () => {
     <Disclosure as="nav">
       {({ open }) => (
         <>
-          <div className="mx-auto w-full  md:rounded md:p-4 md:mb-8 ">
+          <div className="mx-auto w-full  md:rounded-sm md:p-4 md:mb-8 ">
             <div className="relative flex min-h-[70px] items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center md:hidden w-full">
                 <Disclosure.Button className="items-center justify-center rounded-md p-2 border-none flex flex-row w-full">
@@ -92,7 +92,7 @@ export const Header = () => {
                       src="/images/dl-salo-profile-image.png"
                       width="200"
                       height="200"
-                      className="md:m-auto md:float-left mb-2 blur-sm hover:blur-none transition-all duration-500"
+                      className="md:m-auto md:float-left mb-2 blur-xs hover:blur-none transition-all duration-500"
                     />
                   </div>
                   <div className="flex flex-col md:mt-0 self-center">
