@@ -17,13 +17,12 @@ export default async function Home() {
       <div className="flex flex-col gap-8 max-w-4xl h-auto m-auto mt-0 mb-20 md:mt-20">
         {features &&
           features.map(feature => (
-            <Link
-              href={`/news/${feature.slug}`}
+            <div
               key={feature.slug}
               className="group flex flex-col max-w-6xl gap-4 md:mx-8 p-4 card"
             >
               {feature.promo?.filename && (
-                <div className="min-w-full">
+                <Link href={`/news/${feature.slug}`} className="min-w-full">
                   <Image
                     alt={feature.promo?.altText || "dl salo"}
                     src={setImage(feature.promo?.filename)}
@@ -31,13 +30,13 @@ export default async function Home() {
                     height="400"
                     className="rounded-xs"
                   />
-                </div>
+                </Link>
               )}
 
               <div>
                 {feature.content && <DocumentRenderer document={feature.content.document} />}
               </div>
-            </Link>
+            </div>
           ))}
       </div>
 
@@ -51,15 +50,16 @@ export default async function Home() {
             return a.order < b.order ? -1 : 1
           })
           .map(post => (
-            <Link
-              href={`/news/${post.slug}`}
+            <div
               key={post.slug}
               className="group flex flex-col max-w-4xl gap-4 md:mx-8 p-4 card"
             >
-              <h3 className="group-hover:font-corrected">{post.name}</h3>
+              <Link href={`/news/${post.slug}`}>
+                <h3 className="group-hover:font-corrected">{post.name}</h3>
+              </Link>
               <div className="flex md:flex-row flex-col gap-4">
                 {post?.promo?.filename && (
-                  <div className="md:min-w-max min-w-full">
+                  <Link href={`/news/${post.slug}`} className="md:min-w-max min-w-full">
                     <Image
                       alt={post.promo?.altText || "dl salo"}
                       src={setImage(post.promo?.filename)}
@@ -67,11 +67,11 @@ export default async function Home() {
                       height="200"
                       className="rounded-xs"
                     />
-                  </div>
+                  </Link>
                 )}
                 <div>{post.content && <DocumentRenderer document={post.content.document} />}</div>
               </div>
-            </Link>
+            </div>
           ))}
     </div>
   )

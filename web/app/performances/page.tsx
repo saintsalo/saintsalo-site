@@ -23,7 +23,7 @@ export default function Page() {
           </a>
         </h1>
         <h2 className="font-correct">
-          <h3 className="text-3xl">Thursday, July 31 7pm, Gold-Diggers Los Angeles</h3>
+          <div className="text-3xl">Thursday, July 31 7pm, Gold-Diggers Los Angeles</div>
           <div className="text-2xl">
             <a
               href="https://dice.fm/event/v37k3d-damaged-disco-w-holy-sun-opera-house-cruel-diagonals-31st-jul-gold-diggers-los-angeles-tickets?pid=74589ab9&_branch_match_id=1442976232047470910&utm_medium=partners_api&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXz8nMy9ZLyUxO1UvL1c%2ByMDZLTjJMNjY1NbIvyEyxNTcxtbBMTLJUqytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAT%2BjkTkgAAAA%3D"
@@ -50,7 +50,7 @@ export default function Page() {
           dl Salo with George Jensen.
         </h1>
         <h2 className="font-correct">
-          <h3 className="text-3xl">Sunday, June 15, 2025 Los Angeles</h3>
+          <div className="text-3xl">Sunday, June 15, 2025 Los Angeles</div>
           <div className="text-2xl">
             <a href="https://partiful.com/e/NN6cVuPsT8hW90aSTkhP" target="_blank">
               Partiful invite (RSVP and Address)
@@ -139,7 +139,7 @@ export default function Page() {
           and Holy Sun Opera House
         </h1>
         <h2 className="font-correct">
-          <h3 className="text-3xl">Tue, Oct 29, 2024 - 7pm</h3>
+          <div className="text-3xl">Tue, Oct 29, 2024 - 7pm</div>
           <div className="text-2xl">
             <a href="https://gold-diggers.com/" target="_blank">
               Gold-Diggers
@@ -203,7 +203,7 @@ export default function Page() {
       <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1>Holy Sun Opera House</h1>
         <h2 className="font-correct">
-          <h3 className="text-3xl">March 10, 2024</h3>
+          <div className="text-3xl">March 10, 2024</div>
           <div>
             <a href="https://healingforcerecords.com/" target="_blank">
               Healing Force of the Universe
