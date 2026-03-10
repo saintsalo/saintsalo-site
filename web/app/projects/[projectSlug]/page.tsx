@@ -5,16 +5,18 @@ import { setImage } from "@/lib/setImage"
 import Image from "next/image"
 import type { Metadata } from "next"
 
-export async function generateMetadata({ params }: { params?: any }): Promise<Metadata> {
-  const { post } = await getPostBySlug(params.projectSlug)
+export async function generateMetadata({ params }: { params: Promise<{ projectSlug: string }> }): Promise<Metadata> {
+  const { projectSlug } = await params
+  const { post } = await getPostBySlug(projectSlug)
   return {
     title: post?.name,
     description: post?.seo || "",
   }
 }
 
-export default async function Post({ params }: { params?: any }) {
-  const { post } = await getPostBySlug(params.projectSlug)
+export default async function Post({ params }: { params: Promise<{ projectSlug: string }> }) {
+  const { projectSlug } = await params
+  const { post } = await getPostBySlug(projectSlug)
 
   return (
     <div className="flex flex-col gap-2">
