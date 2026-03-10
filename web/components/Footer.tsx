@@ -5,11 +5,14 @@ import { useEffect, useState } from "react"
 
 export const Footer = () => {
   const [moon, getMoon] = useState({ age: 0, percent: 0 })
+  const [moonIcon, setMoonIcon] = useState<React.ReactNode>(null)
   useEffect(() => {
-    const interval = setInterval(() => {
+    const update = () => {
       getMoon(getLunarAge())
-    }, 1000)
-
+      setMoonIcon(getLunarIcon())
+    }
+    update()
+    const interval = setInterval(update, 1000)
     return () => clearInterval(interval)
   }, [])
 
@@ -34,7 +37,7 @@ export const Footer = () => {
         </div>
       </div>
       <div className="flex flex-row space-x-2 items-center">
-        <div className="hover:text-3xl transition-all duration-500">{getLunarIcon()}</div>
+        <div className="hover:text-3xl transition-all duration-500">{moonIcon}</div>
         <div className="flex flex-col text-[8px] transition-all duration-500 -space-y-1">
           <span>
             <span className="font-corrected">age</span> {moon?.age}

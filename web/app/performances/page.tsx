@@ -10,8 +10,27 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div className="flex flex-col gap-8">
-      {/* HSOH Gold Diggers July 31, 2025 */}
       <div className="bg-white rounded-md w-full p-8">
+        <h1 className="text-4xl">Holy Sun Opera House album release show</h1>
+        <h2 className="font-correct">
+          <div className="text-3xl">May 29th, El Cid - Los Angeles</div>
+          <div className="text-2xl">
+            Album release show for Holy Sun Opera House&apos;s debut album, The Holy Sun Opera House<br />
+            more info and tickets coming soon! Follow <a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank">@holy_sun_opera_house</a> for updates.
+          </div>
+        </h2>
+        <div className="pt-4">
+          <Image
+            src={setImage("Voice_Of_Gob.png")}
+            alt="Holy Sun Opera House - Voice of Gob album cover"
+            width={500}
+            height={500}
+            className="hover:contrast-150 transition-all"
+          />
+        </div>
+      </div>
+      {/* HSOH Gold Diggers July 31, 2025 */}
+      <div className="bg-white rounded-md w-full p-8 opacity-20">
         <h1 className="text-4xl">
           Damaged Disco w/ <br />
           <a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank">
