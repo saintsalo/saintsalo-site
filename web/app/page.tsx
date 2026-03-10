@@ -8,13 +8,13 @@ export default async function Home() {
   const { posts } = await getPostsData("news")
   const { posts: features } = await getPostsData("feature")
   return (
-    <div className="w-auto flex flex-col md:items-center">
+    <div className="w-auto flex flex-col">
       <p className="text-2xl max-w-[500px]">
         dl Salo is a composer creating music that interweaves classical piano, synthesizers,
         electronics and ambience - he is known for his haunting yet hopeful style of musical
         compositions.
       </p>
-      <div className="flex flex-col gap-8 max-w-4xl h-auto m-auto mt-0 mb-20 md:mt-20">
+      <div className="flex flex-col gap-8 max-w-4xl h-auto mt-0 mb-20 md:mt-20">
         {features &&
           features.map(feature => (
             <div

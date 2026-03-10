@@ -6,16 +6,18 @@ import Image from "next/image"
 
 import type { Metadata } from "next"
 
-export async function generateMetadata({ params }: { params?: any }): Promise<Metadata> {
-  const { post } = await getPostBySlug(params.musicSlug)
+export async function generateMetadata({ params }: { params: Promise<{ musicSlug: string }> }): Promise<Metadata> {
+  const { musicSlug } = await params
+  const { post } = await getPostBySlug(musicSlug)
   return {
     title: post?.name,
     description: post?.seo || "",
   }
 }
 
-export default async function Music({ params }: { params?: any }) {
-  const { post } = await getPostBySlug(params.musicSlug)
+export default async function Music({ params }: { params: Promise<{ musicSlug: string }> }) {
+  const { musicSlug } = await params
+  const { post } = await getPostBySlug(musicSlug)
   const { posts } = await getPostsData("music")
   if (!post) return <div>not here.</div>
 

@@ -2,10 +2,52 @@ function Page() {
   return (
     <div className="flex flex-col space-y-8">
       <div>
-        <i>Vinyl copies are currently sold out</i>
+        <div>
+          <h2 className="text-lg mb-8">Holy Sun Opera House</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-8">
+            <div className="flex flex-col">
+              <h3>The Holy Sun Opera House</h3>
+              <iframe
+                style={{ border: 0, width: "350px", height: "470px" }}
+                src="https://bandcamp.com/EmbeddedPlayer/album=1132362072/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+                seamless
+              >
+                <a href="https://holysunoperahouse.bandcamp.com/album/the-holy-sun-opera-house">
+                  The Holy Sun Opera House by Holy Sun Opera House
+                </a>
+              </iframe>
+            </div>
+            <div className="flex flex-col">
+              <h3>Attic EP</h3>
+              <iframe
+                style={{ border: 0, width: "350px", height: "470px" }}
+                src="https://bandcamp.com/EmbeddedPlayer/album=3025147987/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/"
+                seamless
+              >
+                <a href="https://holysunoperahouse.bandcamp.com/album/attic-ep">
+                  Holy Sun Opera House
+                </a>
+              </iframe>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
-        <h2 className="text-lg">Digital Downloads</h2>
+        <h2 className="text-lg mb-8">Cowboy Cinema</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-8">
+          <div className="flex flex-col">
+            <h3>Lighting Fires Along the Way</h3>
+            <iframe
+              style={{ border: 0, width: "350px", height: "470px" }}
+              src="https://bandcamp.com/EmbeddedPlayer/album=789192833/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+              seamless
+            >
+              <a href="https://cowboycinema.bandcamp.com/album/lighting-fires-along-the-way">
+                Lighting Fires Along the Way by Cowboy Cinema
+              </a>
+            </iframe>
+          </div>
+        </div>
       </div>
       <div>
         <h2 className="text-lg mb-8">Soundtracks</h2>
@@ -47,7 +89,7 @@ function Page() {
           <div className="flex flex-col">
             <h3>Space Hole 2018 (Original Game Soundtrack)</h3>
             <iframe
-              width="100%"
+              width="350"
               height="300"
               allow="autoplay"
               src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/625353357&color=%2337242c&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"
@@ -75,25 +117,6 @@ function Page() {
               sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
               src="https://embed.music.apple.com/us/album/mad-tiger-original-motion-picture-soundtrack/1556454816"
             ></iframe>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          <h2 className="text-lg mb-8">Holy Sun Opera House</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 grid-cols-1 gap-8">
-            <div className="flex flex-col">
-              <h3>Attic EP</h3>
-              <iframe
-                style={{ border: 0, width: "350px", height: "470px" }}
-                src="https://bandcamp.com/EmbeddedPlayer/album=3025147987/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/"
-                seamless
-              >
-                <a href="https://holysunoperahouse.bandcamp.com/album/attic-ep">
-                  Holy Sun Opera House
-                </a>
-              </iframe>
-            </div>
           </div>
         </div>
       </div>
@@ -143,7 +166,7 @@ function Page() {
             <h3>Sorrows: Music from Transports of Delirium</h3>
 
             <iframe
-              width="100%"
+              width="350"
               height="300"
               allow="autoplay"
               src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/4080745&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
@@ -166,7 +189,7 @@ function Page() {
             <h3>Sorrows Sachiko</h3>
 
             <iframe
-              width="100%"
+              width="350"
               height="300"
               allow="autoplay"
               src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/705469177&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
@@ -184,18 +207,6 @@ function Page() {
                 Sorrows Sachiko
               </a>
             </div>
-          </div>
-          <div className="flex flex-col">
-            <h3>Circling the Garland</h3>
-            <iframe
-              style={{ border: 0, width: "350px", height: "470px" }}
-              src="https://bandcamp.com/EmbeddedPlayer/track=1842347705/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
-              seamless
-            >
-              <a href="https://asor.bandcamp.com/track/circling-the-garland">
-                Circling The Garland by A STORY OF RATS
-              </a>
-            </iframe>
           </div>
         </div>
       </div>
