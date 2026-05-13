@@ -11,12 +11,29 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-8">
       <div className="bg-white rounded-md w-full p-8">
-        <h1 className="text-4xl">Holy Sun Opera House album release show</h1>
+        <h1 className="text-4xl">
+          Holy Sun Opera House album release show <br />
+          w/{" "}
+          <a href="https://liabraswell.bandcamp.com/album/rising" target="_blank">
+            Lia Braswell
+          </a>{" "}
+          and{" "}
+          <a href="https://www.ponysweataerobics.com/" target="_blank">
+            Pony Sweat
+          </a>
+        </h1>
         <h2 className="font-correct">
           <div className="text-3xl">May 29th, El Cid - Los Angeles</div>
           <div className="text-2xl">
-            Album release show for Holy Sun Opera House&apos;s debut album, The Holy Sun Opera House<br />
-            more info and tickets coming soon! Follow <a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank">@holy_sun_opera_house</a> for updates.
+            Album release show for Holy Sun Opera House&apos;s debut album, The Holy Sun Opera House.<br />
+            <a
+              href="https://dice.fm/event/q2wqdo-holy-sun-opera-house-lia-braswell-pony-sweat-29th-may-el-cid-los-angeles-tickets"
+              target="_blank"
+            >
+              Tickets on dice.fm
+            </a>
+            <br />
+            Follow <a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank">@holy_sun_opera_house</a> for updates.
           </div>
         </h2>
         <div className="pt-4">
