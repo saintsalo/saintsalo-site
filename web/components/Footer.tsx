@@ -29,6 +29,9 @@ export const Footer = () => {
           <Link href="https://soundcloud.com/saintsalo" target="_blank">
             soundcloud
           </Link>
+          <Link href="https://www.subvert.fm/holy-sun-opera-house" target="_blank">
+            subvert
+          </Link>
           <Link href="https://www.imdb.com/name/nm7953646/" target="_blank">
             imdb
           </Link>

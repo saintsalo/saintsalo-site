@@ -9,11 +9,13 @@ export default async function Home() {
   const { posts: features } = await getPostsData("feature")
   return (
     <div className="w-auto flex flex-col">
-      <p className="text-2xl max-w-[500px]">
-        dl Salo is a composer creating music that interweaves classical piano, synthesizers,
-        electronics and ambience - he is known for his haunting yet hopeful style of musical
-        compositions.
-      </p>
+      <div className="bg-white rounded-md w-full p-8">
+        <p>
+          dl Salo is a composer creating music that interweaves classical piano, synthesizers,
+          electronics and ambience - he is known for his haunting yet hopeful style of musical
+          compositions.
+        </p>
+      </div>
 
       <div className="bg-white rounded-md w-full p-8 mt-8">
         <div className="flex flex-col gap-2 mb-4">
