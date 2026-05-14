@@ -1,8 +1,8 @@
-import { MusicNav } from "@/components/MusicNav"
 import { getPostBySlug, getPostsData } from "@/lib/getPosts"
 import { setImage } from "@/lib/setImage"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Image from "next/image"
+import Link from "next/link"
 
 import type { Metadata } from "next"
 
@@ -21,12 +21,25 @@ export default async function Music({ params }: { params: Promise<{ musicSlug: s
   const { posts } = await getPostsData("music")
   if (!post) return <div>not here.</div>
 
+  const sorted = (posts ?? []).slice().sort((a, b) => {
+    if (a.order === b.order) return 0
+    if (a.order === null || a.order === undefined) return 1
+    if (b.order === null || b.order === undefined) return -1
+    return a.order < b.order ? 1 : -1
+  })
+  const idx = sorted.findIndex(p => p.slug === musicSlug)
+  const prev = idx > 0 ? sorted[idx - 1] : null
+  const next = idx >= 0 && idx < sorted.length - 1 ? sorted[idx + 1] : null
+
   return (
-    <div className="flex md:flex-row flex-col w-full gap-8">
-      <div className="md:min-w-[400px]">
-        <MusicNav posts={posts} />
+    <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full">
+      <div>
+        <Link href="/music" className="text-sm">
+          {`<= all music`}
+        </Link>
       </div>
-      <div className="flex grow flex-col gap-4 items-center md:p-8 p-2 rounded-sm bg-off-white shadow-lg">
+
+      <div className="flex flex-col gap-4 items-center md:p-8 p-2 rounded-sm bg-off-white shadow-lg">
         <h1>{post.name}</h1>
 
         <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
@@ -47,16 +60,24 @@ export default async function Music({ params }: { params: Promise<{ musicSlug: s
             className="w-full"
           />
         )}
-
-        <div className="text-center">-------</div>
       </div>
-      {/* <div className="max-w-2xl w-full">
-        <h1>{post?.name}</h1>
-        {post?.embed && (
-          <div className="Container" dangerouslySetInnerHTML={{ __html: post.embed?.toString() }} />
-        )}
-        {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
-      </div> */}
+
+      <div className="flex flex-row justify-between gap-4 text-sm">
+        <div className="flex-1">
+          {prev && (
+            <Link href={`/music/${prev.slug}`} className="block">
+              {`<=`} {prev.name}
+            </Link>
+          )}
+        </div>
+        <div className="flex-1 text-right">
+          {next && (
+            <Link href={`/music/${next.slug}`} className="block">
+              {next.name} {`=>`}
+            </Link>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

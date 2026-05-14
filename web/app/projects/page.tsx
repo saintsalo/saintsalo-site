@@ -13,10 +13,14 @@ export default async function Collaborators() {
         {posts &&
           posts
             .sort((a, b) => {
-              if (a.order === b.order) return 0
-              if (a.order === null || a.order === undefined) return 1
-              if (b.order === null || b.order === undefined) return -1
-              return a.order < b.order ? -1 : 1
+              const aHasOrder = a.order != null && a.order !== ""
+              const bHasOrder = b.order != null && b.order !== ""
+              if (aHasOrder && bHasOrder) {
+                return a.order!.localeCompare(b.order!, undefined, { sensitivity: "base" })
+              }
+              if (aHasOrder) return -1
+              if (bHasOrder) return 1
+              return (a.name ?? "").localeCompare(b.name ?? "", undefined, { sensitivity: "base" })
             })
             .map(post => (
               <div key={post.name} className="flex">
