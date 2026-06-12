@@ -3,13 +3,14 @@ import Image from "next/image"
 import clsx from "clsx"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import { HiXMark, HiOutlineBars3 } from "react-icons/hi2"
 
 interface NavItem {
   name: string | React.ReactNode
   href: string
   tab?: boolean
+  prefix?: string
 }
 
 const links: NavItem[] = [
@@ -85,8 +86,19 @@ export const Header = () => {
                         href={link.href}
                         target={link?.tab ? `_blank` : `_self`}
                       >
-                        ====== {link.name}
+                        {link.prefix ?? "======"} {link.name}
                       </Link>
+                      {link.href === "/music" && (
+                        <Link
+                          className={clsx("md:text-xl text-lg ml-4", {
+                            "text-red-400 font-corrected": pathname === "/timeline",
+                            "font-sans": pathname !== "/timeline",
+                          })}
+                          href="/timeline"
+                        >
+                          == timeline
+                        </Link>
+                      )}
                     </li>
                   ))}
               </ul>
@@ -114,18 +126,31 @@ export const Header = () => {
         <div className="md:hidden  p-4 mb-4">
           <div className="my-8 flex-col w-full transition-all duration-500 flex">
             {links.map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={clsx("text-xl", {
-                  "text-red-400 font-corrected": pathname === link.href,
-                  "font-sans": pathname !== link.href,
-                })}
-                target={link?.tab ? `_blank` : `_self`}
-              >
-                {link.name}
-              </Link>
+              <Fragment key={index}>
+                <Link
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={clsx("text-xl", {
+                    "text-red-400 font-corrected": pathname === link.href,
+                    "font-sans": pathname !== link.href,
+                  })}
+                  target={link?.tab ? `_blank` : `_self`}
+                >
+                  {link.name}
+                </Link>
+                {link.href === "/music" && (
+                  <Link
+                    href="/timeline"
+                    onClick={() => setOpen(false)}
+                    className={clsx("text-xl", {
+                      "text-red-400 font-corrected": pathname === "/timeline",
+                      "font-sans": pathname !== "/timeline",
+                    })}
+                  >
+                    timeline
+                  </Link>
+                )}
+              </Fragment>
             ))}
           </div>
         </div>

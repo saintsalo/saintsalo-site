@@ -1,11 +1,11 @@
-import { Container } from "@/components/Container"
-import { Footer } from "@/components/Footer"
-import { Header } from "@/components/Header"
 import "./globals.css"
 
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
+
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo"
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "dl Salo",
     template: "dl Salo | %s",
@@ -15,21 +15,42 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "dl Salo",
-      url: "http://www.saintsalo.com",
+      url: "https://www.saintsalo.com",
     },
   ],
   creator: "dl Salo",
-  description: "Collection of works and music by LA composer dl Salo",
+  description: SITE_DESCRIPTION,
   generator: "NextJs",
-  // viewport: {
-  //   width: "device-width",
-  //   initialScale: 1,
-  //   maximumScale: 1,
-  // },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: {
+      default: "dl Salo",
+      template: "dl Salo | %s",
+    },
+    description: SITE_DESCRIPTION,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      default: "dl Salo",
+      template: "dl Salo | %s",
+    },
+    description: SITE_DESCRIPTION,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/manifest.webmanifest",
   robots: {
     index: true,
     follow: true,
-    nocache: true,
     googleBot: {
       index: true,
       follow: true,
@@ -40,19 +61,19 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="light">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/hhy8jas.css" />
       </head>
-      <body>
-        <Container>
-          <Header />
-          <div>{children}</div>
-        </Container>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   )
 }

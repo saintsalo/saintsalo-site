@@ -1,0 +1,71 @@
+import { getPostBySlug } from "@/lib/getPosts"
+import { DocumentRenderer } from "@keystone-6/document-renderer"
+import Link from "next/link"
+import { setImage } from "@/lib/setImage"
+import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import Image from "next/image"
+import type { Metadata } from "next"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ newsSlug: string }>
+}): Promise<Metadata> {
+  const { newsSlug } = await params
+  const { post } = await getPostBySlug(newsSlug)
+  const cover = post?.promo?.filename || post?.images?.[0]?.filename
+  const canonical = `/news/${newsSlug}`
+  return {
+    title: post?.name,
+    description: post?.seo || "",
+    alternates: { canonical },
+    openGraph: {
+      type: "article",
+      title: post?.name ?? undefined,
+      description: post?.seo || "",
+      url: canonical,
+      images: [cover ? setImage(cover) : DEFAULT_OG_IMAGE],
+    },
+  }
+}
+
+export default async function Post({ params }: { params: Promise<{ newsSlug: string }> }) {
+  const { newsSlug } = await params
+  const { post } = await getPostBySlug(newsSlug)
+  if (!post) return <div>not here.</div>
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="mb-4">
+        <Link href={`/`} className="hover:font-corrected">{`<-- home`}</Link>
+      </div>
+      <h1>{post?.name}</h1>
+      {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
+      <div>
+        {post?.embed && (
+          <div
+            className="embed-container"
+            dangerouslySetInnerHTML={{ __html: post.embed?.toString() }}
+          />
+        )}
+      </div>
+      <div className="flex md:flex-row flex-col gap-2 mt-8">
+        {post?.images &&
+          post.images.map(image => (
+            <div key={image.filename} className="max-w-sm">
+              {image.filename && (
+                <Link href={`/images/${image.filename}`} target="_blank">
+                  <Image
+                    src={setImage(image.filename)}
+                    alt={image.altText || "dl salo"}
+                    width={800}
+                    height={800}
+                    className="hover:contrast-150 transition-all"
+                  />
+                </Link>
+              )}
+            </div>
+          ))}
+      </div>
+    </div>
+  )
+}
