@@ -2745,10 +2745,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnbo/js@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "@rnbo/js@npm:1.4.4"
-  checksum: 10c0/88c6f3f1eb6bde722f987303db246633adf452182eb6e6f569642983f5eb003cd9d5d8b6d9a2b74c1b8f60d264689b436e2a071ae32b8c0c9ec3bc6e3ee95042
+"@rnbo/js@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@rnbo/js@npm:1.0.2"
+  checksum: 10c0/f8da5b9a710fa5abd9be7fae13a4eaa90af1ad34f33f1d326c2cb37d51ceb1b64ff2f75804167e6b542c775a34d1b59088da99fa2653571d045f01709d60214c
   languageName: node
   linkType: hard
 
@@ -8391,7 +8391,7 @@ __metadata:
     "@headlessui/react": "npm:^2.2.10"
     "@keystone-6/document-renderer": "npm:^1.1.2"
     "@radix-ui/react-slider": "npm:^1.4.0"
-    "@rnbo/js": "npm:^1.4.4"
+    "@rnbo/js": "npm:1.0.2"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/forms": "npm:^0.5.11"
     "@tailwindcss/line-clamp": "npm:^0.4.4"
