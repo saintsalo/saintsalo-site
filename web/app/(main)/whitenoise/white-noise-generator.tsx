@@ -19,7 +19,7 @@ export function WhiteNoiseGenerator() {
   })
 
   const audioContextRef = useRef<AudioContext | null>(null)
-  const bufferSourceRef = useRef<AudioBufferSource | null>(null)
+  const bufferSourceRef = useRef<AudioBufferSourceNode | null>(null)
   const gainNodeRef = useRef<GainNode | null>(null)
   const filterNodeRef = useRef<BiquadFilterNode | null>(null)
   const delayNodeRef = useRef<DelayNode | null>(null)
