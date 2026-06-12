@@ -57,9 +57,11 @@ export default async function Home() {
       <JsonLd data={websiteSchema} />
       <div className="bg-white rounded-md w-full p-8">
         <p>
-          dl Salo is a composer creating music that interweaves classical piano, synthesizers,
-          electronics and ambience - he is known for his haunting yet hopeful style of musical
-          compositions.
+          <span className="bio-highlight">
+            dl Salo is a composer creating music that interweaves classical piano, synthesizers,
+            electronics and ambience - he is known for his haunting yet hopeful style of musical
+            compositions.
+          </span>
         </p>
       </div>
 

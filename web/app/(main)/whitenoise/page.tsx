@@ -1,6 +1,6 @@
 import { DEFAULT_OG_IMAGE } from "@/lib/seo"
-
 import type { Metadata } from "next"
+import { WhiteNoiseGenerator } from "./white-noise-generator"
 
 export const metadata: Metadata = {
   title: "White Noise",
@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <div>White noise generator</div>
+  return <WhiteNoiseGenerator />
 }

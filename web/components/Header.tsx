@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Fragment, useState } from "react"
 import { HiXMark, HiOutlineBars3 } from "react-icons/hi2"
+import { useDarkMode } from "@/lib/useDarkMode"
 
 interface NavItem {
   name: string | React.ReactNode
@@ -39,6 +40,7 @@ const links: NavItem[] = [
 export const Header = () => {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const { toggleDarkMode, isTransitioning } = useDarkMode()
 
   return (
     <nav>
@@ -103,13 +105,21 @@ export const Header = () => {
                   ))}
               </ul>
               <div className="mr-2 mt-8 md:mt-0 self-center">
-                <Image
-                  alt="dl salo music"
-                  src="/images/dl-salo-profile-image.png"
-                  width="200"
-                  height="200"
-                  className="md:m-auto md:float-left mb-2 blur-xs hover:blur-none transition-all duration-500"
-                />
+                <button
+                  onClick={toggleDarkMode}
+                  disabled={isTransitioning}
+                  className="border-0 bg-transparent p-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform duration-300"
+                  aria-label="Toggle dark mode"
+                  title="Click to enter dark mode"
+                >
+                  <Image
+                    alt="dl salo music"
+                    src="/images/dl-salo-profile-image.png"
+                    width="200"
+                    height="200"
+                    className="md:m-auto md:float-left mb-2 blur-xs hover:blur-none transition-all duration-500"
+                  />
+                </button>
               </div>
               <div className="flex flex-col md:mt-0 self-center">
                 <div className="flex md:flex-row flex-col items-center space-x-4">

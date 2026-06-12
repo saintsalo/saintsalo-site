@@ -3,6 +3,13 @@ import "./globals.css"
 import type { Metadata, Viewport } from "next"
 
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo"
+import { DarkModeProvider } from "@/lib/DarkModeContext"
+import { EntranceAnimation } from "@/components/EntranceAnimation"
+import { TextAnimations } from "@/components/TextAnimations"
+import { RNBOAudioPlayer } from "@/components/RNBOAudioPlayer"
+import { DarkModeBackground } from "@/components/DarkModeBackground"
+import { ParticleEffects } from "@/components/ParticleEffects"
+import { DarkModeExit } from "@/components/DarkModeExit"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -69,11 +76,21 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" className="dark">
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/hhy8jas.css" />
       </head>
-      <body>{children}</body>
+      <body>
+        <DarkModeProvider>
+          <DarkModeBackground />
+          <EntranceAnimation />
+          <TextAnimations />
+          <RNBOAudioPlayer />
+          <ParticleEffects />
+          <DarkModeExit />
+          {children}
+        </DarkModeProvider>
+      </body>
     </html>
   )
 }

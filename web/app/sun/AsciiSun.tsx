@@ -127,10 +127,10 @@ const STOPS: { c: keyof Settings; p: keyof Settings }[] = [
   { c: "c4", p: "p4" },
 ]
 
-export default function AsciiSun() {
+export default function AsciiSun({ hideControls = false }: { hideControls?: boolean } = {}) {
   const preRef = useRef<HTMLPreElement>(null)
   const [settings, setSettings] = useState<Settings>(DEFAULTS)
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(!hideControls)
 
   // Keep a ref in sync so the animation loop always reads the latest settings
   // without being torn down and recreated on every slider move.
@@ -303,11 +303,20 @@ export default function AsciiSun() {
         }}
       />
 
-      {show && (
-        <div style={panelStyle}>
+      <button
+        type="button"
+        aria-label={show ? "Hide sun controls" : "Show sun controls"}
+        aria-expanded={show}
+        onClick={() => setShow(v => !v)}
+        style={sunIconStyle}
+      >
+        <span aria-hidden="true">☀</span>
+      </button>
+
+      <div style={{ ...panelStyle, transform: show ? "translateY(0)" : "translateY(-100%)" }}>
           <div style={{ gridColumn: "1 / -1", display: "flex", gap: 8, alignItems: "center", marginBottom: 2 }}>
             <strong style={{ letterSpacing: 1 }}>ASCII SUN</strong>
-            <span style={{ opacity: 0.6 }}>press S to hide</span>
+            <span style={{ opacity: 0.6 }}>click ☀ or press S to hide</span>
             <span style={{ flex: 1 }} />
             <button type="button" style={btnStyle} onClick={logSettings}>
               log + copy settings
@@ -372,8 +381,7 @@ export default function AsciiSun() {
               style={{ width: 28, height: 20, padding: 0, border: "none", background: "none" }}
             />
           </label>
-        </div>
-      )}
+      </div>
     </>
   )
 }
@@ -395,6 +403,29 @@ const panelStyle: React.CSSProperties = {
   gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
   columnGap: 14,
   rowGap: 3,
+  pointerEvents: "auto",
+  transition: "transform 0.35s ease",
+  willChange: "transform",
+}
+
+const sunIconStyle: React.CSSProperties = {
+  position: "fixed",
+  top: 10,
+  left: 10,
+  zIndex: 51,
+  width: 36,
+  height: 36,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: 20,
+  lineHeight: 1,
+  color: "#ffcf5c",
+  background: "rgba(0,0,0,0.55)",
+  border: "1px solid #444",
+  borderRadius: "50%",
+  cursor: "pointer",
+  pointerEvents: "auto",
 }
 
 const rowStyle: React.CSSProperties = {

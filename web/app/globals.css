@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -33,35 +33,139 @@
 }
 
 @layer base {
-  body, footer {
-    @apply bg-[#F9F5EC] dark:bg-black text-black dark:text-white
+  body,
+  footer {
+    @apply bg-[#F9F5EC] dark:bg-black text-black dark:text-white;
   }
 
   h1 {
-    @apply md:mb-4 md:text-lg
+    @apply md:mb-4 md:text-lg;
   }
 
   a {
-    @apply font-underlined
+    @apply font-underlined;
   }
 
   a:hover {
-    @apply text-red-400
+    @apply text-red-400;
   }
 
   a.card {
-    @apply bg-off-white hover:bg-white shadow-xs hover:shadow-md transition-all duration-200 font-sans rounded-sm hover:font-sans hover:text-black hover:contrast-150
+    @apply bg-off-white hover:bg-white shadow-xs hover:shadow-md transition-all duration-200 font-sans rounded-sm hover:font-sans hover:text-black hover:contrast-150;
   }
 
   .embed-container {
-    @apply relative md:h-full overflow-hidden lg:max-w-6xl max-w-sm aspect-video
+    @apply relative md:h-full overflow-hidden lg:max-w-6xl max-w-sm aspect-video;
   }
 
-  .embed-container iframe, .embed-container object, .embed-container embed {
-    @apply absolute top-0 left-0 w-full h-full
+  .embed-container iframe,
+  .embed-container object,
+  .embed-container embed {
+    @apply absolute top-0 left-0 w-full h-full;
   }
 
   button {
-    @apply border border-black bg-white p-4 hover:bg-slate-50
+    @apply border border-black bg-white p-4 hover:bg-slate-50 dark:border-white dark:bg-gray-900 dark:hover:bg-gray-800 dark:text-white;
   }
+
+  /* Dark mode specific styling */
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html.dark body {
+    position: relative;
+    z-index: 10;
+  }
+
+  html.dark a:hover {
+    @apply text-yellow-300 dark:text-yellow-200;
+  }
+
+  html.dark a.card {
+    @apply bg-black/40 hover:bg-black/50 shadow-md hover:shadow-lg dark:border dark:border-gray-700 text-white transition-all;
+  }
+
+  /* Dark mode divs and generic containers with semi-transparent black */
+  html.dark div {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  /* Except for specific containers that shouldn't be darkened */
+  html.dark nav,
+  html.dark nav div,
+  html.dark button,
+  html.dark footer div,
+  html.dark .no-bg-dark {
+    background-color: transparent !important;
+  }
+
+  /* Eerie dark mode text colors */
+  html.dark h1,
+  html.dark h2,
+  html.dark h3,
+  html.dark h4,
+  html.dark h5,
+  html.dark h6 {
+    @apply text-gray-100;
+  }
+
+  html.dark p {
+    @apply text-gray-200;
+  }
+
+  /* Text sitting directly on a light (bg-white) card needs dark ink so it stays
+     readable. Nested content (e.g. inside the album cards' tinted gray divs)
+     keeps the light html.dark color above. */
+  html.dark .bg-white > p,
+  html.dark .bg-white > h1,
+  html.dark .bg-white > h2,
+  html.dark .bg-white > h3,
+  html.dark .bg-white > h4,
+  html.dark .bg-white > h5,
+  html.dark .bg-white > h6,
+  html.dark .bg-white > span,
+  html.dark .bg-white > strong,
+  html.dark .bg-white > ul {
+    @apply text-black;
+  }
+
+  /* Link styling in dark mode */
+  html.dark a {
+    @apply text-amber-300 hover:text-amber-200 transition-colors;
+  }
+
+  /* Z-index layering for dark mode */
+  html.dark nav {
+    @apply relative z-20;
+  }
+
+  html.dark nav button:disabled {
+    pointer-events: none;
+  }
+
+  html.dark main {
+    @apply relative z-10;
+  }
+
+  html.dark footer {
+    @apply relative z-10;
+  }
+
+  /* Ensure content is readable in dark mode */
+  html.dark body > * {
+    @apply relative z-10;
+  }
+}
+
+/* Highlighter-marker effect for the bio text. Inline + clone so the highlight
+   hugs each wrapped line like a real marker rather than filling a block. */
+.bio-highlight {
+  display: inline;
+  background-color: #fde047; /* highlighter yellow */
+  color: #000;
+  padding: 0.1em 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 2;
 }

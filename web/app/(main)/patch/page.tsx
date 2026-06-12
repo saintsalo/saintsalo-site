@@ -16,7 +16,15 @@ function Page() {
     <div>
       Experiments with Max/MSP and RNBO... <div className="">(this page always changes)</div>
       <div className="my-8">
-        <Link href="/rnbo">Web Audio Export</Link>
+        <div className="mb-4">
+          <Link href="/rnbo">Web Audio Export</Link>
+        </div>
+        <div className="mb-4">
+          <Link href="/whitenoise">White Noise Generator</Link>
+        </div>
+        <div>
+          <Link href="/synth">Polyphonic Synthesizer</Link>
+        </div>
       </div>
     </div>
   )

@@ -12,6 +12,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.10",
     "@keystone-6/document-renderer": "^1.1.2",
+    "@radix-ui/react-slider": "^1.4.0",
     "@rnbo/js": "^1.4.4",
     "@types/node": "25.8.0",
     "@types/react": "19.2.14",
