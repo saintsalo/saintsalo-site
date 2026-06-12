@@ -44,8 +44,7 @@ export const performances: Performance[] = [
     venue: "El Cid",
     location: "Los Angeles",
     image: "Voice_Of_Gob.png",
-    summary:
-      "Album release show for Holy Sun Opera House's debut album, The Holy Sun Opera House.",
+    summary: "Album release show for Holy Sun Opera House's debut album, The Holy Sun Opera House.",
     links: [
       {
         label: "Tickets on dice.fm",
@@ -87,7 +86,10 @@ export const performances: Performance[] = [
     image: "dronebath 007 flyer.jpeg",
     summary: "An electronic sound bath series: 3 hours of uninterrupted low frequency.",
     links: [
-      { label: "Partiful invite (RSVP and address)", href: "https://partiful.com/e/NN6cVuPsT8hW90aSTkhP" },
+      {
+        label: "Partiful invite (RSVP and address)",
+        href: "https://partiful.com/e/NN6cVuPsT8hW90aSTkhP",
+      },
       { label: "instagram.com/dronebath", href: "https://instagram.com/dronebath" },
       { label: "mobius-acoustics.com", href: "http://mobius-acoustics.com" },
     ],
@@ -146,7 +148,10 @@ export const performances: Performance[] = [
       "A listening party of the entire Extreme Evolution soundtrack — play the game and join casual pinball tournaments.",
     links: [
       { label: "Revenge of", href: "https://www.revengeof.com/" },
-      { label: "IG: @revengeof_comicsandpinball", href: "https://www.instagram.com/revengeof_comicsandpinball/" },
+      {
+        label: "IG: @revengeof_comicsandpinball",
+        href: "https://www.instagram.com/revengeof_comicsandpinball/",
+      },
     ],
     details: `<p>Join Salo &amp; Revenge of for a listening party of the entire Extreme Evolution Soundtrack! Play the game and join in on casual pinball tournaments.</p>`,
   },

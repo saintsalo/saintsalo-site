@@ -219,7 +219,7 @@ export function SynthComponent() {
 
       {isInitialized && (
         <>
-          <div className="my-4 p-3 bg-blue-50 rounded border border-blue-200">
+          <div className="my-4 p-3 bg-blue-50 rounded border border-blue-200 dark:text-black">
             <p className="text-sm">
               <strong>Keyboard:</strong> Left side (A-L), Right side (Z-M) | Active Voices:{" "}
               <span className="font-bold">{voiceCount}</span>

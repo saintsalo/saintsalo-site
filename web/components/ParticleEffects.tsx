@@ -2,17 +2,7 @@
 import { useEffect, useState } from "react"
 import { useDarkMode } from "@/lib/useDarkMode"
 
-const crypticMessages = [
-  "...descending...",
-  "...falling...",
-  "...deeper...",
-  "...the sun rises behind you...",
-  "...forgotten...",
-  "...echoes...",
-  "...elsewhere...",
-  "...listen...",
-  "...drift...",
-]
+const crypticMessages = ["[[]]", "***", "~~~", "(((0)))", "§", "ªªª", "º", "ººº", "¡am¡"]
 
 export function ParticleEffects() {
   const { isDarkMode } = useDarkMode()
@@ -43,7 +33,7 @@ export function ParticleEffects() {
     <>
       {isDarkMode && showCryptic && (
         <div
-          className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50 text-2xl md:text-4xl font-mono text-red-900/30 text-center"
+          className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50 text-xs md:text-xs font-mono text-black text-center"
           style={{
             animation: "crypticFade 2.5s ease-in-out forwards",
             whiteSpace: "nowrap",
@@ -102,7 +92,7 @@ export function ParticleEffects() {
             height: 100%;
             pointer-events: none;
             z-index: 5;
-            background: radial-gradient(circle at 50% 50%, rgba(255,0,0,0.02) 0%, transparent 100%);
+            background: radial-gradient(circle at 50% 50%, rgba(255,0,0,0.02) 0%, transparent 50%);
           }
         `
             : ``

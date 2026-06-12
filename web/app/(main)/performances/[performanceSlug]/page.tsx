@@ -81,7 +81,7 @@ export default async function PerformanceDetail({
       </div>
 
       <div className="flex flex-col gap-4 md:p-8 p-4 rounded-sm bg-off-white shadow-lg">
-        <h1 className="text-3xl">{show.title}</h1>
+        <h1 className="text-3xl dark:text-black">{show.title}</h1>
 
         <div className="font-correct">
           <div className="text-xl">{show.dateLabel}</div>

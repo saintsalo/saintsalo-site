@@ -11,9 +11,13 @@ export const metadata: Metadata = {
 
 function Page() {
   return (
-    <div>
+    <div className="bg-white rounded-md w-full p-8">
       <h1>Patches</h1>
-      <p className="mb-8">Experiments with Max/MSP and RNBO... (this page always changes)</p>
+      <p className="mb-8">
+        <span className="bio-highlight">
+          Experiments with Max/MSP and RNBO... (this page always changes)
+        </span>
+      </p>
       <div className="space-y-3">
         <div>
           <Link href="/patches/rnbo" className="hover:underline">

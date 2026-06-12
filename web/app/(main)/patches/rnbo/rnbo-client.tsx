@@ -92,13 +92,14 @@ export function RnboClient() {
           { label: "RNBO", href: "/patches/rnbo" },
         ]}
       />
-      <h1>Exporting Web Audio with MAX/MSP using RNBO.</h1>
-      <p className="mb-4">
-        Start the patch, then drag the sliders to modify the delay parameters in real time.
-        (sometimes a second click is needed to start the patch — seems like a streaming bug)
-      </p>
+      <div className="bg-white rounded-md w-full p-8 mt-4 card-ink">
+        <h1>Exporting Web Audio with MAX/MSP using RNBO.</h1>
+        <p className="mb-4">
+          Start the patch, then drag the sliders to modify the delay parameters in real time.
+          (sometimes a second click is needed to start the patch — seems like a streaming bug)
+        </p>
 
-      <div className="my-4">
+        <div className="my-4">
         <button type="button" onClick={() => handleClick()}>
           {running ? "Restart RNBO Patch" : "Start RNBO Patch"} {`->`}
         </button>
@@ -144,14 +145,17 @@ export function RnboClient() {
             )
           })}
         </div>
-      )}
+        )}
+      </div>
 
       <div className="p-8 md:p-12 bg-white my-8 rounded-sm">
         <div className="flex items-start justify-between gap-4 mb-2">
-          <div>Using React / NextJs to pull in a patch.</div>
+          <div>
+            <span className="bio-highlight">Using React / NextJs to pull in a patch.</span>
+          </div>
           <CopyButton value={codeSample} className="shrink-0" />
         </div>
-        <pre className="text-sm md:text-base font-mono whitespace-pre-wrap wrap-break-word overflow-x-auto">
+        <pre className="text-sm md:text-base font-mono whitespace-pre-wrap wrap-break-word overflow-x-auto dark:text-black">
           {codeSample}
         </pre>
       </div>

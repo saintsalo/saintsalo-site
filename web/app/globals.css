@@ -130,6 +130,19 @@
     @apply text-black;
   }
 
+  /* Light cards (bg-white / bg-off-white) that hold nested content — patch demo
+     controls, music listing bodies, DocumentRenderer output — keep dark ink in
+     dark mode so the text stays readable. We also strip the global html.dark div
+     tint from nested boxes that have no explicit background, so the text sits on
+     the light card rather than a dark overlay. Links keep their accent color. */
+  html.dark .card-ink,
+  html.dark .card-ink *:not(a) {
+    color: #000;
+  }
+  html.dark .card-ink div:not([class*="bg-"]) {
+    background-color: transparent;
+  }
+
   /* Link styling in dark mode */
   html.dark a {
     @apply text-amber-300 hover:text-amber-200 transition-colors;
@@ -168,4 +181,14 @@
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   line-height: 2;
+}
+
+/* In dark mode, soften the light card surfaces so pure white/off-white isn't
+   harsh and the sun background bleeds through ever so slightly. Unlayered so it
+   overrides the bg-white / bg-off-white utilities. */
+html.dark .bg-white {
+  background-color: rgba(255, 255, 255, 0.92);
+}
+html.dark .bg-off-white {
+  background-color: rgba(249, 247, 242, 0.92);
 }

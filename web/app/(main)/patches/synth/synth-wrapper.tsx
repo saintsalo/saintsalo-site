@@ -60,14 +60,20 @@ export function SynthWithBreadcrumb() {
           { label: "Synth", href: "/patches/synth" },
         ]}
       />
-      <SynthComponent />
+      <div className="bg-white rounded-md w-full p-8 mt-4 card-ink">
+        <SynthComponent />
+      </div>
 
       <div className="p-8 md:p-12 bg-white my-8 rounded-sm">
         <div className="flex items-start justify-between gap-4 mb-2">
-          <div>Using Web Audio API with dual oscillators and advanced synthesis.</div>
+          <div>
+            <span className="bio-highlight">
+              Using Web Audio API with dual oscillators and advanced synthesis.
+            </span>
+          </div>
           <CopyButton value={codeSample} className="shrink-0" />
         </div>
-        <pre className="text-sm md:text-base font-mono whitespace-pre-wrap wrap-break-word overflow-x-auto">
+        <pre className="text-sm md:text-base font-mono whitespace-pre-wrap wrap-break-word overflow-x-auto dark:text-black">
           {codeSample}
         </pre>
       </div>

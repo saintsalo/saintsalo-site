@@ -24,7 +24,7 @@ export default async function Collaborators() {
   if (!posts) return null
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee] gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee] gap-4 p-4">
         {posts &&
           posts
             .sort((a, b) => {

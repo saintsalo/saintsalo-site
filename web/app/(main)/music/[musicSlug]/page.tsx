@@ -67,8 +67,8 @@ export default async function Music({ params }: { params: Promise<{ musicSlug: s
         </Link>
       </div>
 
-      <div className="flex flex-col gap-4 items-center md:p-8 p-2 rounded-sm bg-off-white shadow-lg">
-        <h1>{post.name}</h1>
+      <div className="flex flex-col gap-4 items-center md:p-8 p-2 rounded-sm bg-off-white shadow-lg card-ink">
+        <h1 className="dark:text-black">{post.name}</h1>
 
         <div className="w-full flex flex-col items-center md:bg-black rounded-md md:p-8">
           {post.embed && (
@@ -90,7 +90,7 @@ export default async function Music({ params }: { params: Promise<{ musicSlug: s
         )}
       </div>
 
-      <div className="flex flex-row justify-between gap-4 text-sm">
+      <div className="flex flex-row justify-between gap-4 text-sm text-black">
         <div className="flex-1">
           {prev && (
             <Link href={`/music/${prev.slug}`} className="block">

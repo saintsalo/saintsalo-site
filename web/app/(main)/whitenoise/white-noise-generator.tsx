@@ -298,7 +298,7 @@ export function WhiteNoiseGenerator() {
         </div>
       </div>
 
-      <div className="p-4 md:p-6 bg-off-white my-8 rounded-sm text-sm opacity-70">
+      <div className="p-4 md:p-6 bg-off-white my-8 rounded-sm text-sm opacity-70 dark:text-black">
         <p>
           This white noise generator uses the Web Audio API to create real-time audio processing.
           Adjust the volume, cutoff frequency, and delay parameters using the sliders. The filter

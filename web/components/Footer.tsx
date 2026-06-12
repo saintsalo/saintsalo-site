@@ -1,20 +1,16 @@
 "use client"
-import { getLunarAge, getLunarIcon } from "@/lib/lunar"
+import { Lunar } from "@/components/Lunar"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 
 export const Footer = () => {
-  const [moon, getMoon] = useState({ age: 0, percent: 0 })
-  const [moonIcon, setMoonIcon] = useState<React.ReactNode>(null)
-  useEffect(() => {
-    const update = () => {
-      getMoon(getLunarAge())
-      setMoonIcon(getLunarIcon())
-    }
-    update()
-    const interval = setInterval(update, 1000)
-    return () => clearInterval(interval)
-  }, [])
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const openLunar = () => {
+    sessionStorage.setItem("lunarReturnTo", pathname ?? "/")
+    router.push("/lunar")
+  }
 
   return (
     <footer className="md:sticky bottom-0 md:h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md md:py-0 py-8">
@@ -39,17 +35,14 @@ export const Footer = () => {
           <Link href="/patches">MAX/MSP Patches</Link>
         </div>
       </div>
-      <div className="flex flex-row space-x-2 items-center">
-        <div className="hover:text-3xl transition-all duration-500">{moonIcon}</div>
-        <div className="flex flex-col text-[8px] transition-all duration-500 -space-y-1">
-          <span>
-            <span className="font-corrected">age</span> {moon?.age}
-          </span>
-          <span>
-            <span className="font-corrected">per</span> {moon?.percent}
-          </span>
-        </div>
-      </div>
+      <button
+        type="button"
+        onClick={openLunar}
+        aria-label="lunar"
+        className="cursor-pointer border-0 bg-transparent p-0 outline-none hover:bg-transparent focus:outline-none dark:border-0 dark:bg-transparent dark:hover:bg-transparent"
+      >
+        <Lunar />
+      </button>
     </footer>
   )
 }

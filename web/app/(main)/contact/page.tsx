@@ -19,8 +19,10 @@ export default function Page() {
         email: <Link href="mailto:saintsalo@gmail.com">saintsalo@gmail.com</Link>
       </div>
       <div>
-        Object Sonore (Label) email:{" "}
-        <Link href="mailto:salo@objectsonore.com">salo@objectsonore.com</Link>
+        <Link href="https://www.hologramopera.com" target="_blank">
+          Hologram Opera
+        </Link>{" "}
+        (Label) email: <Link href="mailto:salo@hologramopera.com">salo@hologramopera.com</Link>
       </div>
       <div>
         dm/instagram:{" "}
