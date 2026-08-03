@@ -25,7 +25,9 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "dl Salo",
-  alternateName: "Salo",
+  // "Daniel Salo" is a former name, listed only so searches for it connect to
+  // this site via entity matching — never render it in visible page content.
+  alternateName: ["Salo", "Saint Salo", "Daniel Salo"],
   url: SITE_URL,
   image: absoluteUrl(setImage("dl-salo-profile-image.png")),
   jobTitle: "Composer",

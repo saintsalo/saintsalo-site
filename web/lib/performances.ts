@@ -35,10 +35,23 @@ export interface Performance {
 
 export const performances: Performance[] = [
   {
+    slug: "hsoh-october-tour-2026",
+    title: "Holy Sun Opera House Tour",
+    project: "holy-sun-opera-house",
+    featured: true,
+    date: "2026-10-01",
+    dateLabel: "October 2026",
+    summary: "Dates and cities to be announced soon!",
+    links: [
+      { label: "@holy_sun_opera_house", href: "https://www.instagram.com/holy_sun_opera_house/" },
+    ],
+    details: `<p>Holy Sun Opera House will be touring in support of their debut album, The Holy Sun Opera House. Dates and cities to be announced soon.</p>
+<p><a href="https://www.instagram.com/holy_sun_opera_house/" target="_blank" rel="noopener">@holy_sun_opera_house</a> for updates.</p>`,
+  },
+  {
     slug: "hsoh-album-release-el-cid",
     title: "Holy Sun Opera House album release show w/ Lia Braswell and Pony Sweat",
     project: "holy-sun-opera-house",
-    featured: true,
     date: "2026-05-29",
     dateLabel: "May 29th",
     venue: "El Cid",

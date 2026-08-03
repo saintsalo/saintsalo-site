@@ -15,13 +15,18 @@ export async function generateMetadata({
   const { post } = await getPostBySlug(projectSlug)
   const cover = post?.promo?.filename || post?.images?.[0]?.filename
   const canonical = `/projects/${projectSlug}`
+  const description =
+    post?.seo ||
+    (post?.name
+      ? `${post.name} — a project featuring composer dl Salo.`
+      : "Projects featuring composer dl Salo.")
   return {
     title: post?.name,
-    description: post?.seo || "",
+    description,
     alternates: { canonical },
     openGraph: {
       title: post?.name ?? undefined,
-      description: post?.seo || "",
+      description,
       url: canonical,
       images: [cover ? setImage(cover) : DEFAULT_OG_IMAGE],
     },

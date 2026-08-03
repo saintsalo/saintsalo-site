@@ -1,7 +1,7 @@
 "use client"
 
 import { Breadcrumb } from "@/components/Breadcrumb"
-import { SynthComponent } from "../../synth/synth"
+import { SynthComponent } from "./synth"
 import { CopyButton } from "@/components/CopyButton"
 
 const codeSample = `"use client"

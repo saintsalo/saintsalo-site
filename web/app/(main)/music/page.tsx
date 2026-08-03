@@ -7,7 +7,8 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Music and Works",
-  description: "Collection of works and music by LA composer dl Salo",
+  description:
+    "Discography of composer dl Salo — albums, collaborations and works spanning classical piano, synthesizers, electronics and ambience.",
   alternates: { canonical: "/music" },
   openGraph: { url: "/music", title: "Music and Works", images: [DEFAULT_OG_IMAGE] },
 }

@@ -3,10 +3,11 @@ import { DEFAULT_OG_IMAGE } from "@/lib/seo"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Patches",
-  description: "Experiments with Max/MSP and RNBO by dl Salo.",
+  title: "Max/MSP Patches",
+  description:
+    "Interactive Max/MSP and RNBO audio experiments by dl Salo — a polyphonic synthesizer, a white noise generator, and Web Audio exports that run in the browser.",
   alternates: { canonical: "/patches" },
-  openGraph: { url: "/patches", title: "Patches", images: [DEFAULT_OG_IMAGE] },
+  openGraph: { url: "/patches", title: "Max/MSP Patches", images: [DEFAULT_OG_IMAGE] },
 }
 
 function Page() {

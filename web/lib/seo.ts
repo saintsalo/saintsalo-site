@@ -7,7 +7,8 @@
 
 export const SITE_URL = "https://saintsalo.com"
 export const SITE_NAME = "dl Salo"
-export const SITE_DESCRIPTION = "Collection of works and music by LA composer dl Salo"
+export const SITE_DESCRIPTION =
+  "dl Salo is a Los Angeles composer creating music that interweaves classical piano, synthesizers, electronics and ambience — haunting yet hopeful compositions."
 
 // External profiles, used for schema.org `sameAs`.
 export const SOCIAL_LINKS = ["https://www.instagram.com/saintsalo/"]

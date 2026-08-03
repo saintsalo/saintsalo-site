@@ -1,7 +1,7 @@
 "use client"
 
 import { Breadcrumb } from "@/components/Breadcrumb"
-import { WhiteNoiseGenerator } from "../../whitenoise/white-noise-generator"
+import { WhiteNoiseGenerator } from "./white-noise-generator"
 import { CopyButton } from "@/components/CopyButton"
 
 const codeSample = `"use client"

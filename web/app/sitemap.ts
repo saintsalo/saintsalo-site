@@ -18,8 +18,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: url("/projects"), changeFrequency: "monthly", priority: 0.8 },
     { url: url("/timeline"), changeFrequency: "monthly", priority: 0.6 },
     { url: url("/store"), changeFrequency: "monthly", priority: 0.6 },
-    { url: url("/scores"), changeFrequency: "monthly", priority: 0.4 },
-    { url: url("/patch"), changeFrequency: "monthly", priority: 0.3 },
+    // /scores is intentionally omitted until it has real content.
+    { url: url("/patches"), changeFrequency: "monthly", priority: 0.3 },
+    { url: url("/patches/rnbo"), changeFrequency: "monthly", priority: 0.2 },
+    { url: url("/patches/synth"), changeFrequency: "monthly", priority: 0.2 },
+    { url: url("/patches/whitenoise"), changeFrequency: "monthly", priority: 0.2 },
     { url: url("/contact"), changeFrequency: "yearly", priority: 0.4 },
   ]
 

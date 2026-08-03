@@ -3,10 +3,15 @@ import type { Metadata } from "next"
 import { SynthWithBreadcrumb } from "./synth-wrapper"
 
 export const metadata: Metadata = {
-  title: "Synth",
-  description: "A fully functional polyphonic synthesizer with dual oscillators by dl Salo.",
+  title: "Polyphonic Synthesizer",
+  description:
+    "A playable polyphonic synthesizer with dual oscillators, built for the browser by dl Salo.",
   alternates: { canonical: "/patches/synth" },
-  openGraph: { url: "/patches/synth", title: "Synth", images: [DEFAULT_OG_IMAGE] },
+  openGraph: {
+    url: "/patches/synth",
+    title: "Polyphonic Synthesizer",
+    images: [DEFAULT_OG_IMAGE],
+  },
 }
 
 export default function Page() {

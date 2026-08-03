@@ -9,7 +9,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Performances",
-  description: "Live performances by composer dl Salo",
+  description: "Upcoming and past live performances by composer dl Salo.",
   alternates: { canonical: "/performances" },
   openGraph: { url: "/performances", title: "Performances", images: [DEFAULT_OG_IMAGE] },
 }

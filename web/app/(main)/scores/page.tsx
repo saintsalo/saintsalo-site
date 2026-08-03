@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: "Clips from music scores by composer dl Salo.",
   alternates: { canonical: "/scores" },
   openGraph: { url: "/scores", title: "Music Score Clips", images: [DEFAULT_OG_IMAGE] },
+  // Placeholder page — keep it out of the index (and the sitemap) until it has
+  // real content, then remove this override.
+  robots: { index: false, follow: true },
 }
 
 export default function Page() {

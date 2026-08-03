@@ -6,7 +6,6 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo"
 import { DarkModeProvider } from "@/lib/DarkModeContext"
 import { EntranceAnimation } from "@/components/EntranceAnimation"
 import { TextAnimations } from "@/components/TextAnimations"
-import { RNBOAudioPlayer } from "@/components/RNBOAudioPlayer"
 import { DarkModeBackground } from "@/components/DarkModeBackground"
 import { ParticleEffects } from "@/components/ParticleEffects"
 import { DarkModeExit } from "@/components/DarkModeExit"
@@ -14,10 +13,22 @@ import { DarkModeExit } from "@/components/DarkModeExit"
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "dl Salo",
+    default: "dl Salo — Los Angeles Composer",
     template: "dl Salo | %s",
   },
-  keywords: ["Salo", "dl Salo", "composer", "ambient", "piano", "synth", "los angeles", "music"],
+  keywords: [
+    "Salo",
+    "dl Salo",
+    "Saint Salo",
+    "composer",
+    "ambient",
+    "piano",
+    "synth",
+    "los angeles",
+    "music",
+    "Holy Sun Opera House",
+    "Cowboy Cinema",
+  ],
   referrer: "origin-when-cross-origin",
   authors: [
     {
@@ -32,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: SITE_NAME,
     title: {
-      default: "dl Salo",
+      default: "dl Salo — Los Angeles Composer",
       template: "dl Salo | %s",
     },
     description: SITE_DESCRIPTION,
@@ -41,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: {
-      default: "dl Salo",
+      default: "dl Salo — Los Angeles Composer",
       template: "dl Salo | %s",
     },
     description: SITE_DESCRIPTION,
@@ -85,7 +96,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <DarkModeBackground />
           <EntranceAnimation />
           <TextAnimations />
-          <RNBOAudioPlayer />
           <ParticleEffects />
           <DarkModeExit />
           {children}
