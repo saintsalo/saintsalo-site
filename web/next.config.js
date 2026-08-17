@@ -17,6 +17,17 @@ const nextConfig = {
         source: '/llms.txt',
         headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
       },
+      // The social-card image routes return 200 to Googlebot, which files them
+      // under "Crawled - currently not indexed". noindex rather than a robots.txt
+      // disallow: Twitterbot honours disallow and would stop fetching the card.
+      {
+        source: '/opengraph-image',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+      {
+        source: '/twitter-image',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
     ]
   },
   // Legacy routes now live under /patches — redirect so search engines and old
@@ -27,6 +38,16 @@ const nextConfig = {
       // twice and files the www copy under "Alternate page with proper
       // canonical tag". Redirect www -> apex (matching SITE_URL in lib/seo)
       // so there's exactly one crawlable URL per page.
+      // Railway's edge proxy rewrites the Host header to the internal service
+      // name and passes the real one in x-forwarded-host, so the `host` rule
+      // below never matches in production. Keep both: the header rule is what
+      // actually fires on Railway, the host rule covers local/other runtimes.
+      {
+        source: '/:path*',
+        has: [{ type: 'header', key: 'x-forwarded-host', value: 'www.saintsalo.com' }],
+        destination: 'https://saintsalo.com/:path*',
+        permanent: true,
+      },
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'www.saintsalo.com' }],
