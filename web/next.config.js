@@ -23,10 +23,41 @@ const nextConfig = {
   // links consolidate on the canonical URLs.
   async redirects() {
     return [
+      // www and apex both resolve to this app, so Google crawls every page
+      // twice and files the www copy under "Alternate page with proper
+      // canonical tag". Redirect www -> apex (matching SITE_URL in lib/seo)
+      // so there's exactly one crawlable URL per page.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.saintsalo.com' }],
+        destination: 'https://saintsalo.com/:path*',
+        permanent: true,
+      },
       { source: '/patch', destination: '/patches', permanent: true },
       { source: '/rnbo', destination: '/patches/rnbo', permanent: true },
       { source: '/synth', destination: '/patches/synth', permanent: true },
       { source: '/whitenoise', destination: '/patches/whitenoise', permanent: true },
+      // Old Squarespace blog post, still linked from forums/Discord.
+      {
+        source: '/salo-news/2018/10/18/video-game-release-space-hole-2018',
+        destination: '/music/space-hole-2018',
+        permanent: true,
+      },
+      // Squarespace-era URLs still reported as 404s in Search Console.
+      { source: '/index', destination: '/', permanent: true },
+      {
+        source: '/photo-album/a-story-of-rats',
+        destination: '/projects/a-story-of-rats',
+        permanent: true,
+      },
+      {
+        source: '/mad-tiger-dvd-released',
+        destination: '/music/mad-tiger',
+        permanent: true,
+      },
+      // Old Squarespace blog + its ?format=rss feed. There's no RSS now, and
+      // no /news index — the homepage is where news posts are listed.
+      { source: '/dl-salo', destination: '/', permanent: true },
     ]
   },
 }
