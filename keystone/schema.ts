@@ -14,9 +14,26 @@ import { document } from '@keystone-6/fields-document';
 
 // import type { Lists } from '.keystone/types';
 
+const isSignedIn = ({ session }: { session?: unknown }) => Boolean(session);
+
+// public can read; only signed-in users can write
+const publicReadSignedInWrite = {
+  query: allowAll,
+  create: isSignedIn,
+  update: isSignedIn,
+  delete: isSignedIn,
+};
+
 export const lists = {
   User: list({
-    access: allowAll,
+    access: {
+      operation: {
+        query: isSignedIn,
+        create: isSignedIn,
+        update: isSignedIn,
+        delete: isSignedIn,
+      },
+    },
     fields: {
       name: text({ validation: { isRequired: true } }),
       email: text({
@@ -32,7 +49,9 @@ export const lists = {
     },
   }),
   Image: list({
-    access: allowAll,
+    access: {
+      operation: publicReadSignedInWrite,
+    },
     fields: {
       // image: cloudinaryImage({ cloudinary, label: "Project Image" }),
       filename: text({ validation: { isRequired: true } }),
@@ -41,7 +60,13 @@ export const lists = {
     }
   }),
   Post: list({
-    access: allowAll,
+    access: {
+      operation: publicReadSignedInWrite,
+      // logged-out visitors only see published posts
+      filter: {
+        query: ({ session }) => (session ? true : { status: { equals: "live" } }),
+      },
+    },
     fields: {
       createdAt: timestamp({
         defaultValue: { kind: 'now' },
