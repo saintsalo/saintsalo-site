@@ -265,9 +265,9 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-8 h-auto mt-0 mb-20 md:mt-20">
-        {features &&
-          features.map(feature => (
+      {features && features.length > 0 && (
+        <div className="flex flex-col gap-8 h-auto mt-0 mb-20 md:mt-20">
+          {features.map(feature => (
             <div key={feature.slug} className="group flex flex-col gap-4 md:mx-8 p-4 card">
               {feature.promo?.filename && (
                 <Link href={`/news/${feature.slug}`} className="min-w-full">
@@ -286,7 +286,8 @@ export default async function Home() {
               </div>
             </div>
           ))}
-      </div>
+        </div>
+      )}
 
       <div>----------------------------------------</div>
       {posts &&
