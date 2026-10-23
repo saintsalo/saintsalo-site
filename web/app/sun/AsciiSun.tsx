@@ -142,7 +142,9 @@ export default function AsciiSun({ hideControls = false }: { hideControls?: bool
   const resizeRef = useRef<() => void>(() => {})
 
   // Toggle the panel with "S" (ignored while typing in an input).
+  // Not bound when used as the site background (hideControls).
   useEffect(() => {
+    if (hideControls) return
     const onKey = (e: KeyboardEvent) => {
       const el = e.target as HTMLElement | null
       if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA")) return
@@ -150,7 +152,7 @@ export default function AsciiSun({ hideControls = false }: { hideControls?: bool
     }
     window.addEventListener("keydown", onKey)
     return () => window.removeEventListener("keydown", onKey)
-  }, [])
+  }, [hideControls])
 
   // The animation loop. Set up once; reads everything from settingsRef.
   useEffect(() => {
@@ -303,85 +305,89 @@ export default function AsciiSun({ hideControls = false }: { hideControls?: bool
         }}
       />
 
-      <button
-        type="button"
-        aria-label={show ? "Hide sun controls" : "Show sun controls"}
-        aria-expanded={show}
-        onClick={() => setShow(v => !v)}
-        style={sunIconStyle}
-      >
-        <span aria-hidden="true">☀</span>
-      </button>
+      {!hideControls && (
+        <>
+        <button
+          type="button"
+          aria-label={show ? "Hide sun controls" : "Show sun controls"}
+          aria-expanded={show}
+          onClick={() => setShow(v => !v)}
+          style={sunIconStyle}
+        >
+          <span aria-hidden="true">☀</span>
+        </button>
 
-      <div style={{ ...panelStyle, transform: show ? "translateY(0)" : "translateY(-100%)" }}>
-          <div style={{ gridColumn: "1 / -1", display: "flex", gap: 8, alignItems: "center", marginBottom: 2 }}>
-            <strong style={{ letterSpacing: 1 }}>ASCII SUN</strong>
-            <span style={{ opacity: 0.6 }}>click ☀ or press S to hide</span>
-            <span style={{ flex: 1 }} />
-            <button type="button" style={btnStyle} onClick={logSettings}>
-              log + copy settings
-            </button>
-            <button type="button" style={btnStyle} onClick={() => setSettings(DEFAULTS)}>
-              reset
-            </button>
-          </div>
+        <div style={{ ...panelStyle, transform: show ? "translateY(0)" : "translateY(-100%)" }}>
+            <div style={{ gridColumn: "1 / -1", display: "flex", gap: 8, alignItems: "center", marginBottom: 2 }}>
+              <strong style={{ letterSpacing: 1 }}>ASCII SUN</strong>
+              <span style={{ opacity: 0.6 }}>click ☀ or press S to hide</span>
+              <span style={{ flex: 1 }} />
+              <button type="button" style={btnStyle} onClick={logSettings}>
+                log + copy settings
+              </button>
+              <button type="button" style={btnStyle} onClick={() => setSettings(DEFAULTS)}>
+                reset
+              </button>
+            </div>
 
-          {NUM_CONTROLS.map(c => (
-            <label key={c.k} style={rowStyle}>
-              <span style={labelStyle}>{c.label}</span>
-              <input
-                type="range"
-                min={c.min}
-                max={c.max}
-                step={c.step}
-                value={settings[c.k] as number}
-                onChange={e => setNum(c.k, parseFloat(e.target.value))}
-                style={{ flex: 1, minWidth: 60 }}
-              />
-              <input
-                type="number"
-                min={c.min}
-                max={c.max}
-                step={c.step}
-                value={settings[c.k] as number}
-                onChange={e => setNum(c.k, parseFloat(e.target.value))}
-                style={numStyle}
-              />
-            </label>
-          ))}
+            {NUM_CONTROLS.map(c => (
+              <label key={c.k} style={rowStyle}>
+                <span style={labelStyle}>{c.label}</span>
+                <input
+                  type="range"
+                  min={c.min}
+                  max={c.max}
+                  step={c.step}
+                  value={settings[c.k] as number}
+                  onChange={e => setNum(c.k, parseFloat(e.target.value))}
+                  style={{ flex: 1, minWidth: 60 }}
+                />
+                <input
+                  type="number"
+                  min={c.min}
+                  max={c.max}
+                  step={c.step}
+                  value={settings[c.k] as number}
+                  onChange={e => setNum(c.k, parseFloat(e.target.value))}
+                  style={numStyle}
+                />
+              </label>
+            ))}
 
-          <div style={{ gridColumn: "1 / -1", opacity: 0.6, marginTop: 4 }}>gradient stops (top → bottom)</div>
-          {STOPS.map(stop => (
-            <label key={stop.c} style={rowStyle}>
+            <div style={{ gridColumn: "1 / -1", opacity: 0.6, marginTop: 4 }}>gradient stops (top → bottom)</div>
+            {STOPS.map(stop => (
+              <label key={stop.c} style={rowStyle}>
+                <input
+                  type="color"
+                  value={settings[stop.c] as string}
+                  onChange={e => setStr(stop.c, e.target.value)}
+                  style={{ width: 28, height: 20, padding: 0, border: "none", background: "none" }}
+                />
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  step={1}
+                  value={settings[stop.p] as number}
+                  onChange={e => setNum(stop.p, parseFloat(e.target.value))}
+                  style={{ flex: 1, minWidth: 60 }}
+                />
+                <span style={numStyle}>{settings[stop.p] as number}%</span>
+              </label>
+            ))}
+
+            <label style={rowStyle}>
+              <span style={labelStyle}>glow color</span>
               <input
                 type="color"
-                value={settings[stop.c] as string}
-                onChange={e => setStr(stop.c, e.target.value)}
+                value={settings.glowColor}
+                onChange={e => setStr("glowColor", e.target.value)}
                 style={{ width: 28, height: 20, padding: 0, border: "none", background: "none" }}
               />
-              <input
-                type="range"
-                min={0}
-                max={100}
-                step={1}
-                value={settings[stop.p] as number}
-                onChange={e => setNum(stop.p, parseFloat(e.target.value))}
-                style={{ flex: 1, minWidth: 60 }}
-              />
-              <span style={numStyle}>{settings[stop.p] as number}%</span>
             </label>
-          ))}
-
-          <label style={rowStyle}>
-            <span style={labelStyle}>glow color</span>
-            <input
-              type="color"
-              value={settings.glowColor}
-              onChange={e => setStr("glowColor", e.target.value)}
-              style={{ width: 28, height: 20, padding: 0, border: "none", background: "none" }}
-            />
-          </label>
-      </div>
+        </div>
+        </>
+      )}
     </>
   )
 }
