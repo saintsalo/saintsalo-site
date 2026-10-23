@@ -42,7 +42,8 @@ export const performances: Performance[] = [
     dateLabel: "Saturday, October 24, 8pm",
     venue: "2220 Arts + Archives",
     location: "2220 Beverly Blvd, Los Angeles, CA 90057",
-    image: "2220Arts-10-24-2026/holy-sun-opera-house-carolyn-pennypacker-riggs-2220-arts-poster.jpeg",
+    image:
+      "2220Arts-10-24-2026/holy-sun-opera-house-carolyn-pennypacker-riggs-2220-arts-poster.jpeg",
     summary:
       "KCRW and 2220 Arts present Holy Sun Opera House and Carolyn Pennypacker Riggs, with Saint Salo Plastilina.",
     links: [
@@ -52,7 +53,10 @@ export const performances: Performance[] = [
       },
       { label: "Saint Salo Plastilina", href: "/projects/saint-salo-plastilina" },
       { label: "@holy_sun_opera_house", href: "https://www.instagram.com/holy_sun_opera_house/" },
-      { label: "@carolynpennypackerriggs", href: "https://www.instagram.com/carolynpennypackerriggs/" },
+      {
+        label: "@carolynpennypackerriggs",
+        href: "https://www.instagram.com/carolynpennypackerriggs/",
+      },
       { label: "@2220arts", href: "https://www.instagram.com/2220arts/" },
     ],
     details: `<p>KCRW and 2220 Arts present a night with Holy Sun Opera House and Carolyn Pennypacker Riggs, with Saint Salo Plastilina.</p>
@@ -199,3 +203,11 @@ export const performances: Performance[] = [
 ]
 
 export const getPerformanceBySlug = (slug: string) => performances.find(p => p.slug === slug)
+
+// Shows on or after today (plus featured ones), soonest first.
+export const getUpcomingPerformances = () => {
+  const today = new Date().toISOString().slice(0, 10)
+  return performances
+    .filter(p => p.featured || p.date >= today)
+    .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
+}
