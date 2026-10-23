@@ -7,3 +7,5 @@ pgdata
 *.code-workspace
 postgres-db
 **/*.wav
+# full-size source photos (kept out of the deploy)
+image-originals

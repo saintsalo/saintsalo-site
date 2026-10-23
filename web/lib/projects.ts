@@ -12,6 +12,7 @@ const PROJECT_NAMES = {
   "a-story-of-rats": "A Story of Rats",
   "earth-and-ceremony": "Earth and Ceremony",
   "cowboy-cinema": "Cowboy Cinema",
+  "saint-salo-plastilina": "Saint Salo Plastilina",
 } as const
 
 export type ProjectSlug = keyof typeof PROJECT_NAMES

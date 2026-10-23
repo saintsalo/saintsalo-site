@@ -35,6 +35,37 @@ export interface Performance {
 
 export const performances: Performance[] = [
   {
+    slug: "2220-arts-holy-sun-opera-house-carolyn-pennypacker-riggs",
+    title: "Holy Sun Opera House + Carolyn Pennypacker Riggs w/ Saint Salo Plastilina",
+    project: "holy-sun-opera-house",
+    date: "2026-10-24",
+    dateLabel: "Saturday, October 24, 8pm",
+    venue: "2220 Arts + Archives",
+    location: "2220 Beverly Blvd, Los Angeles, CA 90057",
+    image: "2220Arts-10-24-2026/holy-sun-opera-house-carolyn-pennypacker-riggs-2220-arts-poster.jpeg",
+    summary:
+      "KCRW and 2220 Arts present Holy Sun Opera House and Carolyn Pennypacker Riggs, with Saint Salo Plastilina.",
+    links: [
+      {
+        label: "Tickets on dice.fm",
+        href: "https://dice.fm/event/dk7pae-holy-sun-opera-house-x-carolyn-pennypacker-riggs-24th-oct-2220-arts-archives-los-angeles-tickets",
+      },
+      { label: "Saint Salo Plastilina", href: "/projects/saint-salo-plastilina" },
+      { label: "@holy_sun_opera_house", href: "https://www.instagram.com/holy_sun_opera_house/" },
+      { label: "@carolynpennypackerriggs", href: "https://www.instagram.com/carolynpennypackerriggs/" },
+      { label: "@2220arts", href: "https://www.instagram.com/2220arts/" },
+    ],
+    details: `<p>KCRW and 2220 Arts present a night with Holy Sun Opera House and Carolyn Pennypacker Riggs, with Saint Salo Plastilina.</p>
+<p><a href="/projects/saint-salo-plastilina">Saint Salo Plastilina</a> is a new collaboration between dl Salo and <a href="https://www.instagram.com/la.bruja.plastilina/" target="_blank" rel="noopener">La Bruja Plastilina</a>: an all new series of music and piano love songs. 2220 Arts has a wonderful grand piano, so it will be a really nice night to take a theater seat. This is also Holy Sun Opera House's last show of the year.</p>
+<p><strong>Holy Sun Opera House</strong> creates emotionally engaging and haunting symphonic music embellished by electronics, heavy drums and synthesizers. Led by soprano and drummer Krissy Barker with composer dl Salo, the group features a revolving cast of collaborators, singers and performers. They have been described as “Opera Cult” and as one who would play at the Roadhouse in Twin Peaks. Their debut album, <em>The Holy Sun Opera House</em>, is an ethereal journey that blends electro, darkwave and contemporary classical. It has been featured on KCRW and in The Wire Magazine.</p>
+<p><strong>Carolyn Pennypacker Riggs</strong> is a composer working in site-responsive performance, installation, recorded sound, and object-making. Her work has been presented by the LA Phil; Getty Center; ICA, LA; the Broad; MoCA; Hammer Museum; High Desert Test Sites (Joshua Tree); and featured in Artforum.com, Frieze.com, X-TRA, New York Times Magazine and, recently, The New York Times. She leads two choral groups and a band called Bouquet, described as “Heady” by Under the Radar Magazine, “Best New Music” by KCRW, and “prismatic…perfection” by KEXP. In 2025, she published new writing in WITCH Anthology edited by Michelle Tea on Dopamine Books, an imprint of Semiotext(e).</p>
+<p>8pm · 2220 Arts + Archives, 2220 Beverly Blvd, Los Angeles, CA 90057</p>
+<figure class="flex flex-col gap-2">
+<img class="rounded-xs" src="/images/2220Arts-10-24-2026/saint-salo-plastilina-elizabeth-weinberg-1.jpg" alt="Saint Salo Plastilina: La Bruja Plastilina and dl Salo" />
+<figcaption><em>Saint Salo Plastilina. Photo by <a href="https://www.instagram.com/elizabethrweinberg/" target="_blank" rel="noopener">Elizabeth Weinberg</a></em></figcaption>
+</figure>`,
+  },
+  {
     slug: "hsoh-october-tour-2026",
     title: "Holy Sun Opera House Tour",
     project: "holy-sun-opera-house",
