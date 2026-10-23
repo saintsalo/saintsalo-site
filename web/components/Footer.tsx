@@ -13,7 +13,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="md:sticky bottom-0 md:h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md md:py-0 py-8">
+    <footer className="md:sticky bottom-0 z-20 md:h-20 items-center flex flex-row px-4 justify-between mt-20 transition-all duration-500 border-t border-white shadow-md md:py-0 py-8">
       <div className="flex flex-col items-center">
         <div className="social flex md:flex-row gap-4 flex-col">
           <Link href="https://www.instagram.com/saintsalo/" target="_blank">
