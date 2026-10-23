@@ -79,6 +79,9 @@ const nextConfig = {
       // Old Squarespace blog + its ?format=rss feed. There's no RSS now, and
       // no /news index — the homepage is where news posts are listed.
       { source: '/dl-salo', destination: '/', permanent: true },
+      // News posts live at /news/<slug> but are listed on the homepage, so the
+      // bare /news path has no page of its own.
+      { source: '/news', destination: '/', permanent: false },
     ]
   },
 }

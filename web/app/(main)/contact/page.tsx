@@ -1,19 +1,27 @@
 import Link from "next/link"
 
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import { absoluteUrl, pageMetadata, personRef } from "@/lib/seo"
+import { JsonLd } from "@/components/JsonLd"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description: "Get in touch with composer dl Salo — booking, press, and label enquiries.",
-  alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact", title: "Contact", images: [DEFAULT_OG_IMAGE] },
-}
+  path: "/contact",
+})
 
 export default function Page() {
   return (
     <div>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          url: absoluteUrl("/contact"),
+          about: personRef,
+        }}
+      />
       <h1>Contact</h1>
       <div>
         email: <Link href="mailto:saintsalo@gmail.com">saintsalo@gmail.com</Link>

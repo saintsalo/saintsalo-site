@@ -3,11 +3,14 @@ import { setImage } from "@/lib/setImage"
 import { getUpcomingPerformances } from "@/lib/performances"
 import {
   absoluteUrl,
-  DEFAULT_OG_IMAGE,
+  pageMetadata,
+  PERSON_ID,
+  personRef,
   SITE_DESCRIPTION,
   SITE_NAME,
   SITE_URL,
   SOCIAL_LINKS,
+  WEBSITE_ID,
 } from "@/lib/seo"
 import { JsonLd } from "@/components/JsonLd"
 import { UpcomingShows } from "@/components/UpcomingShows"
@@ -17,15 +20,15 @@ import Link from "next/link"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
-  description: SITE_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: { url: "/", images: [DEFAULT_OG_IMAGE] },
-}
+// Rebuilt at most hourly so CMS changes go live without a redeploy.
+export const revalidate = 3600
+
+export const metadata: Metadata = pageMetadata({ description: SITE_DESCRIPTION, path: "/" })
 
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": PERSON_ID,
   name: "dl Salo",
   // "Daniel Salo" is a former name, listed only so searches for it connect to
   // this site via entity matching — never render it in visible page content.
@@ -47,9 +50,12 @@ const personSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   name: SITE_NAME,
   url: SITE_URL,
   description: SITE_DESCRIPTION,
+  about: personRef,
+  publisher: personRef,
 }
 
 export default async function Home() {
@@ -61,6 +67,7 @@ export default async function Home() {
       <JsonLd data={personSchema} />
       <JsonLd data={websiteSchema} />
       <div className="bg-white rounded-md w-full p-8">
+        <h1>dl Salo — Los Angeles composer</h1>
         <p>
           <span className="bio-highlight">
             dl Salo is a composer creating music that interweaves classical piano, synthesizers,
@@ -236,7 +243,7 @@ export default async function Home() {
               {feature.promo?.filename && (
                 <Link href={`/news/${feature.slug}`} className="min-w-full">
                   <Image
-                    alt={feature.promo?.altText || "dl salo"}
+                    alt={feature.promo?.altText || "dl Salo news"}
                     src={setImage(feature.promo?.filename)}
                     width="400"
                     height="400"
@@ -276,7 +283,7 @@ export default async function Home() {
                 {post?.promo?.filename && (
                   <Link href={`/news/${post.slug}`} className="md:min-w-max min-w-full">
                     <Image
-                      alt={post.promo?.altText || "dl salo"}
+                      alt={post.promo?.altText || post.name || "dl Salo news"}
                       src={setImage(post.promo?.filename)}
                       width="200"
                       height="200"

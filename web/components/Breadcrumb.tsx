@@ -1,5 +1,8 @@
 import Link from "next/link"
 
+import { JsonLd } from "@/components/JsonLd"
+import { breadcrumbSchema } from "@/lib/seo"
+
 interface BreadcrumbItem {
   label: string
   href: string
@@ -11,7 +14,8 @@ interface BreadcrumbProps {
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="flex items-center gap-2 mb-6 text-sm opacity-70">
+    <nav aria-label="Breadcrumb" className="flex items-center gap-2 mb-6 text-sm opacity-70">
+      <JsonLd data={breadcrumbSchema(items.map(i => ({ name: i.label, path: i.href })))} />
       {items.map((item, index) => (
         <div key={item.href} className="flex items-center gap-2">
           <Link href={item.href} className="hover:opacity-100 transition-opacity">

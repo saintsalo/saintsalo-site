@@ -1,7 +1,19 @@
-import { getPerformanceBySlug, performances } from "@/lib/performances"
+import {
+  getPerformanceBySlug,
+  performances,
+  postalAddress,
+  startDateTime,
+} from "@/lib/performances"
 import { setImage } from "@/lib/setImage"
 import { projectRef } from "@/lib/projects"
-import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo"
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  ogImage,
+  pageMetadata,
+  personRef,
+  SITE_URL,
+} from "@/lib/seo"
 import { JsonLd } from "@/components/JsonLd"
 import Image from "next/image"
 import Link from "next/link"
@@ -19,19 +31,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { performanceSlug } = await params
   const show = getPerformanceBySlug(performanceSlug)
-  const canonical = `/performances/${performanceSlug}`
-  return {
+  return pageMetadata({
     title: show?.title || "Performance",
     description: show?.summary || "Live performance by composer dl Salo",
-    alternates: { canonical },
-    openGraph: {
-      type: "article",
-      title: show?.title || "Performance",
-      description: show?.summary || "Live performance by composer dl Salo",
-      url: canonical,
-      images: [show?.image ? setImage(show.image) : DEFAULT_OG_IMAGE],
-    },
-  }
+    path: `/performances/${performanceSlug}`,
+    image: ogImage(show?.image),
+    type: "article",
+  })
 }
 
 export default async function PerformanceDetail({
@@ -43,13 +49,24 @@ export default async function PerformanceDetail({
   const show = getPerformanceBySlug(performanceSlug)
   if (!show) notFound()
 
-  const performer = projectRef(show.project)
+  const performers = [show.project, ...(show.alsoProjects ?? [])].map(slug =>
+    slug
+      ? {
+          "@type": "MusicGroup",
+          name: projectRef(slug).name,
+          url: absoluteUrl(`/projects/${slug}`),
+          member: personRef,
+        }
+      : personRef,
+  )
+  const tickets = show.links?.find(l => l.label.toLowerCase().startsWith("tickets"))
   const eventSchema = {
     "@context": "https://schema.org",
     "@type": "MusicEvent",
     name: show.title,
     url: `${SITE_URL}/performances/${performanceSlug}`,
-    startDate: show.date,
+    startDate: startDateTime(show),
+    eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     ...(show.summary ? { description: show.summary } : {}),
     ...(show.image ? { image: absoluteUrl(setImage(show.image)) } : {}),
@@ -58,22 +75,23 @@ export default async function PerformanceDetail({
           location: {
             "@type": "Place",
             name: show.venue || show.location,
-            ...(show.location
-              ? { address: { "@type": "PostalAddress", streetAddress: show.location } }
-              : {}),
+            ...(show.location ? { address: postalAddress(show.location) } : {}),
           },
         }
       : {}),
-    performer: {
-      "@type": performer.href ? "MusicGroup" : "Person",
-      name: performer.name,
-      url: performer.href ? `${SITE_URL}${performer.href}` : SITE_URL,
-    },
+    performer: performers.length === 1 ? performers[0] : performers,
+    ...(tickets ? { offers: { "@type": "Offer", url: tickets.href } } : {}),
   }
 
   return (
     <div className="flex flex-col gap-6 max-w-4xl mx-auto w-full">
       <JsonLd data={eventSchema} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Performances", path: "/performances" },
+          { name: show.title, path: `/performances/${performanceSlug}` },
+        ])}
+      />
       <div>
         <Link href="/performances" className="text-sm">
           {`<= all performances`}

@@ -63,7 +63,7 @@ export const Header = () => {
               </div>
               <div className="flex flex-row space-x-2 items-center">
                 <Image
-                  alt="dl salo music"
+                  alt=""
                   src="/images/dl-salo-profile-image.png"
                   width="20"
                   height="20"
@@ -113,7 +113,7 @@ export const Header = () => {
                   title="Click to enter dark mode"
                 >
                   <Image
-                    alt="dl salo music"
+                    alt="dl Salo"
                     src="/images/dl-salo-profile-image.png"
                     width="200"
                     height="200"

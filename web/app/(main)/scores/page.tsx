@@ -1,14 +1,15 @@
 import Link from "next/link"
 
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import { pageMetadata } from "@/lib/seo"
 
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Music Score Clips",
-  description: "Clips from music scores by composer dl Salo.",
-  alternates: { canonical: "/scores" },
-  openGraph: { url: "/scores", title: "Music Score Clips", images: [DEFAULT_OG_IMAGE] },
+  ...pageMetadata({
+    title: "Music Score Clips",
+    description: "Clips from music scores by composer dl Salo.",
+    path: "/scores",
+  }),
   // Placeholder page — keep it out of the index (and the sitemap) until it has
   // real content, then remove this override.
   robots: { index: false, follow: true },

@@ -1,8 +1,17 @@
 import { getPostBySlug } from "@/lib/getPosts"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { setImage } from "@/lib/setImage"
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  describe,
+  ogImage,
+  pageMetadata,
+  personRef,
+} from "@/lib/seo"
+import { JsonLd } from "@/components/JsonLd"
 import Image from "next/image"
 import type { Metadata } from "next"
 
@@ -14,30 +23,44 @@ export async function generateMetadata({
   const { newsSlug } = await params
   const { post } = await getPostBySlug(newsSlug)
   const cover = post?.promo?.filename || post?.images?.[0]?.filename
-  const canonical = `/news/${newsSlug}`
-  const description =
-    post?.seo ||
-    (post?.name ? `${post.name} — news from composer dl Salo.` : "News from composer dl Salo.")
-  return {
+  return pageMetadata({
     title: post?.name,
-    description,
-    alternates: { canonical },
-    openGraph: {
-      type: "article",
-      title: post?.name ?? undefined,
-      description,
-      url: canonical,
-      images: [cover ? setImage(cover) : DEFAULT_OG_IMAGE],
-    },
-  }
+    description: describe(
+      post,
+      post?.name ? `${post.name}: news from composer dl Salo.` : "News from composer dl Salo.",
+    ),
+    path: `/news/${newsSlug}`,
+    image: ogImage(cover),
+    type: "article",
+  })
 }
 
 export default async function Post({ params }: { params: Promise<{ newsSlug: string }> }) {
   const { newsSlug } = await params
   const { post } = await getPostBySlug(newsSlug)
-  if (!post) return <div>not here.</div>
+  if (!post) notFound()
+
+  const cover = post.promo?.filename || post.images?.[0]?.filename
+  const description = describe(post, "")
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: post.name,
+    url: absoluteUrl(`/news/${newsSlug}`),
+    mainEntityOfPage: absoluteUrl(`/news/${newsSlug}`),
+    author: personRef,
+    publisher: personRef,
+    ...(post.createdAt ? { datePublished: post.createdAt } : {}),
+    ...(description ? { description } : {}),
+    ...(cover ? { image: absoluteUrl(setImage(cover)) } : {}),
+  }
+
   return (
     <div className="flex flex-col gap-2">
+      <JsonLd data={articleSchema} />
+      <JsonLd
+        data={breadcrumbSchema([{ name: post.name ?? newsSlug, path: `/news/${newsSlug}` }])}
+      />
       <div className="mb-4">
         <Link href={`/`} className="hover:font-corrected">{`<-- home`}</Link>
       </div>
@@ -59,7 +82,7 @@ export default async function Post({ params }: { params: Promise<{ newsSlug: str
                 <Link href={`/images/${image.filename}`} target="_blank">
                   <Image
                     src={setImage(image.filename)}
-                    alt={image.altText || "dl salo"}
+                    alt={image.altText || post.name || "dl Salo news"}
                     width={800}
                     height={800}
                     className="hover:contrast-150 transition-all"

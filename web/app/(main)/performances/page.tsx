@@ -2,17 +2,20 @@ import { performances } from "@/lib/performances"
 import { setImage } from "@/lib/setImage"
 import { projectRef } from "@/lib/projects"
 import { Timeline, type TimelineItem } from "@/components/Timeline"
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import { itemListSchema, pageMetadata } from "@/lib/seo"
+import { JsonLd } from "@/components/JsonLd"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
-export const metadata: Metadata = {
+// Rebuilt at most hourly so shows move from upcoming to past without a redeploy.
+export const revalidate = 3600
+
+export const metadata: Metadata = pageMetadata({
   title: "Performances",
   description: "Upcoming and past live performances by composer dl Salo.",
-  alternates: { canonical: "/performances" },
-  openGraph: { url: "/performances", title: "Performances", images: [DEFAULT_OG_IMAGE] },
-}
+  path: "/performances",
+})
 
 export default function Page() {
   // Compare on date only so a show happening "today" still counts as upcoming.
@@ -35,6 +38,8 @@ export default function Page() {
 
   return (
     <div className="flex flex-col gap-12">
+      <JsonLd data={itemListSchema(sorted.map(p => `/performances/${p.slug}`))} />
+      <h1 className="sr-only">Performances</h1>
       {upcoming.length > 0 && (
         <div className="flex flex-col gap-8">
           {[...upcoming].reverse().map(p => (
@@ -43,15 +48,15 @@ export default function Page() {
               href={`/performances/${p.slug}`}
               className="bg-white rounded-md w-full p-8 block hover:contrast-125 transition-all"
             >
-              <h1 className="text-4xl">{p.title}</h1>
-              <h2 className="font-correct mt-2">
+              <h2 className="text-4xl">{p.title}</h2>
+              <div className="font-correct mt-2">
                 <div className="text-3xl">
                   {p.dateLabel}
                   {p.venue ? `, ${p.venue}` : ""}
                   {p.location ? ` — ${p.location}` : ""}
                 </div>
                 {p.summary && <div className="text-2xl mt-2">{p.summary}</div>}
-              </h2>
+              </div>
               {p.image && (
                 <div className="pt-4">
                   <Image
@@ -70,7 +75,7 @@ export default function Page() {
 
       {past.length > 0 && (
         <div className="max-w-3xl w-full">
-          <h1 className="mb-8">Past shows</h1>
+          <h2 className="mb-8">Past shows</h2>
           <Timeline items={pastItems} />
         </div>
       )}

@@ -2,7 +2,7 @@ import "./globals.css"
 
 import type { Metadata, Viewport } from "next"
 
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo"
+import { DEFAULT_TITLE, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/seo"
 import { DarkModeProvider } from "@/lib/DarkModeContext"
 import { EntranceAnimation } from "@/components/EntranceAnimation"
 import { TextAnimations } from "@/components/TextAnimations"
@@ -13,8 +13,8 @@ import { DarkModeExit } from "@/components/DarkModeExit"
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "dl Salo — Los Angeles Composer",
-    template: "dl Salo | %s",
+    default: DEFAULT_TITLE,
+    template: "%s | dl Salo",
   },
   keywords: [
     "Salo",
@@ -38,13 +38,12 @@ export const metadata: Metadata = {
   ],
   creator: "dl Salo",
   description: SITE_DESCRIPTION,
-  generator: "NextJs",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
     title: {
-      default: "dl Salo — Los Angeles Composer",
-      template: "dl Salo | %s",
+      default: DEFAULT_TITLE,
+      template: "%s | dl Salo",
     },
     description: SITE_DESCRIPTION,
     locale: "en_US",
@@ -52,8 +51,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: {
-      default: "dl Salo — Los Angeles Composer",
-      template: "dl Salo | %s",
+      default: DEFAULT_TITLE,
+      template: "%s | dl Salo",
     },
     description: SITE_DESCRIPTION,
   },
@@ -89,6 +88,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="" />
+        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="" />
         <link rel="stylesheet" href="https://use.typekit.net/hhy8jas.css" />
       </head>
       <body>

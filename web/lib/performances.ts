@@ -23,6 +23,8 @@ export interface Performance {
   alsoProjects?: ProjectSlug[]
   date: string // ISO "YYYY-MM-DD"
   dateLabel: string // human-friendly, as shown on the page
+  /** start time, 24h "HH:MM" Los Angeles time; feeds the event's structured data */
+  time?: string
   venue?: string
   location?: string
   image?: string // filename under /public/images (resolve with setImage)
@@ -42,6 +44,7 @@ export const performances: Performance[] = [
     project: "holy-sun-opera-house",
     alsoProjects: ["saint-salo-plastilina"],
     date: "2026-10-24",
+    time: "20:00",
     dateLabel: "Saturday, October 24, 8pm",
     venue: "2220 Arts + Archives",
     location: "2220 Beverly Blvd, Los Angeles, CA 90057",
@@ -99,6 +102,7 @@ export const performances: Performance[] = [
     title: "Damaged Disco w/ Holy Sun Opera House and Cruel Diagonals",
     project: "holy-sun-opera-house",
     date: "2025-07-31",
+    time: "19:00",
     dateLabel: "Thursday, July 31, 7pm",
     venue: "Gold-Diggers",
     location: "Los Angeles",
@@ -120,7 +124,7 @@ export const performances: Performance[] = [
     date: "2025-06-15",
     dateLabel: "Sunday, June 15, 2025",
     location: "Los Angeles",
-    image: "dronebath 007 flyer.jpeg",
+    image: "dronebath-007-flyer.jpeg",
     summary: "An electronic sound bath series: 3 hours of uninterrupted low frequency.",
     links: [
       {
@@ -142,6 +146,7 @@ export const performances: Performance[] = [
     title: "Damaged Disco Halloween Party ft I Speak Machine and Holy Sun Opera House",
     project: "holy-sun-opera-house",
     date: "2024-10-29",
+    time: "19:00",
     dateLabel: "Tue, Oct 29, 2024 — 7pm",
     venue: "Gold-Diggers",
     location: "5630 Santa Monica Blvd, Los Angeles, CA 90038",
@@ -177,6 +182,7 @@ export const performances: Performance[] = [
     title: "Extreme Evolution: Drive to Divinity Listening Party",
     project: null, // DL Salo
     date: "2024-02-10",
+    time: "18:00",
     dateLabel: "Feb 10, 2024 — 6-9pm",
     venue: "Revenge of",
     location: "Los Angeles (Glassell Park)",
@@ -197,6 +203,7 @@ export const performances: Performance[] = [
     title: "Holy Sun Opera House",
     project: "holy-sun-opera-house",
     date: "2024-01-12",
+    time: "20:00",
     dateLabel: "Jan 12, 2024 — 8pm doors",
     venue: "Viper Room",
     location: "Los Angeles",
@@ -204,6 +211,39 @@ export const performances: Performance[] = [
     links: [{ label: "Viper Room", href: "https://www.viperroom.com/" }],
   },
 ]
+
+// ISO start for schema.org: "2026-10-24T20:00:00-07:00" when a time is known
+// (offset resolved for that date, so DST is handled), else the bare date.
+export const startDateTime = (show: Performance): string => {
+  if (!show.time) return show.date
+  const offset =
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Los_Angeles",
+      timeZoneName: "longOffset",
+    })
+      .formatToParts(new Date(`${show.date}T12:00:00Z`))
+      .find(part => part.type === "timeZoneName")
+      ?.value.replace("GMT", "") || "-08:00"
+  return `${show.date}T${show.time}:00${offset}`
+}
+
+// Split a "street, city, ST 12345" location into schema.org PostalAddress
+// fields; anything shorter is treated as the locality ("Los Angeles").
+export const postalAddress = (location: string) => {
+  const full = location.match(/^(.+?),\s*([^,]+),\s*([A-Z]{2})\s*(\d{5})?$/)
+  return {
+    "@type": "PostalAddress",
+    ...(full
+      ? {
+          streetAddress: full[1],
+          addressLocality: full[2],
+          addressRegion: full[3],
+          ...(full[4] ? { postalCode: full[4] } : {}),
+        }
+      : { addressLocality: location }),
+    addressCountry: "US",
+  }
+}
 
 export const getPerformanceBySlug = (slug: string) => performances.find(p => p.slug === slug)
 

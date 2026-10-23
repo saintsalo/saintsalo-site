@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next"
 
 import { getPostsData } from "@/lib/getPosts"
 import { performances } from "@/lib/performances"
+import { setImage } from "@/lib/setImage"
 import { SITE_URL } from "@/lib/seo"
 
 // Re-fetch the CMS at most hourly so newly published posts surface in the
@@ -9,6 +10,11 @@ import { SITE_URL } from "@/lib/seo"
 export const revalidate = 3600
 
 const url = (path: string): string => `${SITE_URL}${path}`
+
+// Image sitemap entry for a /public/images file; encodeURI keeps any spaces or
+// subfolder slashes valid in the XML.
+const images = (filename?: string | null): { images?: string[] } =>
+  filename ? { images: [encodeURI(url(setImage(filename)))] } : {}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = [
@@ -31,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: url(`/performances/${p.slug}`),
     changeFrequency: "monthly",
     priority: 0.6,
+    ...images(p.image),
   }))
 
   // CMS-driven detail pages. The GraphQL endpoint can be unavailable at build
@@ -43,14 +50,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       getPostsData("project"),
     ])
 
+    type SitemapPost = {
+      slug?: string | null
+      promo?: { filename?: string | null } | null
+      images?: { filename?: string | null }[] | null
+    }
     const fromPosts = (
-      posts: { slug?: string | null }[] | null | undefined,
+      posts: SitemapPost[] | null | undefined,
       base: string,
       priority: number,
     ): MetadataRoute.Sitemap =>
       (posts ?? [])
-        .filter((p): p is { slug: string } => Boolean(p.slug))
-        .map(p => ({ url: url(`${base}/${p.slug}`), changeFrequency: "monthly", priority }))
+        .filter(p => Boolean(p.slug))
+        .map(p => ({
+          url: url(`${base}/${p.slug}`),
+          changeFrequency: "monthly",
+          priority,
+          ...images(p.promo?.filename || p.images?.[0]?.filename),
+        }))
 
     cmsEntries = [
       ...fromPosts(music.posts, "/music", 0.8),

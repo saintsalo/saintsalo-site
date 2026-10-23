@@ -3,27 +3,26 @@ import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Image from "next/image"
 import Link from "next/link"
 import { setImage } from "@/lib/setImage"
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import { pageMetadata } from "@/lib/seo"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
+// Rebuilt at most hourly so CMS changes go live without a redeploy.
+export const revalidate = 3600
+
+export const metadata: Metadata = pageMetadata({
   title: "Projects and Collaborators",
   description:
     "Bands, collaborations and projects featuring composer dl Salo — Holy Sun Opera House, Saint Genet, A Story of Rats, Joy Wants Eternity and more.",
-  alternates: { canonical: "/projects" },
-  openGraph: {
-    url: "/projects",
-    title: "Projects and Collaborators",
-    images: [DEFAULT_OG_IMAGE],
-  },
-}
+  path: "/projects",
+})
 
 export default async function Collaborators() {
   const { posts } = await getPostsData("project")
   if (!posts) return null
   return (
     <div>
+      <h1>Projects and Collaborators</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 items-stretch bg-[#f8f5ee] gap-4 p-4">
         {posts &&
           posts
@@ -43,12 +42,12 @@ export default async function Collaborators() {
                   href={`/projects/${post.slug}`}
                   className="card p-4 flex flex-col gap-2 relative group"
                 >
-                  <h1 className="group-hover:font-corrected">{post.name}</h1>
+                  <h2 className="group-hover:font-corrected">{post.name}</h2>
 
                   {post?.promo?.filename && (
                     <Image
                       src={setImage(post.promo.filename)}
-                      alt={post.promo.altText || "dl salo"}
+                      alt={post.promo.altText || post.name || "dl Salo project"}
                       width={800}
                       height={800}
                     />

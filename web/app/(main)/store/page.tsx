@@ -1,18 +1,18 @@
-import { DEFAULT_OG_IMAGE } from "@/lib/seo"
+import { pageMetadata } from "@/lib/seo"
 
 import type { Metadata } from "next"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Store",
   description:
     "Buy music by dl Salo and Holy Sun Opera House — vinyl, cassette, CD and digital releases.",
-  alternates: { canonical: "/store" },
-  openGraph: { url: "/store", title: "Store", images: [DEFAULT_OG_IMAGE] },
-}
+  path: "/store",
+})
 
 function Page() {
   return (
     <div className="flex flex-col space-y-8">
+      <h1>Store</h1>
       <div>
         <div>
           <h2 className="text-lg mb-8">Holy Sun Opera House</h2>
@@ -20,6 +20,8 @@ function Page() {
             <div className="flex flex-col">
               <h3>The Holy Sun Opera House</h3>
               <iframe
+                title="The Holy Sun Opera House"
+                loading="lazy"
                 style={{ border: 0, width: "350px", height: "470px" }}
                 src="https://bandcamp.com/EmbeddedPlayer/album=1132362072/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
                 seamless
@@ -32,6 +34,8 @@ function Page() {
             <div className="flex flex-col">
               <h3>Attic EP</h3>
               <iframe
+                title="Attic EP"
+                loading="lazy"
                 style={{ border: 0, width: "350px", height: "470px" }}
                 src="https://bandcamp.com/EmbeddedPlayer/album=3025147987/size=large/bgcol=333333/linkcol=0f91ff/tracklist=false/transparent=true/"
                 seamless
@@ -50,6 +54,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Lighting Fires Along the Way</h3>
             <iframe
+              title="Lighting Fires Along the Way"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=789192833/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
               seamless
@@ -67,11 +73,13 @@ function Page() {
           <div className="flex flex-col">
             <h3>Extreme Evolution: Drive to Divinity (Original Game Soundtrack)</h3>
             <iframe
+              title="Extreme Evolution: Drive to Divinity (Original Game Soundtrack)"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=894054002/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
             >
-              <a href="https://holysunoperahouse.bandcamp.com/album/attic-ep">
+              <a href="https://dlsalo.bandcamp.com/">
                 Extreme Evolution: Drive to Divinity (Original Game Soundtrack) by dl Salo
               </a>
             </iframe>
@@ -79,6 +87,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Space Hole 2020 (Original Game Soundtrack)</h3>
             <iframe
+              title="Space Hole 2020 (Original Game Soundtrack)"
+              loading="lazy"
               width="350"
               height="400"
               allow="autoplay"
@@ -101,6 +111,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Space Hole 2018 (Original Game Soundtrack)</h3>
             <iframe
+              title="Space Hole 2018 (Original Game Soundtrack)"
+              loading="lazy"
               width="350"
               height="300"
               allow="autoplay"
@@ -123,6 +135,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Mad Tiger (Original Movie Soundtrack)</h3>
             <iframe
+              title="Mad Tiger (Original Movie Soundtrack)"
+              loading="lazy"
               allow="autoplay *; encrypted-media *;"
               height="350"
               width="350"
@@ -138,6 +152,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Motel</h3>
             <iframe
+              title="Motel"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=1276359757/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
@@ -148,6 +164,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Immeasurable Spiral</h3>
             <iframe
+              title="Immeasurable Spiral"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=2818561452/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
@@ -160,6 +178,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>Circling the Garland</h3>
             <iframe
+              title="Circling the Garland"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/track=1842347705/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
@@ -178,6 +198,8 @@ function Page() {
             <h3>Sorrows: Music from Transports of Delirium</h3>
 
             <iframe
+              title="Sorrows: Music from Transports of Delirium"
+              loading="lazy"
               width="350"
               height="300"
               allow="autoplay"
@@ -201,6 +223,8 @@ function Page() {
             <h3>Sorrows Sachiko</h3>
 
             <iframe
+              title="Sorrows Sachiko"
+              loading="lazy"
               width="350"
               height="300"
               allow="autoplay"
@@ -228,6 +252,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>The Fog is Rising</h3>
             <iframe
+              title="The Fog is Rising"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=1584663395/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
@@ -240,6 +266,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>MYSYEBYLTLWYE</h3>
             <iframe
+              title="MYSYEBYLTLWYE"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=3424174603/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless
@@ -253,6 +281,8 @@ function Page() {
           <div className="flex flex-col">
             <h3>You Who Pretend to Sleep</h3>
             <iframe
+              title="You Who Pretend to Sleep"
+              loading="lazy"
               style={{ border: 0, width: "350px", height: "470px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=2074367101/size=large/bgcol=333333/linkcol=ffffff/tracklist=false/transparent=true/"
               seamless

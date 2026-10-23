@@ -1,5 +1,6 @@
 query PostBySlug($slug: String!) {
   post:post(where: { slug: $slug }){
+    createdAt
     name
     images {
       name
