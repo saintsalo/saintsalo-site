@@ -10,6 +10,7 @@ import {
   SOCIAL_LINKS,
 } from "@/lib/seo"
 import { JsonLd } from "@/components/JsonLd"
+import { UpcomingShows } from "@/components/UpcomingShows"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Image from "next/image"
 import Link from "next/link"
@@ -69,44 +70,7 @@ export default async function Home() {
         </p>
       </div>
 
-      {upcoming.length > 0 && (
-        <div className="bg-white rounded-md w-full p-8 mt-8">
-          <div className="text-sm uppercase tracking-wide opacity-70 mb-4">
-            {upcoming.length > 1 ? "Upcoming shows" : "Upcoming show"}
-          </div>
-          <div className="flex flex-wrap gap-8">
-            {upcoming.map(show => {
-              const tickets = show.links?.find(l => l.label.toLowerCase().startsWith("tickets"))
-              return (
-                <div key={show.slug} className="flex flex-col gap-2 max-w-60">
-                  <Link href={`/performances/${show.slug}`}>
-                    {show.image ? (
-                      <Image
-                        src={setImage(show.image)}
-                        alt={show.title}
-                        width={240}
-                        height={240}
-                        className="hover:contrast-150 transition-all rounded-xs"
-                      />
-                    ) : (
-                      <span className="hover:font-corrected">{show.title}</span>
-                    )}
-                  </Link>
-                  <div>
-                    {show.dateLabel}
-                    {show.venue && ` · ${show.venue}`}
-                  </div>
-                  {tickets && (
-                    <a href={tickets.href} target="_blank" rel="noopener">
-                      Tickets
-                    </a>
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      )}
+      <UpcomingShows shows={upcoming} className="bg-white rounded-md w-full p-8 mt-8" />
 
       <div className="bg-white rounded-md w-full p-8 mt-8">
         <div className="flex flex-col gap-2 mb-4">

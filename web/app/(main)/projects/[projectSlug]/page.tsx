@@ -1,4 +1,6 @@
 import { getPostBySlug } from "@/lib/getPosts"
+import { getUpcomingPerformances } from "@/lib/performances"
+import { UpcomingShows } from "@/components/UpcomingShows"
 import { DocumentRenderer } from "@keystone-6/document-renderer"
 import Link from "next/link"
 import { setImage } from "@/lib/setImage"
@@ -36,6 +38,7 @@ export async function generateMetadata({
 export default async function Post({ params }: { params: Promise<{ projectSlug: string }> }) {
   const { projectSlug } = await params
   const { post } = await getPostBySlug(projectSlug)
+  const upcoming = getUpcomingPerformances(projectSlug)
 
   return (
     <div className="flex flex-col gap-2">
@@ -44,6 +47,7 @@ export default async function Post({ params }: { params: Promise<{ projectSlug: 
       </div>
       <h1>{post?.name}</h1>
       {post?.description?.document && <DocumentRenderer document={post?.description?.document} />}
+      <UpcomingShows shows={upcoming} className="mt-8" />
       <div className="flex md:flex-row flex-col gap-2 mt-8">
         {post?.images &&
           post.images.map(image => (

@@ -19,6 +19,8 @@ export interface Performance {
   title: string
   /** project/collaborator the show belongs to (null/omitted = DL Salo) */
   project?: ProjectSlug | null
+  /** other projects of mine on the bill; the show also lists on their project pages */
+  alsoProjects?: ProjectSlug[]
   date: string // ISO "YYYY-MM-DD"
   dateLabel: string // human-friendly, as shown on the page
   venue?: string
@@ -38,6 +40,7 @@ export const performances: Performance[] = [
     slug: "2220-arts-holy-sun-opera-house-carolyn-pennypacker-riggs",
     title: "Holy Sun Opera House + Carolyn Pennypacker Riggs w/ Saint Salo Plastilina",
     project: "holy-sun-opera-house",
+    alsoProjects: ["saint-salo-plastilina"],
     date: "2026-10-24",
     dateLabel: "Saturday, October 24, 8pm",
     venue: "2220 Arts + Archives",
@@ -204,10 +207,17 @@ export const performances: Performance[] = [
 
 export const getPerformanceBySlug = (slug: string) => performances.find(p => p.slug === slug)
 
-// Shows on or after today (plus featured ones), soonest first.
-export const getUpcomingPerformances = () => {
+// Shows on or after today (plus featured ones), soonest first. Pass a project
+// slug to only get shows that project is on.
+export const getUpcomingPerformances = (project?: string) => {
   const today = new Date().toISOString().slice(0, 10)
   return performances
     .filter(p => p.featured || p.date >= today)
+    .filter(
+      p =>
+        !project ||
+        p.project === project ||
+        (p.alsoProjects as string[] | undefined)?.includes(project),
+    )
     .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0))
 }
