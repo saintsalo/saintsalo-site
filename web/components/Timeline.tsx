@@ -12,6 +12,8 @@ export interface TimelineItem {
   summary?: string
   /** project/collaborator header shown above the entry; href links to the project */
   project?: { name: string; href?: string }
+  /** href is off-site (e.g. IMDb): open it in a new tab */
+  external?: boolean
 }
 
 const MONTHS = [
@@ -82,7 +84,11 @@ export const Timeline = ({ items }: { items: TimelineItem[] }) => {
                       </span>
                     ))}
 
-                  <Link href={item.href} className="group flex gap-4 mt-1 min-w-0 hover:text-red-400">
+                  <Link
+                    href={item.href}
+                    {...(item.external ? { target: "_blank", rel: "noopener" } : {})}
+                    className="group flex gap-4 mt-1 min-w-0 hover:text-red-400"
+                  >
                     {item.image ? (
                       <Image
                         src={item.image}
@@ -98,7 +104,9 @@ export const Timeline = ({ items }: { items: TimelineItem[] }) => {
                     <div className="flex flex-col gap-1 min-w-0">
                       <h3 className="text-sm md:text-base leading-snug">{item.title}</h3>
                       {item.summary && (
-                        <p className="text-sm opacity-60 line-clamp-2 leading-snug">{item.summary}</p>
+                        <p className="text-sm opacity-60 line-clamp-2 leading-snug">
+                          {item.summary}
+                        </p>
                       )}
                     </div>
                   </Link>
