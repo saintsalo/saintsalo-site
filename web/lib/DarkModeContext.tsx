@@ -10,7 +10,7 @@ interface DarkModeContextType {
 export const DarkModeContext = createContext<DarkModeContextType | undefined>(undefined)
 
 export function DarkModeProvider({ children }: { children: ReactNode }) {
-  const [isDarkMode, setIsDarkMode] = useState(true)
+  const [isDarkMode, setIsDarkMode] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   // Update HTML class when dark mode changes
