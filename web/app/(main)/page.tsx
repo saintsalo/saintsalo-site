@@ -292,11 +292,16 @@ export default async function Home() {
       <div>----------------------------------------</div>
       {posts &&
         posts
+          // Posts with an order come first (by order); the rest, and ties, newest first.
           .sort((a, b) => {
-            if (a.order === b.order) return 0
-            if (a.order === null || a.order === undefined) return 1
-            if (b.order === null || b.order === undefined) return -1
-            return a.order < b.order ? -1 : 1
+            const aOrder = a.order || null
+            const bOrder = b.order || null
+            if (aOrder !== bOrder) {
+              if (aOrder === null) return 1
+              if (bOrder === null) return -1
+              return aOrder < bOrder ? -1 : 1
+            }
+            return (b.createdAt ?? "").localeCompare(a.createdAt ?? "")
           })
           .map(post => (
             <div key={post.slug} className="group flex flex-col gap-4 md:mx-8 p-4 card">
